@@ -35,7 +35,7 @@ public class cVendedor {
     }
     
     //Esta función se usará para mostrarse en el JTable de Vendedores
-    public String tipoCadena(){
+    public String cargo(){
         String[] vec = {"","Administrador","Cajero","Reponedor"};
         return vec[tipo];
     }

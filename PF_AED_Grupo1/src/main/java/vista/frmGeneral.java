@@ -41,13 +41,6 @@ public class frmGeneral extends javax.swing.JFrame {
         btnActualizaLE = new javax.swing.JButton();
         btnBorraLE = new javax.swing.JButton();
         btnConsultaLE = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tableC = new javax.swing.JTable();
-        btnIngresaC = new javax.swing.JButton();
-        btnActualizaC = new javax.swing.JButton();
-        btnEliminaC = new javax.swing.JButton();
-        btnConsultaC = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tableP = new javax.swing.JTable();
@@ -55,6 +48,16 @@ public class frmGeneral extends javax.swing.JFrame {
         btnActualizaP = new javax.swing.JButton();
         btnBorraP = new javax.swing.JButton();
         btnConsultaP = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableC = new javax.swing.JTable();
+        btnIngresaC = new javax.swing.JButton();
+        btnActualizaC = new javax.swing.JButton();
+        btnEliminaC = new javax.swing.JButton();
+        btnConsultaC = new javax.swing.JTextField();
+        panCliente = new javax.swing.JPanel();
+        rbPersona = new javax.swing.JRadioButton();
+        rbEmpresa = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         btnIntegrantes = new javax.swing.JButton();
 
@@ -116,7 +119,7 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        jTabbedPane1.addTab("Arreglo", jPanel1);
+        jTabbedPane1.addTab("Productos", jPanel1);
 
         tableLE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -174,75 +177,17 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        jTabbedPane1.addTab("LE", jPanel2);
-
-        tableC.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Código", "Descripción", "Precio", "Cantidad"
-            }
-        ));
-        jScrollPane3.setViewportView(tableC);
-
-        btnIngresaC.setText("Añadir");
-
-        btnActualizaC.setText("Actualizar");
-        btnActualizaC.setEnabled(false);
-
-        btnEliminaC.setText("Eliminar");
-        btnEliminaC.setEnabled(false);
-
-        btnConsultaC.setText("Consultar");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(btnIngresaC)
-                .addGap(56, 56, 56)
-                .addComponent(btnActualizaC)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(btnEliminaC)
-                .addGap(64, 64, 64)
-                .addComponent(btnConsultaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresaC)
-                    .addComponent(btnActualizaC)
-                    .addComponent(btnEliminaC)
-                    .addComponent(btnConsultaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
-
-        jTabbedPane1.addTab("Cola", jPanel3);
+        jTabbedPane1.addTab("Comprobantes", jPanel2);
 
         tableP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Descripción", "Precio", "Cantidad"
+                "Código", "Nombre", "Fecha de Ingreso", "Sueldo", "Cargo"
             }
         ));
         jScrollPane4.setViewportView(tableP);
@@ -290,7 +235,99 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        jTabbedPane1.addTab("Pila", jPanel4);
+        jTabbedPane1.addTab("Vendedores", jPanel4);
+
+        tableC.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Código", "Descripción", "Precio", "Cantidad"
+            }
+        ));
+        jScrollPane3.setViewportView(tableC);
+
+        btnIngresaC.setText("Añadir");
+
+        btnActualizaC.setText("Actualizar");
+        btnActualizaC.setEnabled(false);
+
+        btnEliminaC.setText("Eliminar");
+        btnEliminaC.setEnabled(false);
+
+        btnConsultaC.setText("Consultar");
+
+        panCliente.setBorder(javax.swing.BorderFactory.createTitledBorder("Listar"));
+
+        rbPersona.setText("Persona Natural");
+
+        rbEmpresa.setText("Empresa");
+
+        javax.swing.GroupLayout panClienteLayout = new javax.swing.GroupLayout(panCliente);
+        panCliente.setLayout(panClienteLayout);
+        panClienteLayout.setHorizontalGroup(
+            panClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbPersona)
+                .addGap(18, 18, 18)
+                .addComponent(rbEmpresa)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panClienteLayout.setVerticalGroup(
+            panClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbPersona)
+                    .addComponent(rbEmpresa))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(186, 186, 186)
+                        .addComponent(panCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(btnIngresaC)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnActualizaC)
+                        .addGap(60, 60, 60)
+                        .addComponent(btnEliminaC)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConsultaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizaC)
+                    .addComponent(btnEliminaC)
+                    .addComponent(btnConsultaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIngresaC))
+                .addGap(18, 18, 18)
+                .addComponent(panCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
+        );
+
+        jTabbedPane1.addTab("Clientes", jPanel3);
 
         jLabel1.setText("VENTA DE PRODUCTOS ELECTRÓNICOS");
 
@@ -386,6 +423,9 @@ public class frmGeneral extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel panCliente;
+    private javax.swing.JRadioButton rbEmpresa;
+    private javax.swing.JRadioButton rbPersona;
     private javax.swing.JTable tableA;
     private javax.swing.JTable tableC;
     private javax.swing.JTable tableLE;
