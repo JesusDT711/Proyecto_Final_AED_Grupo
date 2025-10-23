@@ -6,18 +6,18 @@ package modelo;
  * @author Giuss
  */
 public class cNodo {
-    private cProducto valor;
+    private cComprobante valor;
     private cNodo sgte, ant;
     
-    public cNodo(cProducto valor){
+    public cNodo(cComprobante valor){
         this.valor = valor;
     }
 
-    public cProducto getValor() {
+    public cComprobante getValor() {
         return valor;
     }
 
-    public void setValor(cProducto valor) {
+    public void setValor(cComprobante valor) {
         this.valor = valor;
     }
 

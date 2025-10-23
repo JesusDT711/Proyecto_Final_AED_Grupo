@@ -12,7 +12,7 @@ import modelo.*;
 public class cListaEnlazada {
     private cNodo inicio, nuevo, p, q;
     
-    public void insertarxInicio(cProducto valor){
+    public void insertarxInicio(cComprobante valor){
         nuevo = new cNodo(valor);
         if(inicio==null){
             inicio = nuevo;
@@ -22,7 +22,7 @@ public class cListaEnlazada {
         }
     }
     
-    public void insertarxFinal(cProducto valor){
+    public void insertarxFinal(cComprobante valor){
         nuevo = new cNodo(valor);
         if(inicio==null){
             inicio = nuevo;
@@ -36,7 +36,7 @@ public class cListaEnlazada {
     }
     
     
-    public void insertaEntreNodosSgte(cProducto valor, String desde){
+    public void insertaEntreNodosSgte(cComprobante valor, String desde){
         nuevo = new cNodo(valor);
         if(inicio == null){
             inicio = nuevo;
@@ -52,7 +52,7 @@ public class cListaEnlazada {
         }
     }
     
-    public void insertaEntreNodosAnt(cProducto valor, String antes){
+    public void insertaEntreNodosAnt(cComprobante valor, String antes){
         nuevo = new cNodo(valor);
         if(inicio==null){
             inicio = nuevo;
@@ -110,12 +110,12 @@ public class cListaEnlazada {
         modelo.setRowCount(0);
         p = inicio;
         while(p != null){
-            cProducto producto = p.getValor();
+            cComprobante comprobante = p.getValor();
             Object[] fila = {
-                producto.getCodigo(),
-                producto.getDescripcion(),
-                producto.getPrecio(),
-                producto.getStock()
+                comprobante.getCodigo(),
+                comprobante.getFecha(),
+                comprobante.getCliente(),
+                comprobante.getVendedor()
             };
             modelo.addRow(fila);
             p = p.getSgte();
