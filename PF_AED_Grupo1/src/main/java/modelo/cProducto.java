@@ -15,8 +15,8 @@ public class cProducto {
     static int cuenta=1;
 
     public cProducto(){
-        DecimalFormat sd = new DecimalFormat("0000");
-        this.codigo = sd.format(cuenta++);
+        DecimalFormat cod = new DecimalFormat("P000");
+        this.codigo = cod.format(cuenta++);
     }
     public cProducto(String descripcion, double precio, int stock) {
         this();
