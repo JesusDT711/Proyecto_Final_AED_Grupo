@@ -5,11 +5,13 @@ package controlador;
  *
  * @author Giuss
  */
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import modelo.*;
 public class cListaEnlazada {
     private cNodo inicio, nuevo, p, q;
     
-    public void insertarxInicio(int valor){
+    public void insertarxInicio(cProducto valor){
         nuevo = new cNodo(valor);
         if(inicio==null){
             inicio = nuevo;
@@ -19,7 +21,7 @@ public class cListaEnlazada {
         }
     }
     
-    public void insertarxFinal(int valor){
+    public void insertarxFinal(cProducto valor){
         nuevo = new cNodo(valor);
         if(inicio==null){
             inicio = nuevo;
@@ -33,49 +35,35 @@ public class cListaEnlazada {
     }
     
     
-    public void insertaEntreNodosSgte(int valor, int desde){
+    public void insertaEntreNodosSgte(cProducto valor, String desde){
         nuevo = new cNodo(valor);
         if(inicio == null){
             inicio = nuevo;
         }else{
             p=inicio;
-            while(p.getSgte() != null && p.getValor() != desde){
+            while(p.getSgte() != null && !p.getValor().getCodigo().equals(desde)){
                 p = p.getSgte();
             }
-            if(p.getValor()==desde){
+            if(p.getValor().getCodigo().equals(desde)){
                 nuevo.setSgte(p.getSgte());
                 p.setSgte(nuevo);
             }
         }
     }
     
-    public void insertaEntreNodosAnt(int valor, int antes){
+    public void insertaEntreNodosAnt(cProducto valor, String antes){
         nuevo = new cNodo(valor);
         if(inicio==null){
             inicio = nuevo;
         }else{
             p=inicio; q=inicio;
-            while(p.getSgte() != null && p.getValor() != antes){
+            while(p.getSgte() != null && !p.getValor().getCodigo().equals(antes)){
                 q = p;
                 p = p.getSgte();
             }
-            if(p.getValor()==antes){
+            if(p.getValor().getCodigo().equals(antes)){
                 nuevo.setSgte(p);
                 q.setSgte(nuevo);
-            }
-        }
-    }
-    
-    public void insertarDigitos(int valor){
-        nuevo = new cNodo(valor);
-        int num = Math.abs(nuevo.getValor());
-        if(num==0){
-            insertarxInicio(0);
-        }else{
-            while(num>0){
-                int digito = num % 10;
-                insertarxInicio(digito);
-                num = num/10;
             }
         }
     }
@@ -101,43 +89,49 @@ public class cListaEnlazada {
         }
     }
     
-    public void eliminaEntreNodos(int valor){
+    public void eliminaEntreNodos(String valor){
         if(inicio != null){
             p = inicio; q = inicio;
-            while(p.getValor() != valor && p.getSgte() != null){
+            while(!p.getValor().getCodigo().equals(valor) && p.getSgte() != null){
                 q = p;
                 p = p.getSgte();
             }
-            if(p.getValor() == valor){
+            if(p.getValor().getCodigo().equals(valor)){
                 q.setSgte(p.getSgte());
             }
         }
         
     }
     
-    public String recorreLE(){
-        String cadena="";
+    //Modificado según la clase cProducto y para usarse en un JTable
+    public void recorreLE(JTable tabla){
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        modelo.setRowCount(0);
         p = inicio;
         while(p != null){
-            cadena += p.getValor()+" - ";
+            cProducto producto = p.getValor();
+            Object[] fila = {
+                producto.getCodigo(),
+                producto.getDescripcion(),
+                producto.getPrecio(),
+                producto.getStock()
+            };
+            modelo.addRow(fila);
             p = p.getSgte();
         }
-        return cadena;
     }
     
-    public boolean busqueda(int valor){
+    public boolean busqueda(String valor){
         boolean res=false;
         if(inicio != null){
             p = inicio;
-            while(p.getValor() != valor && p.getSgte() != null){
+            while(!p.getValor().getCodigo().equals(valor) && p.getSgte() != null){
                 p = p.getSgte();
             }
-            if(p.getValor()==valor){
+            if(p.getValor().getCodigo().equals(valor)){
                 res=true;
             }
         }
         return res;
-    }
-    
-    
+    }  
 }

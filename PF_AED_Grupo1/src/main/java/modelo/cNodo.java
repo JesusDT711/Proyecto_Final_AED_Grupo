@@ -6,18 +6,18 @@ package modelo;
  * @author Giuss
  */
 public class cNodo {
-    private int valor;
+    private cProducto valor;
     private cNodo sgte, ant;
     
-    public cNodo(int valor){
+    public cNodo(cProducto valor){
         this.valor = valor;
     }
 
-    public int getValor() {
+    public cProducto getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(cProducto valor) {
         this.valor = valor;
     }
 
