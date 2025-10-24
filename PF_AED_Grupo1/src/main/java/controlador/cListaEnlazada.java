@@ -11,7 +11,7 @@ import modelo.*;
 
 public class cListaEnlazada {
     private cNodo inicio, nuevo, p, q;
-    
+    //josejeri
     public void insertarxInicio(cComprobante valor){
         nuevo = new cNodo(valor);
         if(inicio==null){
