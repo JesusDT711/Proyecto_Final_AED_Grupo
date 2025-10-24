@@ -33,21 +33,21 @@ public class frmGeneral extends javax.swing.JFrame {
         btnIngresaA = new javax.swing.JButton();
         btnActualizaA = new javax.swing.JButton();
         btnBorraA = new javax.swing.JButton();
-        btnConsultaA = new javax.swing.JButton();
+        btnConsultaA = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableLE = new javax.swing.JTable();
         btnIngresaLE = new javax.swing.JButton();
         btnActualizaLE = new javax.swing.JButton();
         btnBorraLE = new javax.swing.JButton();
-        btnConsultaLE = new javax.swing.JButton();
+        btnConsultaLE = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableC = new javax.swing.JTable();
         btnIngresaC = new javax.swing.JButton();
         btnActualizaC = new javax.swing.JButton();
         btnEliminaC = new javax.swing.JButton();
-        btnConsultaC = new javax.swing.JButton();
+        btnConsultaC = new javax.swing.JTextField();
         panCliente = new javax.swing.JPanel();
         rbPersona = new javax.swing.JRadioButton();
         rbEmpresa = new javax.swing.JRadioButton();
@@ -57,7 +57,7 @@ public class frmGeneral extends javax.swing.JFrame {
         btnIngresaP = new javax.swing.JButton();
         btnActualizaP = new javax.swing.JButton();
         btnBorraP = new javax.swing.JButton();
-        btnConsultaP = new javax.swing.JButton();
+        btnConsultaP = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnIntegrantes = new javax.swing.JButton();
 
@@ -352,9 +352,8 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(btnIntegrantes))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(12, 12, 12)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -403,10 +402,10 @@ public class frmGeneral extends javax.swing.JFrame {
     private javax.swing.JButton btnBorraA;
     private javax.swing.JButton btnBorraLE;
     private javax.swing.JButton btnBorraP;
-    private javax.swing.JButton btnConsultaA;
-    private javax.swing.JButton btnConsultaC;
-    private javax.swing.JButton btnConsultaLE;
-    private javax.swing.JButton btnConsultaP;
+    private javax.swing.JTextField btnConsultaA;
+    private javax.swing.JTextField btnConsultaC;
+    private javax.swing.JTextField btnConsultaLE;
+    private javax.swing.JTextField btnConsultaP;
     private javax.swing.JButton btnEliminaC;
     private javax.swing.JButton btnIngresaA;
     private javax.swing.JButton btnIngresaC;
