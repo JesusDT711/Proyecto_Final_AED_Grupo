@@ -26,6 +26,7 @@ public class frmGeneral extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -33,31 +34,32 @@ public class frmGeneral extends javax.swing.JFrame {
         btnIngresaA = new javax.swing.JButton();
         btnActualizaA = new javax.swing.JButton();
         btnBorraA = new javax.swing.JButton();
-        btnConsultaA = new javax.swing.JTextField();
+        btnConsultaA = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableLE = new javax.swing.JTable();
         btnIngresaLE = new javax.swing.JButton();
         btnActualizaLE = new javax.swing.JButton();
         btnBorraLE = new javax.swing.JButton();
-        btnConsultaLE = new javax.swing.JTextField();
+        btnConsultaLE = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableC = new javax.swing.JTable();
         btnIngresaC = new javax.swing.JButton();
         btnActualizaC = new javax.swing.JButton();
         btnEliminaC = new javax.swing.JButton();
-        btnConsultaC = new javax.swing.JTextField();
         panCliente = new javax.swing.JPanel();
         rbPersona = new javax.swing.JRadioButton();
         rbEmpresa = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        btnConsultaC = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tableP = new javax.swing.JTable();
         btnIngresaP = new javax.swing.JButton();
         btnActualizaP = new javax.swing.JButton();
         btnBorraP = new javax.swing.JButton();
-        btnConsultaP = new javax.swing.JTextField();
+        btnConsultaP = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnIntegrantes = new javax.swing.JButton();
 
@@ -98,10 +100,10 @@ public class frmGeneral extends javax.swing.JFrame {
                         .addComponent(btnIngresaA)
                         .addGap(56, 56, 56)
                         .addComponent(btnActualizaA)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
                         .addComponent(btnBorraA)
-                        .addGap(64, 64, 64)
-                        .addComponent(btnConsultaA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(54, 54, 54)
+                        .addComponent(btnConsultaA)))
                 .addGap(55, 55, 55))
         );
         jPanel1Layout.setVerticalGroup(
@@ -112,7 +114,7 @@ public class frmGeneral extends javax.swing.JFrame {
                     .addComponent(btnIngresaA)
                     .addComponent(btnActualizaA)
                     .addComponent(btnBorraA)
-                    .addComponent(btnConsultaA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConsultaA))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -147,19 +149,20 @@ public class frmGeneral extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(btnIngresaLE)
-                .addGap(56, 56, 56)
-                .addComponent(btnActualizaLE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
-                .addComponent(btnBorraLE)
-                .addGap(64, 64, 64)
-                .addComponent(btnConsultaLE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(btnIngresaLE)
+                        .addGap(56, 56, 56)
+                        .addComponent(btnActualizaLE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                        .addComponent(btnBorraLE)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnConsultaLE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(64, 64, 64))
         );
         jPanel2Layout.setVerticalGroup(
@@ -170,7 +173,7 @@ public class frmGeneral extends javax.swing.JFrame {
                     .addComponent(btnIngresaLE)
                     .addComponent(btnActualizaLE)
                     .addComponent(btnBorraLE)
-                    .addComponent(btnConsultaLE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConsultaLE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -199,13 +202,16 @@ public class frmGeneral extends javax.swing.JFrame {
         btnEliminaC.setText("Eliminar");
         btnEliminaC.setEnabled(false);
 
-        btnConsultaC.setText("Consultar");
-
         panCliente.setBorder(javax.swing.BorderFactory.createTitledBorder("Listar"));
 
+        buttonGroup1.add(rbPersona);
         rbPersona.setText("Persona Natural");
 
+        buttonGroup1.add(rbEmpresa);
         rbEmpresa.setText("Empresa");
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setText("Todos");
 
         javax.swing.GroupLayout panClienteLayout = new javax.swing.GroupLayout(panCliente);
         panCliente.setLayout(panClienteLayout);
@@ -216,6 +222,8 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addComponent(rbPersona)
                 .addGap(18, 18, 18)
                 .addComponent(rbEmpresa)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panClienteLayout.setVerticalGroup(
@@ -224,9 +232,12 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbPersona)
-                    .addComponent(rbEmpresa))
+                    .addComponent(rbEmpresa)
+                    .addComponent(jRadioButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        btnConsultaC.setText("Consultar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -234,21 +245,24 @@ public class frmGeneral extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addComponent(btnIngresaC)
-                .addGap(51, 51, 51)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 111, Short.MAX_VALUE)
+                        .addComponent(btnIngresaC)
+                        .addGap(51, 51, 51)
                         .addComponent(btnActualizaC)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminaC))
-                    .addComponent(panCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
-                .addComponent(btnConsultaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115))
+                        .addGap(60, 60, 60)
+                        .addComponent(btnEliminaC)
+                        .addGap(62, 62, 62)
+                        .addComponent(btnConsultaC)
+                        .addGap(97, 97, 97))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(193, 193, 193))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +272,7 @@ public class frmGeneral extends javax.swing.JFrame {
                     .addComponent(btnActualizaC)
                     .addComponent(btnEliminaC)
                     .addComponent(btnIngresaC)
-                    .addComponent(btnConsultaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConsultaC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -295,30 +309,31 @@ public class frmGeneral extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(btnIngresaP)
-                .addGap(56, 56, 56)
-                .addComponent(btnActualizaP)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
-                .addComponent(btnBorraP)
-                .addGap(64, 64, 64)
-                .addComponent(btnConsultaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(btnIngresaP)
+                        .addGap(56, 56, 56)
+                        .addComponent(btnActualizaP)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                        .addComponent(btnBorraP)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnConsultaP))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(69, 69, 69))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIngresaP)
                     .addComponent(btnActualizaP)
                     .addComponent(btnBorraP)
-                    .addComponent(btnConsultaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConsultaP))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -402,21 +417,23 @@ public class frmGeneral extends javax.swing.JFrame {
     private javax.swing.JButton btnBorraA;
     private javax.swing.JButton btnBorraLE;
     private javax.swing.JButton btnBorraP;
-    private javax.swing.JTextField btnConsultaA;
-    private javax.swing.JTextField btnConsultaC;
-    private javax.swing.JTextField btnConsultaLE;
-    private javax.swing.JTextField btnConsultaP;
+    private javax.swing.JButton btnConsultaA;
+    private javax.swing.JButton btnConsultaC;
+    private javax.swing.JButton btnConsultaLE;
+    private javax.swing.JButton btnConsultaP;
     private javax.swing.JButton btnEliminaC;
     private javax.swing.JButton btnIngresaA;
     private javax.swing.JButton btnIngresaC;
     private javax.swing.JButton btnIngresaLE;
     private javax.swing.JButton btnIngresaP;
     private javax.swing.JButton btnIntegrantes;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
