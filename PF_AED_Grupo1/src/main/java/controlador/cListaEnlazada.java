@@ -42,10 +42,10 @@ public class cListaEnlazada {
             inicio = nuevo;
         }else{
             p=inicio;
-            while(p.getSgte() != null && !p.getValor().getCodigo().equals(desde)){
+            while(p.getSgte() != null && !p.getValor().getCodigo().equalsIgnoreCase(desde)){
                 p = p.getSgte();
             }
-            if(p.getValor().getCodigo().equals(desde)){
+            if(p.getValor().getCodigo().equalsIgnoreCase(desde)){
                 nuevo.setSgte(p.getSgte());
                 p.setSgte(nuevo);
             }
@@ -58,11 +58,11 @@ public class cListaEnlazada {
             inicio = nuevo;
         }else{
             p=inicio; q=inicio;
-            while(p.getSgte() != null && !p.getValor().getCodigo().equals(antes)){
+            while(p.getSgte() != null && !p.getValor().getCodigo().equalsIgnoreCase(antes)){
                 q = p;
                 p = p.getSgte();
             }
-            if(p.getValor().getCodigo().equals(antes)){
+            if(p.getValor().getCodigo().equalsIgnoreCase(antes)){
                 nuevo.setSgte(p);
                 q.setSgte(nuevo);
             }
@@ -93,11 +93,11 @@ public class cListaEnlazada {
     public void eliminaEntreNodos(String valor){
         if(inicio != null){
             p = inicio; q = inicio;
-            while(!p.getValor().getCodigo().equals(valor) && p.getSgte() != null){
+            while(!p.getValor().getCodigo().equalsIgnoreCase(valor) && p.getSgte() != null){
                 q = p;
                 p = p.getSgte();
             }
-            if(p.getValor().getCodigo().equals(valor)){
+            if(p.getValor().getCodigo().equalsIgnoreCase(valor)){
                 q.setSgte(p.getSgte());
             }
         }
@@ -126,7 +126,7 @@ public class cListaEnlazada {
         boolean res=false;
         if(inicio != null){
             p = inicio;
-            while(!p.getValor().getCodigo().equals(valor) && p.getSgte() != null){
+            while(!p.getValor().getCodigo().equalsIgnoreCase(valor) && p.getSgte() != null){
                 p = p.getSgte();
             }
             if(p.getValor().getCodigo().equals(valor)){
