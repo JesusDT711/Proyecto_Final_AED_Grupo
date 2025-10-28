@@ -54,7 +54,7 @@
                           <Component id="txtTipoCliente" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtContacto" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnRegistarC" min="-2" max="-2" attributes="0"/>
-                          <Component id="dcFechaCompra" alignment="0" max="32767" attributes="0"/>
+                          <Component id="dcFechaCompraCli" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -82,7 +82,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                  <Component id="dcFechaCompra" min="-2" max="-2" attributes="0"/>
+                  <Component id="dcFechaCompraCli" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -242,7 +242,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="dcFechaCompra">
+    <Component class="com.toedter.calendar.JDateChooser" name="dcFechaCompraCli">
     </Component>
   </SubComponents>
 </Form>

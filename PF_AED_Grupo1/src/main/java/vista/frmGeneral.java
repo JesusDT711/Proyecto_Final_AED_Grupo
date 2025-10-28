@@ -339,7 +339,7 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        jTabbedPane1.addTab("Vendedores", jPanel4);
+        jTabbedPane1.addTab("Trabajadores", jPanel4);
 
         jLabel1.setText("VENTA DE PRODUCTOS ELECTRÓNICOS");
 

@@ -43,7 +43,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         btnAddCo = new javax.swing.JButton();
         btnLimpiarCo = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        dcFechaEmision = new com.toedter.calendar.JDateChooser();
+        dcFechaEmisionCo = new com.toedter.calendar.JDateChooser();
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -122,7 +122,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addGap(18, 18, 18)
-                            .addComponent(dcFechaEmision, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                            .addComponent(dcFechaEmisionCo, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(btnLimpiarCo)
@@ -147,7 +147,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(dcFechaEmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dcFechaEmisionCo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,7 +211,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbCliente;
     private javax.swing.JComboBox<String> cbVendedor;
-    private com.toedter.calendar.JDateChooser dcFechaEmision;
+    private com.toedter.calendar.JDateChooser dcFechaEmisionCo;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

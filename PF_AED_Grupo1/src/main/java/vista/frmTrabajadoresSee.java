@@ -8,12 +8,12 @@ package vista;
  *
  * @author adria
  */
-public class frmVendedoresSee extends javax.swing.JFrame {
+public class frmTrabajadoresSee extends javax.swing.JFrame {
 
     /**
      * Creates new form frmVendedoresSee
      */
-    public frmVendedoresSee() {
+    public frmTrabajadoresSee() {
         initComponents();
     }
 
@@ -27,7 +27,7 @@ public class frmVendedoresSee extends javax.swing.JFrame {
     private void initComponents() {
 
         btnConT = new javax.swing.JButton();
-        btnLimpiarT = new javax.swing.JButton();
+        btnLimpiaT = new javax.swing.JButton();
         txtCodT = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -38,7 +38,7 @@ public class frmVendedoresSee extends javax.swing.JFrame {
 
         btnConT.setText("Consultar");
 
-        btnLimpiarT.setText("Limpiar");
+        btnLimpiaT.setText("Limpiar");
 
         jLabel1.setText("INGRESE CÓDIGO DEL TRABAJADOR:");
 
@@ -73,7 +73,7 @@ public class frmVendedoresSee extends javax.swing.JFrame {
                         .addComponent(btnConT)
                         .addGap(52, 52, 52))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnLimpiarT)
+                        .addComponent(btnLimpiaT)
                         .addGap(224, 224, 224))))
         );
         layout.setVerticalGroup(
@@ -89,7 +89,7 @@ public class frmVendedoresSee extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnLimpiarT)
+                .addComponent(btnLimpiaT)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -113,27 +113,28 @@ public class frmVendedoresSee extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmVendedoresSee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmTrabajadoresSee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmVendedoresSee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmTrabajadoresSee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmVendedoresSee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmTrabajadoresSee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmVendedoresSee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmTrabajadoresSee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmVendedoresSee().setVisible(true);
+                new frmTrabajadoresSee().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConT;
-    private javax.swing.JButton btnLimpiarT;
+    private javax.swing.JButton btnLimpiaT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -68,7 +68,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="dcFechaEmision" pref="134" max="32767" attributes="0"/>
+                          <Component id="dcFechaEmisionCo" pref="134" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
@@ -103,7 +103,7 @@
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <Component id="dcFechaEmision" min="-2" max="-2" attributes="0"/>
+                  <Component id="dcFechaEmisionCo" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -240,7 +240,7 @@
         <Property name="text" type="java.lang.String" value="EMISI&#xd3;N DE COMPROBANTE"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="dcFechaEmision">
+    <Component class="com.toedter.calendar.JDateChooser" name="dcFechaEmisionCo">
     </Component>
   </SubComponents>
 </Form>

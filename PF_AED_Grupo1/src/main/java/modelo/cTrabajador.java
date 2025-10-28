@@ -10,7 +10,7 @@ import java.text.DecimalFormat;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
-public class cVendedor {
+public class cTrabajador {
     private String codigo;
     private String nombre;
     private Date fecha_ingreso;
@@ -18,12 +18,12 @@ public class cVendedor {
     private int tipo; //1=Administrador , 2=Cajero o 3=Reponedor
     static int cuenta=1;
     
-    public cVendedor(){
+    public cTrabajador(){
         DecimalFormat cod = new DecimalFormat("V000");
         this.codigo = cod.format(cuenta++);
     }
     
-    public cVendedor(String nombre, Date fecha_ingreso, int tipo){
+    public cTrabajador(String nombre, Date fecha_ingreso, int tipo){
         this();
         this.nombre = nombre;
         this.fecha_ingreso = fecha_ingreso;

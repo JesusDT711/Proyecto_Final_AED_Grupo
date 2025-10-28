@@ -29,7 +29,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="txtNombreV" max="32767" attributes="0"/>
+                      <Component id="txtNombreT" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
@@ -37,13 +37,13 @@
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                              <Component id="btnLimpiarV" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnLimpiarT" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnAddv" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtSueldoB" min="-2" pref="87" max="-2" attributes="0"/>
+                          <Component id="btnAddT" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSueldoT" min="-2" pref="87" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -53,8 +53,8 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="cbTipoV" pref="124" max="32767" attributes="0"/>
-                          <Component id="dcFechaIngreso" max="32767" attributes="0"/>
+                          <Component id="cbTipoT" pref="124" max="32767" attributes="0"/>
+                          <Component id="dcFechaIngresoT" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -70,27 +70,27 @@
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNombreV" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNombreT" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbTipoV" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbTipoT" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <Component id="dcFechaIngreso" min="-2" max="-2" attributes="0"/>
+                  <Component id="dcFechaIngresoT" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtSueldoB" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSueldoT" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnLimpiarV" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAddv" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnLimpiarT" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAddT" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="68" max="32767" attributes="0"/>
           </Group>
@@ -100,12 +100,12 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="INGRESE NOMBRE DEL VENDEDOR:"/>
+        <Property name="text" type="java.lang.String" value="INGRESE NOMBRE DEL TRABAJADOR:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="SELECCIONE EL TIPO DE VENDEDOR:"/>
+        <Property name="text" type="java.lang.String" value="SELECCIONE EL TIPO DE TRABAJADOR:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -113,9 +113,9 @@
         <Property name="text" type="java.lang.String" value="INTRODUZCA FECHA DE INGRESO:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNombreV">
+    <Component class="javax.swing.JTextField" name="txtNombreT">
     </Component>
-    <Component class="javax.swing.JComboBox" name="cbTipoV">
+    <Component class="javax.swing.JComboBox" name="cbTipoT">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -135,12 +135,12 @@
         <Property name="text" type="java.lang.String" value="SUELDO BASE:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtSueldoB">
+    <Component class="javax.swing.JTextField" name="txtSueldoT">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAddv">
+    <Component class="javax.swing.JButton" name="btnAddT">
       <Properties>
         <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
       </Properties>
@@ -153,12 +153,12 @@
         <Property name="text" type="java.lang.String" value="REGISTRO DE TRABAJADORES"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnLimpiarV">
+    <Component class="javax.swing.JButton" name="btnLimpiarT">
       <Properties>
         <Property name="text" type="java.lang.String" value="Limpiar"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="dcFechaIngreso">
+    <Component class="com.toedter.calendar.JDateChooser" name="dcFechaIngresoT">
     </Component>
   </SubComponents>
 </Form>

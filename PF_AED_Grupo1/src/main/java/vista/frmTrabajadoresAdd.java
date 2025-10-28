@@ -8,12 +8,12 @@ package vista;
  *
  * @author adria
  */
-public class frmVendedoresAdd extends javax.swing.JFrame {
+public class frmTrabajadoresAdd extends javax.swing.JFrame {
 
     /**
      * Creates new form frmVendedoresAdd
      */
-    public frmVendedoresAdd() {
+    public frmTrabajadoresAdd() {
         initComponents();
     }
 
@@ -29,35 +29,35 @@ public class frmVendedoresAdd extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtNombreV = new javax.swing.JTextField();
-        cbTipoV = new javax.swing.JComboBox<>();
+        txtNombreT = new javax.swing.JTextField();
+        cbTipoT = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        txtSueldoB = new javax.swing.JTextField();
-        btnAddv = new javax.swing.JButton();
+        txtSueldoT = new javax.swing.JTextField();
+        btnAddT = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        btnLimpiarV = new javax.swing.JButton();
-        dcFechaIngreso = new com.toedter.calendar.JDateChooser();
+        btnLimpiarT = new javax.swing.JButton();
+        dcFechaIngresoT = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("INGRESE NOMBRE DEL VENDEDOR:");
+        jLabel1.setText("INGRESE NOMBRE DEL TRABAJADOR:");
 
-        jLabel2.setText("SELECCIONE EL TIPO DE VENDEDOR:");
+        jLabel2.setText("SELECCIONE EL TIPO DE TRABAJADOR:");
 
         jLabel3.setText("INTRODUZCA FECHA DE INGRESO:");
 
-        cbTipoV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir", "Administrador", "Cajero", "Reponedor" }));
+        cbTipoT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir", "Administrador", "Cajero", "Reponedor" }));
 
         jLabel4.setText("SUELDO BASE:");
 
-        txtSueldoB.setEditable(false);
+        txtSueldoT.setEditable(false);
 
-        btnAddv.setText("Añadir");
+        btnAddT.setText("Añadir");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel5.setText("REGISTRO DE TRABAJADORES");
 
-        btnLimpiarV.setText("Limpiar");
+        btnLimpiarT.setText("Limpiar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,26 +69,26 @@ public class frmVendedoresAdd extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(24, 24, 24)
-                        .addComponent(txtNombreV))
+                        .addComponent(txtNombreT))
                     .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(69, 69, 69)
-                                .addComponent(btnLimpiarV)))
+                                .addComponent(btnLimpiarT)))
                         .addGap(73, 73, 73)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAddv)
-                            .addComponent(txtSueldoB, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnAddT)
+                            .addComponent(txtSueldoT, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbTipoV, 0, 124, Short.MAX_VALUE)
-                            .addComponent(dcFechaIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(cbTipoT, 0, 124, Short.MAX_VALUE)
+                            .addComponent(dcFechaIngresoT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,23 +99,23 @@ public class frmVendedoresAdd extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtNombreV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombreT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cbTipoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbTipoT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(dcFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dcFechaIngresoT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtSueldoB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSueldoT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLimpiarV)
-                    .addComponent(btnAddv))
+                    .addComponent(btnLimpiarT)
+                    .addComponent(btnAddT))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
 
@@ -139,35 +139,36 @@ public class frmVendedoresAdd extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmVendedoresAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmTrabajadoresAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmVendedoresAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmTrabajadoresAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmVendedoresAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmTrabajadoresAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmVendedoresAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmTrabajadoresAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmVendedoresAdd().setVisible(true);
+                new frmTrabajadoresAdd().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddv;
-    private javax.swing.JButton btnLimpiarV;
-    private javax.swing.JComboBox<String> cbTipoV;
-    private com.toedter.calendar.JDateChooser dcFechaIngreso;
+    private javax.swing.JButton btnAddT;
+    private javax.swing.JButton btnLimpiarT;
+    private javax.swing.JComboBox<String> cbTipoT;
+    private com.toedter.calendar.JDateChooser dcFechaIngresoT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField txtNombreV;
-    private javax.swing.JTextField txtSueldoB;
+    private javax.swing.JTextField txtNombreT;
+    private javax.swing.JTextField txtSueldoT;
     // End of variables declaration//GEN-END:variables
 }

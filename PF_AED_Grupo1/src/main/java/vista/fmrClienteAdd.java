@@ -44,7 +44,7 @@ public class fmrClienteAdd extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         btnRegistarC = new javax.swing.JButton();
         btnLimpiarC = new javax.swing.JButton();
-        dcFechaCompra = new com.toedter.calendar.JDateChooser();
+        dcFechaCompraCli = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -145,7 +145,7 @@ public class fmrClienteAdd extends javax.swing.JFrame {
                             .addComponent(txtTipoCliente)
                             .addComponent(txtContacto)
                             .addComponent(btnRegistarC)
-                            .addComponent(dcFechaCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(dcFechaCompraCli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -166,7 +166,7 @@ public class fmrClienteAdd extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addComponent(dcFechaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dcFechaCompraCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -228,7 +228,7 @@ public class fmrClienteAdd extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiarC;
     private javax.swing.JButton btnRegistarC;
     private javax.swing.ButtonGroup buttonGroup1;
-    private com.toedter.calendar.JDateChooser dcFechaCompra;
+    private com.toedter.calendar.JDateChooser dcFechaCompraCli;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
