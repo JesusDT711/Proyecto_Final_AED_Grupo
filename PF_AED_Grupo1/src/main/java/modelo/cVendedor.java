@@ -7,11 +7,13 @@ package modelo;
  */
 
 import java.text.DecimalFormat;
+import java.util.*;
+import java.text.SimpleDateFormat;
 
 public class cVendedor {
     private String codigo;
     private String nombre;
-    private String fecha_ingreso;
+    private Date fecha_ingreso;
     private double sueldo;
     private int tipo; //1=Administrador , 2=Cajero o 3=Reponedor
     static int cuenta=1;
@@ -21,7 +23,7 @@ public class cVendedor {
         this.codigo = cod.format(cuenta++);
     }
     
-    public cVendedor(String nombre, String fecha_ingreso, int tipo){
+    public cVendedor(String nombre, Date fecha_ingreso, int tipo){
         this();
         this.nombre = nombre;
         this.fecha_ingreso = fecha_ingreso;
@@ -40,6 +42,12 @@ public class cVendedor {
         return vec[tipo];
     }
     
+    public String fecha_ingresoCadena(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String cadena = sdf.format(getFecha_ingreso());
+        return cadena;
+    }
+    
     public String getCodigo() {
         return codigo;
     }
@@ -56,11 +64,11 @@ public class cVendedor {
         this.nombre = nombre;
     }
 
-    public String getFecha_ingreso() {
+    public Date getFecha_ingreso() {
         return fecha_ingreso;
     }
 
-    public void setFecha_ingreso(String fecha_ingreso) {
+    public void setFecha_ingreso(Date fecha_ingreso) {
         this.fecha_ingreso = fecha_ingreso;
     }
 

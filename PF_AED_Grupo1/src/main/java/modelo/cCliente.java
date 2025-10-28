@@ -7,13 +7,15 @@ package modelo;
  */
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class cCliente {
     private String codigo;
     private String rsocial;
     private int telefono;
     private int docIdentifica;
-    private String fecha_compra;
+    private Date fecha_compra;
     private int tipo; //1=Persona Natural o 2=Empresa
     private String contacto;
     static int cuenta=1;
@@ -23,7 +25,7 @@ public class cCliente {
         this.codigo = cod.format(cuenta++);
     }
     
-    public cCliente(String rsocial, int telefono, int docIdentifica, String fecha_compra, int tipo, String contacto){
+    public cCliente(String rsocial, int telefono, int docIdentifica, Date fecha_compra, int tipo, String contacto){
         this();
         this.rsocial = rsocial;
         this.telefono = telefono;
@@ -36,6 +38,12 @@ public class cCliente {
     public String tipoCadena(){
         String[] vec = {"","Persona Natural","Empresa"};
         return vec[tipo];
+    }
+    
+    public String fecha_compraCadena(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+        String cadena = sdf.format(getFecha_compra());
+        return cadena;
     }
 
     public String getCodigo() {
@@ -70,11 +78,11 @@ public class cCliente {
         this.docIdentifica = docIdentifica;
     }
 
-    public String getFecha_compra() {
+    public Date getFecha_compra() {
         return fecha_compra;
     }
 
-    public void setFecha_compra(String fecha_compra) {
+    public void setFecha_compra(Date fecha_compra) {
         this.fecha_compra = fecha_compra;
     }
 

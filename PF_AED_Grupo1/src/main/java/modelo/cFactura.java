@@ -7,11 +7,12 @@ package modelo;
  */
 
 import java.text.DecimalFormat;
+import java.util.*;
 
 public class cFactura extends cComprobante{
     static int cuenta=1;
     
-    public cFactura(String fecha, String cliente, String vendedor) {
+    public cFactura(Date fecha, String cliente, String vendedor) {
         super(fecha, cliente, vendedor);
     }
 

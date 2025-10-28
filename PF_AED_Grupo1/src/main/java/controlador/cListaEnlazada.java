@@ -7,13 +7,13 @@ package controlador;
  */
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.*;
+import modelo.cComprobante;
 
 public class cListaEnlazada {
-    private cNodo inicio, nuevo, p, q;
+    private cNodo_LE inicio, nuevo, p, q;
     //jose
     public void insertarxInicio(cComprobante valor){
-        nuevo = new cNodo(valor);
+        nuevo = new cNodo_LE(valor);
         if(inicio==null){
             inicio = nuevo;
         }else{
@@ -23,7 +23,7 @@ public class cListaEnlazada {
     }
     
     public void insertarxFinal(cComprobante valor){
-        nuevo = new cNodo(valor);
+        nuevo = new cNodo_LE(valor);
         if(inicio==null){
             inicio = nuevo;
         }else{
@@ -37,7 +37,7 @@ public class cListaEnlazada {
     
     
     public void insertaEntreNodosSgte(cComprobante valor, String desde){
-        nuevo = new cNodo(valor);
+        nuevo = new cNodo_LE(valor);
         if(inicio == null){
             inicio = nuevo;
         }else{
@@ -53,7 +53,7 @@ public class cListaEnlazada {
     }
     
     public void insertaEntreNodosAnt(cComprobante valor, String antes){
-        nuevo = new cNodo(valor);
+        nuevo = new cNodo_LE(valor);
         if(inicio==null){
             inicio = nuevo;
         }else{
@@ -113,7 +113,7 @@ public class cListaEnlazada {
             cComprobante comprobante = p.getValor();
             Object[] fila = {
                 comprobante.getCodigo(),
-                comprobante.getFecha(),
+                comprobante.fechaCadena(),
                 comprobante.getCliente(),
                 comprobante.getVendedor()
             };

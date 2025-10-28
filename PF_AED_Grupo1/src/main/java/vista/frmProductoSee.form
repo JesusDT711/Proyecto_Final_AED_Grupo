@@ -31,9 +31,9 @@
                           <Component id="jScrollPane1" alignment="1" min="-2" pref="408" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="txtCod" min="-2" pref="80" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="txtCod" min="-2" pref="103" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnBusca" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -45,7 +45,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnLimpiaS" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>

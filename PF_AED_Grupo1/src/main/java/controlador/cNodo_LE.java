@@ -1,15 +1,18 @@
 
-package modelo;
+package controlador;
 
 /**
  *
  * @author Giuss
  */
-public class cNodo {
+
+import modelo.cComprobante;
+
+public class cNodo_LE {
     private cComprobante valor;
-    private cNodo sgte, ant;
+    private cNodo_LE sgte, ant;
     
-    public cNodo(cComprobante valor){
+    public cNodo_LE(cComprobante valor){
         this.valor = valor;
     }
 
@@ -21,19 +24,19 @@ public class cNodo {
         this.valor = valor;
     }
 
-    public cNodo getSgte() {
+    public cNodo_LE getSgte() {
         return sgte;
     }
 
-    public void setSgte(cNodo sgte) {
+    public void setSgte(cNodo_LE sgte) {
         this.sgte = sgte;
     }
 
-    public cNodo getAnt() {
+    public cNodo_LE getAnt() {
         return ant;
     }
 
-    public void setAnt(cNodo ant) {
+    public void setAnt(cNodo_LE ant) {
         this.ant = ant;
     }
     
