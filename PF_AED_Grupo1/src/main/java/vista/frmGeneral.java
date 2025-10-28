@@ -355,7 +355,7 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addGap(130, 130, 130)
                 .addComponent(btnIntegrantes)
                 .addGap(30, 30, 30))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
