@@ -53,7 +53,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panCod.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de Comprobante"));
 

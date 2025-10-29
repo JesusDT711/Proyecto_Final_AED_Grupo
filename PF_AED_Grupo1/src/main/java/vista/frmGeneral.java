@@ -63,7 +63,7 @@ public class frmGeneral extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnIntegrantes = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tableA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -341,7 +341,8 @@ public class frmGeneral extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Trabajadores", jPanel4);
 
-        jLabel1.setText("VENTA DE PRODUCTOS ELECTRÓNICOS");
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        jLabel1.setText("GESTIÓN GENERAL");
 
         btnIntegrantes.setText("Integrantes");
 
@@ -352,7 +353,7 @@ public class frmGeneral extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(130, 130, 130)
+                .addGap(126, 126, 126)
                 .addComponent(btnIntegrantes)
                 .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
@@ -363,7 +364,7 @@ public class frmGeneral extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(btnIntegrantes))

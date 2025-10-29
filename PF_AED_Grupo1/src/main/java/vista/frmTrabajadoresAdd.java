@@ -38,7 +38,7 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
         btnLimpiarT = new javax.swing.JButton();
         dcFechaIngresoT = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("INGRESE NOMBRE DEL TRABAJADOR:");
 

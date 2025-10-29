@@ -34,7 +34,7 @@ public class frmTrabajadoresSee extends javax.swing.JFrame {
         txtaTrabajador = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnConT.setText("Consultar");
 

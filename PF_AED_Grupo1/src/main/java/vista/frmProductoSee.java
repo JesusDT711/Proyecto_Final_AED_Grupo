@@ -34,7 +34,7 @@ public class frmProductoSee extends javax.swing.JFrame {
         btnLimpiaS = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("INGRESE CÓDIGO DEL PRODUCTO: ");
 

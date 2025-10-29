@@ -34,7 +34,7 @@ public class frmComprobanteSee extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnLimpiarCo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("INGRESE CÓDIGO DEL COMPROBANTE:");
 
