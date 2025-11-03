@@ -9,11 +9,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.cComprobante;
 
-public class cListaEnlazada {
-    private cNodo_LE inicio, nuevo, p, q;
-    //jose
+public class cLE_Comprobante {
+    private cNodo_LE_Comprobante inicio, nuevo, p, q;
+    
     public void insertarxInicio(cComprobante valor){
-        nuevo = new cNodo_LE(valor);
+        nuevo = new cNodo_LE_Comprobante(valor);
         if(inicio==null){
             inicio = nuevo;
         }else{
@@ -23,7 +23,7 @@ public class cListaEnlazada {
     }
     
     public void insertarxFinal(cComprobante valor){
-        nuevo = new cNodo_LE(valor);
+        nuevo = new cNodo_LE_Comprobante(valor);
         if(inicio==null){
             inicio = nuevo;
         }else{
@@ -37,7 +37,7 @@ public class cListaEnlazada {
     
     
     public void insertaEntreNodosSgte(cComprobante valor, String desde){
-        nuevo = new cNodo_LE(valor);
+        nuevo = new cNodo_LE_Comprobante(valor);
         if(inicio == null){
             inicio = nuevo;
         }else{
@@ -53,7 +53,7 @@ public class cListaEnlazada {
     }
     
     public void insertaEntreNodosAnt(cComprobante valor, String antes){
-        nuevo = new cNodo_LE(valor);
+        nuevo = new cNodo_LE_Comprobante(valor);
         if(inicio==null){
             inicio = nuevo;
         }else{
