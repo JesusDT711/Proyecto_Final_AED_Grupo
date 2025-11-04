@@ -10,7 +10,7 @@ import modelo.cDetalle_Comprobante;
 
 public class cLE_Detalle {
     private cNodo_LE_Detalle inicio, nuevo, p, q;
-    //jose
+    
     public void insertarxInicio(cDetalle_Comprobante valor){
         nuevo = new cNodo_LE_Detalle(valor);
         if(inicio==null){

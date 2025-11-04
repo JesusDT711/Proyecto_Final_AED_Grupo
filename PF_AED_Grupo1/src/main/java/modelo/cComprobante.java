@@ -8,21 +8,21 @@ package modelo;
 
 import java.util.*;
 import java.text.SimpleDateFormat;
-import controlador.*;
+import controlador.cLE_Detalle;
 
 public abstract class cComprobante {
     private String codigo;
     private Date fecha;
     private String cliente;
     private String vendedor;
-    private ArrayList<cDetalle_Comprobante> detalle;
+    private cLE_Detalle oDetalle;
 
     public cComprobante(Date fecha, String cliente, String vendedor) {
         this.codigo = generarCodigo();
         this.fecha = fecha;
         this.cliente = cliente;
         this.vendedor = vendedor;
-        this.detalle = new ArrayList();
+        this.oDetalle = new cLE_Detalle();
     }
     
     public abstract String generarCodigo();
@@ -64,12 +64,12 @@ public abstract class cComprobante {
     public void setVendedor(String vendedor) {
         this.vendedor = vendedor;
     }
-
-    public ArrayList getDetalle() {
-        return detalle;
+    
+    public void setDetalle(cDetalle_Comprobante nuevo){
+        oDetalle.insertarxFinal(nuevo);
     }
-
-    public void setDetalle(ArrayList<cDetalle_Comprobante> detalle) {
-        this.detalle = detalle;
-    } 
+    
+    public cLE_Detalle getDetalle(){
+        return oDetalle;
+    }
 }
