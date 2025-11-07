@@ -4,17 +4,30 @@
  */
 package vista;
 
+import javax.swing.JOptionPane;
+import modelo.cProducto;
+
 /**
  *
  * @author adria
  */
 public class frmProductAdd extends javax.swing.JFrame {
 
+    private cProducto producto;
+    
     /**
      * Creates new form frmProductAdd
      */
     public frmProductAdd() {
         initComponents();
+        this.producto=null;
+        
+    }
+    
+    public frmProductAdd(cProducto p){
+        initComponents();
+        this.producto=p;
+        cargarDatos();
     }
 
     /**
@@ -115,8 +128,34 @@ public class frmProductAdd extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void cargarDatos() {
+        txtDescripcion.setText(producto.getDescripcion());
+        txtPrecio.setText(String.valueOf(producto.getPrecio()));
+        txtCantidad.setText(String.valueOf(producto.getStock()));
+    }
+    
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        String nombre = txtDescripcion.getText();
+        double precio = Double.parseDouble(txtPrecio.getText());
+        int cantidad = Integer.parseInt(txtCantidad.getText());
+
+        if (producto != null) {
+            // Actualizar producto existente
+            producto.setDescripcion(nombre);
+            producto.setPrecio(precio);
+            producto.setStock(cantidad);
+            JOptionPane.showMessageDialog(this, "Producto actualizado correctamente");
+        } else {
+            //aca iría la logica para el boton AÑADIR
+            
+            
+            JOptionPane.showMessageDialog(this, "Producto añadido correctamente");
+        }
+
+        this.dispose();
+                       
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**
