@@ -230,6 +230,17 @@ public class frmGeneral extends javax.swing.JFrame {
         btnActualizaA = new javax.swing.JButton();
         btnBorraA = new javax.swing.JButton();
         btnConsultaA = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableLE = new javax.swing.JTable();
+        btnIngresaLE = new javax.swing.JButton();
+        btnActualizaLE = new javax.swing.JButton();
+        btnBorraLE = new javax.swing.JButton();
+        btnConsultaLE = new javax.swing.JButton();
+        panCompro = new javax.swing.JPanel();
+        rbBol = new javax.swing.JRadioButton();
+        rbFac = new javax.swing.JRadioButton();
+        rbTodo = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableC = new javax.swing.JTable();
@@ -248,17 +259,6 @@ public class frmGeneral extends javax.swing.JFrame {
         btnActualizaP = new javax.swing.JButton();
         btnBorraP = new javax.swing.JButton();
         btnConsultaP = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableLE = new javax.swing.JTable();
-        btnIngresaLE = new javax.swing.JButton();
-        btnActualizaLE = new javax.swing.JButton();
-        btnBorraLE = new javax.swing.JButton();
-        btnConsultaLE = new javax.swing.JButton();
-        panCompro = new javax.swing.JPanel();
-        rbBol = new javax.swing.JRadioButton();
-        rbFac = new javax.swing.JRadioButton();
-        rbTodo = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         btnIntegrantes = new javax.swing.JButton();
 
@@ -340,6 +340,141 @@ public class frmGeneral extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Productos", jPanel1);
+
+        tableLE.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Código", "Fecha", "Código_Cliente", "Código_Vendedor", "Subotal", "Total"
+            }
+        ));
+        jScrollPane2.setViewportView(tableLE);
+
+        btnIngresaLE.setText("Añadir");
+        btnIngresaLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresaLEActionPerformed(evt);
+            }
+        });
+
+        btnActualizaLE.setText("Actualizar");
+        btnActualizaLE.setEnabled(false);
+        btnActualizaLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizaLEActionPerformed(evt);
+            }
+        });
+
+        btnBorraLE.setText("Eliminar");
+        btnBorraLE.setEnabled(false);
+        btnBorraLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorraLEActionPerformed(evt);
+            }
+        });
+
+        btnConsultaLE.setText("Consultar");
+        btnConsultaLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaLEActionPerformed(evt);
+            }
+        });
+
+        panCompro.setBorder(javax.swing.BorderFactory.createTitledBorder("Listar"));
+
+        buttonGroup2.add(rbBol);
+        rbBol.setText("Boleta");
+        rbBol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbBolActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(rbFac);
+        rbFac.setText("Factura");
+        rbFac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbFacActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(rbTodo);
+        rbTodo.setText("Todos");
+        rbTodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbTodoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panComproLayout = new javax.swing.GroupLayout(panCompro);
+        panCompro.setLayout(panComproLayout);
+        panComproLayout.setHorizontalGroup(
+            panComproLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panComproLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbBol)
+                .addGap(18, 18, 18)
+                .addComponent(rbFac)
+                .addGap(18, 18, 18)
+                .addComponent(rbTodo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panComproLayout.setVerticalGroup(
+            panComproLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panComproLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panComproLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbBol)
+                    .addComponent(rbFac)
+                    .addComponent(rbTodo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(btnIngresaLE)
+                .addGap(41, 41, 41)
+                .addComponent(btnActualizaLE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBorraLE)
+                .addGap(18, 18, 18)
+                .addComponent(btnConsultaLE)
+                .addGap(70, 70, 70))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(panCompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(227, 227, 227))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIngresaLE)
+                    .addComponent(btnActualizaLE)
+                    .addComponent(btnBorraLE)
+                    .addComponent(btnConsultaLE))
+                .addGap(18, 18, 18)
+                .addComponent(panCompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Comprobantes", jPanel2);
 
         tableC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -530,125 +665,6 @@ public class frmGeneral extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Trabajadores", jPanel4);
 
-        tableLE.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Código", "Fecha", "Código_Cliente", "Código_Vendedor", "Subotal", "Total"
-            }
-        ));
-        jScrollPane2.setViewportView(tableLE);
-
-        btnIngresaLE.setText("Añadir");
-        btnIngresaLE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresaLEActionPerformed(evt);
-            }
-        });
-
-        btnActualizaLE.setText("Actualizar");
-        btnActualizaLE.setEnabled(false);
-        btnActualizaLE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizaLEActionPerformed(evt);
-            }
-        });
-
-        btnBorraLE.setText("Eliminar");
-        btnBorraLE.setEnabled(false);
-        btnBorraLE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorraLEActionPerformed(evt);
-            }
-        });
-
-        btnConsultaLE.setText("Consultar");
-        btnConsultaLE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultaLEActionPerformed(evt);
-            }
-        });
-
-        panCompro.setBorder(javax.swing.BorderFactory.createTitledBorder("Listar"));
-
-        buttonGroup2.add(rbBol);
-        rbBol.setText("Boleta");
-
-        buttonGroup2.add(rbFac);
-        rbFac.setText("Factura");
-
-        buttonGroup2.add(rbTodo);
-        rbTodo.setText("Todos");
-
-        javax.swing.GroupLayout panComproLayout = new javax.swing.GroupLayout(panCompro);
-        panCompro.setLayout(panComproLayout);
-        panComproLayout.setHorizontalGroup(
-            panComproLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panComproLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(rbBol)
-                .addGap(38, 38, 38)
-                .addComponent(rbFac)
-                .addGap(18, 18, 18)
-                .addComponent(rbTodo)
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-        panComproLayout.setVerticalGroup(
-            panComproLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panComproLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(panComproLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbBol)
-                    .addComponent(rbFac)
-                    .addComponent(rbTodo))
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(btnIngresaLE)
-                .addGap(41, 41, 41)
-                .addComponent(btnActualizaLE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBorraLE)
-                .addGap(18, 18, 18)
-                .addComponent(btnConsultaLE)
-                .addGap(70, 70, 70))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(199, 199, 199)
-                .addComponent(panCompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresaLE)
-                    .addComponent(btnActualizaLE)
-                    .addComponent(btnBorraLE)
-                    .addComponent(btnConsultaLE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panCompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Comprobantes", jPanel2);
-
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel1.setText("GESTIÓN GENERAL");
 
@@ -748,7 +764,7 @@ public class frmGeneral extends javax.swing.JFrame {
         int fila = tableLE.getSelectedRow();
         String codigo =String.valueOf(tableLE.getValueAt(fila, 0));
         cComprobante comprobante = leComprobante.busqueda(codigo);
-        frmComprobanteAdd ventana = new frmComprobanteAdd(comprobante); // pasa el producto existente mediante el objeto
+        frmComprobanteAdd ventana = new frmComprobanteAdd(comprobante);
 
         refrescarTablaCompro(ventana);
         ventana.setVisible(true);
@@ -763,7 +779,7 @@ public class frmGeneral extends javax.swing.JFrame {
         
         int opcion = JOptionPane.showConfirmDialog(
                 this,
-                "¿Está seguro de eliminar este Comprobante?",
+                "¿Está seguro de eliminar este comprobante?",
                 "Confirmar eliminación",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.WARNING_MESSAGE
@@ -783,34 +799,26 @@ public class frmGeneral extends javax.swing.JFrame {
             ventana.setVisible(true);
 
     }//GEN-LAST:event_btnConsultaLEActionPerformed
-
+    
+    
+    //BOTONES DE LA PESTAÑA CLIENTES
     private void btnIngresaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaCActionPerformed
         frmClienteAdd  ventana= new frmClienteAdd();
-        
         ventana.setVisible(true);
     }//GEN-LAST:event_btnIngresaCActionPerformed
 
     private void btnActualizaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaCActionPerformed
-        
-        
         cCliente cliente = leCola.acceso();
-        frmClienteAdd ventana = new frmClienteAdd(cliente); // pasa el producto existente mediante el objeto
-        
-        
-        
+        frmClienteAdd ventana = new frmClienteAdd(cliente);
+
         refrescarTablaCli(ventana);
         ventana.setVisible(true);
     }//GEN-LAST:event_btnActualizaCActionPerformed
 
     private void btnEliminaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaCActionPerformed
-            
-        
-        
-        cCliente cli = leCola.acceso();
-        
         int opcion = JOptionPane.showConfirmDialog(
                 this,
-                "¿Está seguro de eliminar al Cliente?",
+                "¿Está seguro de eliminar al cliente?",
                 "Confirmar eliminación",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.WARNING_MESSAGE
@@ -830,9 +838,11 @@ public class frmGeneral extends javax.swing.JFrame {
             ventana.setVisible(true);
 
     }//GEN-LAST:event_btnConsultaCActionPerformed
-
+    
+    
+    //FILTROS DE CLIENTES
     private void rbPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPersonaActionPerformed
-            leCola.recorrerColaP(tableC);
+        leCola.recorrerColaP(tableC);
     }//GEN-LAST:event_rbPersonaActionPerformed
 
     private void rbEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEmpresaActionPerformed
@@ -842,6 +852,20 @@ public class frmGeneral extends javax.swing.JFrame {
     private void rbTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTodosActionPerformed
         mostrarClientes(tableC);
     }//GEN-LAST:event_rbTodosActionPerformed
+
+    
+    //FILTROS PARA COMPROBANTES
+    private void rbBolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbBolActionPerformed
+        leComprobante.recorreLEBoleta(tableLE);
+    }//GEN-LAST:event_rbBolActionPerformed
+
+    private void rbFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbFacActionPerformed
+        leComprobante.recorreLEFactura(tableLE);
+    }//GEN-LAST:event_rbFacActionPerformed
+
+    private void rbTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTodoActionPerformed
+        mostrarComprobantes(tableLE);
+    }//GEN-LAST:event_rbTodoActionPerformed
 
     /**
      * @param args the command line arguments

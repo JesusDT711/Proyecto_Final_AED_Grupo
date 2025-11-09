@@ -7,7 +7,9 @@ package controlador;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.text.DecimalFormat;
+import modelo.cBoleta;
 import modelo.cComprobante;
+import modelo.cFactura;
 
 public class cLE_Comprobante {
     private cNodo_LE_Comprobante inicio, nuevo, p, q;
@@ -39,6 +41,20 @@ public class cLE_Comprobante {
         
     }
     
+    public cComprobante busqueda(String valor){
+        cComprobante compro =null;
+        if(inicio != null){
+            p = inicio;
+            while(!p.getValor().getCodigo().equalsIgnoreCase(valor) && p.getSgte() != null){
+                p = p.getSgte();
+            }
+            if(p.getValor().getCodigo().equals(valor)){
+                compro=p.getValor();
+            }
+        }
+        return compro;
+    }
+    
     public void recorreLE(JTable tabla){
         DecimalFormat df = new DecimalFormat("#.00");
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
@@ -59,19 +75,47 @@ public class cLE_Comprobante {
         }
     }
     
-    public cComprobante busqueda(String valor){
-        cComprobante compro =null;
-        if(inicio != null){
-            p = inicio;
-            while(!p.getValor().getCodigo().equalsIgnoreCase(valor) && p.getSgte() != null){
-                p = p.getSgte();
+    public void recorreLEBoleta(JTable tabla){
+        DecimalFormat df = new DecimalFormat("#.00");
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        modelo.setRowCount(0);
+        p = inicio;
+        while(p != null){
+            cComprobante comprobante = p.getValor();
+            if(comprobante instanceof cBoleta){
+                Object[] fila = {
+                    comprobante.getCodigo(),
+                    comprobante.fechaCadena(),
+                    comprobante.getCliente(),
+                    comprobante.getVendedor(),
+                    df.format(comprobante.getSubTotal()),
+                    df.format(comprobante.getTotal())
+                };
+                modelo.addRow(fila);
             }
-            if(p.getValor().getCodigo().equals(valor)){
-                compro=p.getValor();
-            }
+            p = p.getSgte();
         }
-        return compro;
-    }  
+    }
     
-    
+    public void recorreLEFactura(JTable tabla){
+        DecimalFormat df = new DecimalFormat("#.00");
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        modelo.setRowCount(0);
+        p = inicio;
+        while(p != null){
+            cComprobante comprobante = p.getValor();
+            if(comprobante instanceof cFactura){
+                Object[] fila = {
+                    comprobante.getCodigo(),
+                    comprobante.fechaCadena(),
+                    comprobante.getCliente(),
+                    comprobante.getVendedor(),
+                    df.format(comprobante.getSubTotal()),
+                    df.format(comprobante.getTotal())
+                };
+                modelo.addRow(fila);
+            }
+            p = p.getSgte();
+        }
+    }
 }
