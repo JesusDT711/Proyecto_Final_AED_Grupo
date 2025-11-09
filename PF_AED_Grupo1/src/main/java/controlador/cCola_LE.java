@@ -71,4 +71,70 @@ public class cCola_LE {
             p = p.getSgte();
         }
     }
+    
+    
+    public void recorrerColaP (JTable tabla){
+    
+    int tipo = 1;
+    
+        DefaultTableModel dt = (DefaultTableModel)tabla.getModel();
+        dt.setRowCount(0);
+        p = first;
+        while(p != null){
+            cCliente cliente = p.getValor();
+            
+            if (cliente.getTipo()==tipo) {
+                
+                 Object[] fila = {
+                cliente.getCodigo(),
+                cliente.getRsocial(),
+                cliente.getTelefono(),
+                cliente.getDocIdentifica(),
+                cliente.fecha_compraCadena(),
+                cliente.tipoCadena(),
+                cliente.getContacto()
+            };
+            dt.addRow(fila);
+                
+            }
+           
+            p = p.getSgte();
+        }    
+    }
+    
+    
+    public void recorrerColaE (JTable tabla){
+    
+    int tipo = 2;
+    
+        DefaultTableModel dt = (DefaultTableModel)tabla.getModel();
+        dt.setRowCount(0);
+        p = first;
+        while(p != null){
+            cCliente cliente = p.getValor();
+            
+            if (cliente.getTipo()==tipo) {
+                
+                 Object[] fila = {
+                cliente.getCodigo(),
+                cliente.getRsocial(),
+                cliente.getTelefono(),
+                cliente.getDocIdentifica(),
+                cliente.fecha_compraCadena(),
+                cliente.tipoCadena(),
+                cliente.getContacto()
+            };
+            dt.addRow(fila);
+                
+            }
+           
+            p = p.getSgte();
+        }    
+    }
+    
+    
+    public cCola_LE getCola (){
+    
+    return this;
+    }
 }

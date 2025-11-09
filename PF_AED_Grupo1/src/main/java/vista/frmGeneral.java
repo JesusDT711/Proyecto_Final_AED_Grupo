@@ -2,6 +2,7 @@
 package vista;
 
 import controlador.cArreglo;
+import controlador.cCola_LE;
 import controlador.cLE_Comprobante;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -14,6 +15,8 @@ import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import modelo.cDetalle_Comprobante;
+import modelo.cCliente;
+
 
 /**
  *
@@ -23,6 +26,7 @@ public class frmGeneral extends javax.swing.JFrame {
 
     public static cArreglo arregloProductos = new cArreglo(1000);
     public static cLE_Comprobante leComprobante = new cLE_Comprobante();
+    public static cCola_LE leCola = new cCola_LE();
 
     /**
      * Creates new form frmGeneral
@@ -31,6 +35,7 @@ public class frmGeneral extends javax.swing.JFrame {
         initComponents();
         cargarProductosBase();
         cargarComprobantesBase();
+        cargarClientesBase();
         
         habilitarBotonesProductos();
         habilitarBotonesComprobantes();
@@ -49,6 +54,12 @@ public class frmGeneral extends javax.swing.JFrame {
     
     private void mostrarComprobantes(JTable tableLE){
         leComprobante.recorreLE(tableLE);
+    }
+    
+    private void mostrarClientes(JTable tableC){
+    
+        leCola.recorrerCola(tableC);
+        
     }
 
     private void cargarProductosBase() {
@@ -112,6 +123,45 @@ public class frmGeneral extends javax.swing.JFrame {
         mostrarComprobantes(tableLE);
     }
     
+    private void cargarClientesBase() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        
+        String fecha1str = "02/04/2005";      
+        String fecha2str = "04/09/2010";      
+        String fecha3str = "07/10/2006";
+        
+        Date fecha1 = null;
+        Date fecha2 = null;
+        Date fecha3 = null;
+        
+        try {
+            fecha1 = formato.parse(fecha1str);
+            fecha2 = formato.parse(fecha2str);
+            fecha3 = formato.parse(fecha3str);
+        } catch (ParseException e) {
+           System.out.println("Error al convertir una de las fechas:" + e.getMessage());
+        }  
+        
+        
+        long tel1= 991992990;
+        long tel2= 959192231;
+        long tel3= 910233677;
+        
+        long doc1=1078181921;
+        long doc2= 76192192;
+        long doc3=1071623251;
+        
+        
+        
+        leCola.incluir(new cCliente("Tenda",tel1,doc1,fecha1,2,"Lizardo Silva"));
+        leCola.incluir(new cCliente("Juan Quillo",tel2,doc2,fecha2,1,"Juan Quillo"));
+        leCola.incluir(new cCliente("Gatitas.com",tel3,doc3,fecha3,2,"Jesús Giussepe"));
+
+        mostrarClientes(tableC);
+    }
+    
+    
+    
 
     //MÉTODOS PARA HABILITAR LOS BOTONES ACTUALIZAR & ELIMINAR
     private void habilitarBotonesProductos() {
@@ -154,11 +204,24 @@ public class frmGeneral extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    private void refrescarTablaCli(javax.swing.JFrame ventana) {
+        ventana.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                //aca uso el metodo para mostrar los productos en la tabla
+                mostrarClientes(tableC);
+            }
+        });
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -167,13 +230,6 @@ public class frmGeneral extends javax.swing.JFrame {
         btnActualizaA = new javax.swing.JButton();
         btnBorraA = new javax.swing.JButton();
         btnConsultaA = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableLE = new javax.swing.JTable();
-        btnIngresaLE = new javax.swing.JButton();
-        btnActualizaLE = new javax.swing.JButton();
-        btnBorraLE = new javax.swing.JButton();
-        btnConsultaLE = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableC = new javax.swing.JTable();
@@ -183,7 +239,7 @@ public class frmGeneral extends javax.swing.JFrame {
         panCliente = new javax.swing.JPanel();
         rbPersona = new javax.swing.JRadioButton();
         rbEmpresa = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        rbTodos = new javax.swing.JRadioButton();
         btnConsultaC = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -192,6 +248,17 @@ public class frmGeneral extends javax.swing.JFrame {
         btnActualizaP = new javax.swing.JButton();
         btnBorraP = new javax.swing.JButton();
         btnConsultaP = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableLE = new javax.swing.JTable();
+        btnIngresaLE = new javax.swing.JButton();
+        btnActualizaLE = new javax.swing.JButton();
+        btnBorraLE = new javax.swing.JButton();
+        btnConsultaLE = new javax.swing.JButton();
+        panCompro = new javax.swing.JPanel();
+        rbBol = new javax.swing.JRadioButton();
+        rbFac = new javax.swing.JRadioButton();
+        rbTodo = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         btnIntegrantes = new javax.swing.JButton();
 
@@ -274,84 +341,6 @@ public class frmGeneral extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Productos", jPanel1);
 
-        tableLE.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Código", "Fecha", "Código_Cliente", "Código_Vendedor", "Subotal", "Total"
-            }
-        ));
-        jScrollPane2.setViewportView(tableLE);
-
-        btnIngresaLE.setText("Añadir");
-        btnIngresaLE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresaLEActionPerformed(evt);
-            }
-        });
-
-        btnActualizaLE.setText("Actualizar");
-        btnActualizaLE.setEnabled(false);
-        btnActualizaLE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizaLEActionPerformed(evt);
-            }
-        });
-
-        btnBorraLE.setText("Eliminar");
-        btnBorraLE.setEnabled(false);
-        btnBorraLE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorraLEActionPerformed(evt);
-            }
-        });
-
-        btnConsultaLE.setText("Consultar");
-        btnConsultaLE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultaLEActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(btnIngresaLE)
-                .addGap(56, 56, 56)
-                .addComponent(btnActualizaLE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
-                .addComponent(btnBorraLE)
-                .addGap(45, 45, 45)
-                .addComponent(btnConsultaLE)
-                .addGap(64, 64, 64))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresaLE)
-                    .addComponent(btnActualizaLE)
-                    .addComponent(btnBorraLE)
-                    .addComponent(btnConsultaLE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
-
-        jTabbedPane1.addTab("Comprobantes", jPanel2);
-
         tableC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -366,23 +355,51 @@ public class frmGeneral extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tableC);
 
         btnIngresaC.setText("Añadir");
+        btnIngresaC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresaCActionPerformed(evt);
+            }
+        });
 
         btnActualizaC.setText("Actualizar");
-        btnActualizaC.setEnabled(false);
+        btnActualizaC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizaCActionPerformed(evt);
+            }
+        });
 
         btnEliminaC.setText("Eliminar");
-        btnEliminaC.setEnabled(false);
+        btnEliminaC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminaCActionPerformed(evt);
+            }
+        });
 
         panCliente.setBorder(javax.swing.BorderFactory.createTitledBorder("Listar"));
 
         buttonGroup1.add(rbPersona);
         rbPersona.setText("Persona Natural");
+        rbPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPersonaActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(rbEmpresa);
         rbEmpresa.setText("Empresa");
+        rbEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbEmpresaActionPerformed(evt);
+            }
+        });
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Todos");
+        buttonGroup1.add(rbTodos);
+        rbTodos.setText("Todos");
+        rbTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbTodosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panClienteLayout = new javax.swing.GroupLayout(panCliente);
         panCliente.setLayout(panClienteLayout);
@@ -394,7 +411,7 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(rbEmpresa)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton1)
+                .addComponent(rbTodos)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panClienteLayout.setVerticalGroup(
@@ -404,24 +421,26 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addGroup(panClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbPersona)
                     .addComponent(rbEmpresa)
-                    .addComponent(jRadioButton1))
+                    .addComponent(rbTodos))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnConsultaC.setText("Consultar");
+        btnConsultaC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaCActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+            .addComponent(jScrollPane3)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(117, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 111, Short.MAX_VALUE)
                         .addComponent(btnIngresaC)
                         .addGap(51, 51, 51)
                         .addComponent(btnActualizaC)
@@ -429,11 +448,10 @@ public class frmGeneral extends javax.swing.JFrame {
                         .addComponent(btnEliminaC)
                         .addGap(62, 62, 62)
                         .addComponent(btnConsultaC)
-                        .addGap(97, 97, 97))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(193, 193, 193))
+                        .addGap(97, 97, 97))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(panCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(193, 193, 193))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -511,6 +529,125 @@ public class frmGeneral extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Trabajadores", jPanel4);
+
+        tableLE.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Código", "Fecha", "Código_Cliente", "Código_Vendedor", "Subotal", "Total"
+            }
+        ));
+        jScrollPane2.setViewportView(tableLE);
+
+        btnIngresaLE.setText("Añadir");
+        btnIngresaLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresaLEActionPerformed(evt);
+            }
+        });
+
+        btnActualizaLE.setText("Actualizar");
+        btnActualizaLE.setEnabled(false);
+        btnActualizaLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizaLEActionPerformed(evt);
+            }
+        });
+
+        btnBorraLE.setText("Eliminar");
+        btnBorraLE.setEnabled(false);
+        btnBorraLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorraLEActionPerformed(evt);
+            }
+        });
+
+        btnConsultaLE.setText("Consultar");
+        btnConsultaLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaLEActionPerformed(evt);
+            }
+        });
+
+        panCompro.setBorder(javax.swing.BorderFactory.createTitledBorder("Listar"));
+
+        buttonGroup2.add(rbBol);
+        rbBol.setText("Boleta");
+
+        buttonGroup2.add(rbFac);
+        rbFac.setText("Factura");
+
+        buttonGroup2.add(rbTodo);
+        rbTodo.setText("Todos");
+
+        javax.swing.GroupLayout panComproLayout = new javax.swing.GroupLayout(panCompro);
+        panCompro.setLayout(panComproLayout);
+        panComproLayout.setHorizontalGroup(
+            panComproLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panComproLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(rbBol)
+                .addGap(38, 38, 38)
+                .addComponent(rbFac)
+                .addGap(18, 18, 18)
+                .addComponent(rbTodo)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        panComproLayout.setVerticalGroup(
+            panComproLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panComproLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(panComproLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbBol)
+                    .addComponent(rbFac)
+                    .addComponent(rbTodo))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(btnIngresaLE)
+                .addGap(41, 41, 41)
+                .addComponent(btnActualizaLE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBorraLE)
+                .addGap(18, 18, 18)
+                .addComponent(btnConsultaLE)
+                .addGap(70, 70, 70))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(199, 199, 199)
+                .addComponent(panCompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIngresaLE)
+                    .addComponent(btnActualizaLE)
+                    .addComponent(btnBorraLE)
+                    .addComponent(btnConsultaLE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panCompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Comprobantes", jPanel2);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel1.setText("GESTIÓN GENERAL");
@@ -647,25 +784,85 @@ public class frmGeneral extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnConsultaLEActionPerformed
 
+    private void btnIngresaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaCActionPerformed
+        frmClienteAdd  ventana= new frmClienteAdd();
+        
+        ventana.setVisible(true);
+    }//GEN-LAST:event_btnIngresaCActionPerformed
+
+    private void btnActualizaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaCActionPerformed
+        
+        
+        cCliente cliente = leCola.acceso();
+        frmClienteAdd ventana = new frmClienteAdd(cliente); // pasa el producto existente mediante el objeto
+        
+        
+        
+        refrescarTablaCli(ventana);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_btnActualizaCActionPerformed
+
+    private void btnEliminaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaCActionPerformed
+            
+        
+        
+        cCliente cli = leCola.acceso();
+        
+        int opcion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Está seguro de eliminar al Cliente?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE
+        );
+        
+        if (opcion==JOptionPane.YES_OPTION) {
+           leCola.eliminar();
+            JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente");
+            //mostrarProductos(arregloProductos);
+        }  
+        
+    }//GEN-LAST:event_btnEliminaCActionPerformed
+
+    private void btnConsultaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaCActionPerformed
+        
+            frmClienteSee ventana = new frmClienteSee();
+            ventana.setVisible(true);
+
+    }//GEN-LAST:event_btnConsultaCActionPerformed
+
+    private void rbPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPersonaActionPerformed
+            leCola.recorrerColaP(tableC);
+    }//GEN-LAST:event_rbPersonaActionPerformed
+
+    private void rbEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEmpresaActionPerformed
+        leCola.recorrerColaE(tableC);
+    }//GEN-LAST:event_rbEmpresaActionPerformed
+
+    private void rbTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTodosActionPerformed
+        mostrarClientes(tableC);
+    }//GEN-LAST:event_rbTodosActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmGeneral().setVisible(true);
+    try {
+        // Activa el look and feel "Nimbus" (moderno por defecto en NetBeans)
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        });
+        }
+    } catch (Exception ex) {
+        java.util.logging.Logger.getLogger(frmGeneral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+
+    java.awt.EventQueue.invokeLater(() -> {
+        new frmGeneral().setVisible(true);
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizaA;
@@ -686,20 +883,25 @@ public class frmGeneral extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresaP;
     private javax.swing.JButton btnIntegrantes;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel panCliente;
+    private javax.swing.JPanel panCompro;
+    private javax.swing.JRadioButton rbBol;
     private javax.swing.JRadioButton rbEmpresa;
+    private javax.swing.JRadioButton rbFac;
     private javax.swing.JRadioButton rbPersona;
+    private javax.swing.JRadioButton rbTodo;
+    private javax.swing.JRadioButton rbTodos;
     private javax.swing.JTable tableA;
     private javax.swing.JTable tableC;
     private javax.swing.JTable tableLE;

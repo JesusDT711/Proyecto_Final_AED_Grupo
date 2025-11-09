@@ -19,6 +19,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
      */
     public frmComprobanteAdd() {
         initComponents();
+        this.comprobante= null;
     }
     public frmComprobanteAdd(cComprobante p){
         initComponents();

@@ -4,6 +4,8 @@
  */
 package vista;
 
+import modelo.cCliente;
+
 /**
  *
  * @author adria
@@ -13,8 +15,18 @@ public class frmClienteAdd extends javax.swing.JFrame {
     /**
      * Creates new form fmrClienteAdd
      */
+    private cCliente cliente ;
+    
+    
     public frmClienteAdd() {
         initComponents();
+        this.cliente=null;
+    }
+    
+    public frmClienteAdd(cCliente c){
+        initComponents();
+        this.cliente=c;
+        //cargarDatos();
     }
 
     /**

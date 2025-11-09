@@ -13,8 +13,8 @@ import java.util.*;
 public class cCliente {
     private String codigo;
     private String rsocial;
-    private int telefono;
-    private int docIdentifica;
+    private long telefono;
+    private long docIdentifica;
     private Date fecha_compra;
     private int tipo; //1=Persona Natural o 2=Empresa
     private String contacto;
@@ -25,7 +25,7 @@ public class cCliente {
         this.codigo = cod.format(cuenta++);
     }
     
-    public cCliente(String rsocial, int telefono, int docIdentifica, Date fecha_compra, int tipo, String contacto){
+    public cCliente(String rsocial, long telefono, long docIdentifica, Date fecha_compra, int tipo, String contacto){
         this();
         this.rsocial = rsocial;
         this.telefono = telefono;
@@ -62,19 +62,19 @@ public class cCliente {
         this.rsocial = rsocial;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 
-    public int getDocIdentifica() {
+    public long getDocIdentifica() {
         return docIdentifica;
     }
 
-    public void setDocIdentifica(int docIdentifica) {
+    public void setDocIdentifica(long docIdentifica) {
         this.docIdentifica = docIdentifica;
     }
 
