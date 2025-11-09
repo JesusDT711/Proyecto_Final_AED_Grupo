@@ -13,6 +13,7 @@ import modelo.cComprobante;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import modelo.cDetalle_Comprobante;
 
 /**
  *
@@ -42,20 +43,8 @@ public class frmGeneral extends javax.swing.JFrame {
      */
     
     //METODO PARA CARGAR LOS OBJETOS BASE
-    private void mostrarProductos(cArreglo arregloProd) {
-        String[] columnas = {"Codigo", "Descripcion", "Precio", "Cantidad"};
-        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
-        for (int i = 0; i < arregloProd.tamaño(); i++) {
-            cProducto p = arregloProd.obtener(i);
-            Object[] fila = {
-                p.getCodigo(),
-                p.getDescripcion(),
-                p.getPrecio(),
-                p.getStock()
-            };
-            modelo.addRow(fila);
-        }
-        tableA.setModel(modelo);
+    private void mostrarProductos(JTable tableA) {
+        arregloProductos.recorreLE(tableA);
     }
     
     private void mostrarComprobantes(JTable tableLE){
@@ -67,7 +56,7 @@ public class frmGeneral extends javax.swing.JFrame {
         arregloProductos.agregar(new cProducto("MOUSE - LOGITECH G645", 119.99, 100));
         arregloProductos.agregar(new cProducto("TECLADO RGB - DRAGON", 249.99, 100));
 
-        mostrarProductos(arregloProductos);
+        mostrarProductos(tableA);
     }
     
     private void cargarComprobantesBase() {
@@ -89,9 +78,36 @@ public class frmGeneral extends javax.swing.JFrame {
            System.out.println("Error al convertir una de las fechas:" + e.getMessage());
         }   
         
-        leComprobante.insertarxFinal(new cFactura(fecha1,"C008","V002"));
-        leComprobante.insertarxFinal(new cBoleta(fecha2,"C004", "V003"));
-        leComprobante.insertarxFinal(new cFactura(fecha3,"C002", "V001"));
+        cFactura f1 = new cFactura(fecha1,"C008","V002");
+        cBoleta b1 = new cBoleta(fecha2,"C004", "V003");
+        cFactura f2 = new cFactura(fecha3,"C002", "V001");
+        
+        f1.setDetalle(new cDetalle_Comprobante(f1.getCodigo(),
+                        arregloProductos.obtener(0).getCodigo(),
+                        2,
+                        arregloProductos.obtener(0).getPrecio()));
+        f1.setDetalle(new cDetalle_Comprobante(f1.getCodigo(),
+                        arregloProductos.obtener(1).getCodigo(),
+                        3,
+                        arregloProductos.obtener(1).getPrecio()));
+        
+        b1.setDetalle(new cDetalle_Comprobante(b1.getCodigo(),
+                        arregloProductos.obtener(0).getCodigo(),
+                        3,
+                        arregloProductos.obtener(0).getPrecio()));
+        b1.setDetalle(new cDetalle_Comprobante(b1.getCodigo(),
+                        arregloProductos.obtener(2).getCodigo(),
+                        1,
+                        arregloProductos.obtener(2).getPrecio()));
+        
+        f2.setDetalle(new cDetalle_Comprobante(f2.getCodigo(),
+                        arregloProductos.obtener(0).getCodigo(),
+                        1,
+                        arregloProductos.obtener(0).getPrecio()));
+        
+        leComprobante.insertarxFinal(f1);
+        leComprobante.insertarxFinal(b1);
+        leComprobante.insertarxFinal(f2);
 
         mostrarComprobantes(tableLE);
     }
@@ -118,13 +134,13 @@ public class frmGeneral extends javax.swing.JFrame {
         });
     }
 
-    //metodo para refrescar la tabla (uso la logica de cuando se cierre un form externo se refresque de por si)
+    //MÉTODOS PARA REFRESCAR LAS TABLAS (uso la logica de cuando se cierre un form externo se refresque por sí solo)
     private void refrescarTablaProd(javax.swing.JFrame ventana) {
         ventana.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
                 //aca uso el metodo para mostrar los productos en la tabla
-                mostrarProductos(arregloProductos);
+                mostrarProductos(tableA);
             }
         });
     }
@@ -567,7 +583,7 @@ public class frmGeneral extends javax.swing.JFrame {
         if (opcion==JOptionPane.YES_OPTION) {
             arregloProductos.eliminar(p.getCodigo());
             JOptionPane.showMessageDialog(this, "Producto eliminado correctamente");
-            mostrarProductos(arregloProductos);
+            mostrarProductos(tableA);
         }
     }//GEN-LAST:event_btnBorraAActionPerformed
 

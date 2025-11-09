@@ -2,6 +2,8 @@
 package controlador;
 
 import modelo.cProducto;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class cArreglo {
     private cProducto[] productos;
@@ -80,6 +82,21 @@ public class cArreglo {
         }
 
         return exito;
+    }
+    
+    public void recorreLE(JTable tabla){
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        modelo.setRowCount(0);
+        for(int i=0; i<tamaño(); i++){
+            cProducto producto = obtener(i);
+            Object[] fila = {
+                producto.getCodigo(),
+                producto.getDescripcion(),
+                producto.getPrecio(),
+                producto.getStock()
+            };
+            modelo.addRow(fila); 
+        }        
     }
 
     public boolean registrarVenta(String codigo, int cantidadComprada) {

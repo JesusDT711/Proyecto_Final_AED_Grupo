@@ -65,6 +65,18 @@ public abstract class cComprobante {
         this.vendedor = vendedor;
     }
     
+    public double getSubTotal(){
+        return oDetalle.subTotalGeneral();
+    }
+    
+    public double getIGV(){
+        return oDetalle.igvGeneral();
+    }
+    
+    public double getTotal(){
+        return oDetalle.totalGeneral();
+    }
+    
     public void setDetalle(cDetalle_Comprobante nuevo){
         oDetalle.insertarxFinal(nuevo);
     }
@@ -72,4 +84,6 @@ public abstract class cComprobante {
     public cLE_Detalle getDetalle(){
         return oDetalle;
     }
+    
+    
 }

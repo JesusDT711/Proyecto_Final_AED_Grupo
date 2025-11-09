@@ -6,6 +6,7 @@ package controlador;
  */
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.text.DecimalFormat;
 import modelo.cComprobante;
 
 public class cLE_Comprobante {
@@ -39,6 +40,7 @@ public class cLE_Comprobante {
     }
     
     public void recorreLE(JTable tabla){
+        DecimalFormat df = new DecimalFormat("#.00");
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         modelo.setRowCount(0);
         p = inicio;
@@ -48,7 +50,9 @@ public class cLE_Comprobante {
                 comprobante.getCodigo(),
                 comprobante.fechaCadena(),
                 comprobante.getCliente(),
-                comprobante.getVendedor()
+                comprobante.getVendedor(),
+                df.format(comprobante.getSubTotal()),
+                df.format(comprobante.getTotal())
             };
             modelo.addRow(fila);
             p = p.getSgte();

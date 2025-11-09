@@ -116,5 +116,35 @@ public class cLE_Detalle {
             }
         }
         return res;
-    }  
+    }
+    
+    public double subTotalGeneral(){
+        double subtotal = 0;
+        p=inicio;
+        while(p!=null){
+            subtotal += p.getValor().subTotal();
+            p = p.getSgte();
+        }
+        return subtotal;
+    }
+    
+    public double igvGeneral(){
+        double igv=0;
+        p=inicio;
+        while(p!=null){
+            igv += p.getValor().igv();
+            p = p.getSgte();
+        }
+        return igv;
+    }
+    
+    public double totalGeneral(){
+        double total=0;
+        p=inicio;
+        while(p!=null){
+            total += p.getValor().total();
+            p = p.getSgte();
+        }
+        return total;
+    }
 }
