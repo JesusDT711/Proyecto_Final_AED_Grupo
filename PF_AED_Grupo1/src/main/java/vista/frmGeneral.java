@@ -5,6 +5,14 @@ import controlador.cArreglo;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.cProducto;
+import modelo.cComprobante;
+import controlador.cLE_Comprobante;
+import java.text.ParseException;
+import javax.swing.JTable;
+import modelo.cBoleta;
+import modelo.cFactura;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -13,6 +21,8 @@ import modelo.cProducto;
 public class frmGeneral extends javax.swing.JFrame {
 
     public static cArreglo arregloProductos = new cArreglo(1000); // capacidad inicial
+    
+    public static cLE_Comprobante leComprobante = new cLE_Comprobante();
 
     /**
      * Creates new form frmGeneral
@@ -20,6 +30,7 @@ public class frmGeneral extends javax.swing.JFrame {
     public frmGeneral() {
         initComponents();
         cargarProductosBase();
+        cargarComprobantesBase();
         habilitarBotonesProductos();
     }
 
@@ -45,6 +56,12 @@ public class frmGeneral extends javax.swing.JFrame {
         }
         tableA.setModel(modelo);
     }
+    
+    private void mostrarComprobantes(JTable tableLE){
+        
+        leComprobante.recorreLE(tableLE);
+        
+    }
 
     private void cargarProductosBase() {
         arregloProductos.agregar(new cProducto("LAPTOP - I7 13400k", 2999.99, 100));
@@ -53,6 +70,51 @@ public class frmGeneral extends javax.swing.JFrame {
 
         mostrarProductos(arregloProductos);
     }
+    
+    private void cargarComprobantesBase() {
+        
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        
+        String fecha1str = "02/04/2005";
+       
+        
+        String fecha2str = "04/09/2010";
+        
+        
+        
+        String fecha3str = "07/10/2006";
+        
+        Date fecha1 = null;
+        Date fecha2 = null;
+        Date fecha3 = null;
+       
+        
+        try {
+            fecha1 = formato.parse(fecha1str);
+            fecha2 = formato.parse(fecha2str) ;
+            fecha3 = formato.parse(fecha3str) ;
+        
+        } catch (ParseException e) {
+            
+           System.out.println("Error al convertir una de las fechas:" + e.getMessage());
+            
+            
+        }
+        
+    
+        
+        leComprobante.insertarxFinal(new cFactura(fecha1,"C008","V002"));
+        leComprobante.insertarxFinal(new cBoleta(fecha2,"C004", "V003"));
+        leComprobante.insertarxFinal(new cFactura(fecha3,"C002", "V001"));
+
+        mostrarComprobantes(tableLE);
+    }
+    
+    
+    
+    
+    
 
     //metodo para habilitar los botones actualizar-eliminar
     private void habilitarBotonesProductos() {
@@ -209,14 +271,34 @@ public class frmGeneral extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tableLE);
 
         btnIngresaLE.setText("Añadir");
+        btnIngresaLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresaLEActionPerformed(evt);
+            }
+        });
 
         btnActualizaLE.setText("Actualizar");
         btnActualizaLE.setEnabled(false);
+        btnActualizaLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizaLEActionPerformed(evt);
+            }
+        });
 
         btnBorraLE.setText("Eliminar");
         btnBorraLE.setEnabled(false);
+        btnBorraLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorraLEActionPerformed(evt);
+            }
+        });
 
         btnConsultaLE.setText("Consultar");
+        btnConsultaLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaLEActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -496,6 +578,56 @@ public class frmGeneral extends javax.swing.JFrame {
         integrantes.setVisible(true);
     }//GEN-LAST:event_btnIntegrantesActionPerformed
 
+    private void btnIngresaLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaLEActionPerformed
+          frmComprobanteAdd ventana = new frmComprobanteAdd();
+           ventana.setVisible(true);
+    }//GEN-LAST:event_btnIngresaLEActionPerformed
+
+    private void btnActualizaLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaLEActionPerformed
+        
+        int fila = tableLE.getSelectedRow();
+        
+        String codigo =String.valueOf(tableLE.getValueAt(fila, 0));
+        
+        cComprobante comprobante = leComprobante.busqueda(codigo);
+        
+        frmComprobanteAdd ventana = new frmComprobanteAdd(comprobante); // pasa el producto existente mediante el objeto
+
+       // refrescarTabla(ventana);
+
+        ventana.setVisible(true);
+    }//GEN-LAST:event_btnActualizaLEActionPerformed
+
+    private void btnBorraLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorraLEActionPerformed
+        int fila = tableLE.getSelectedRow();
+        
+        String codigo =String.valueOf(tableLE.getValueAt(fila, 0));
+        
+        cComprobante c = leComprobante.busqueda(codigo);
+        
+        int opcion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Está seguro de eliminar este Comprobante?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE
+        );
+        
+        if (opcion==JOptionPane.YES_OPTION) {
+            leComprobante.eliminaEntreNodos(c.getCodigo());
+            JOptionPane.showMessageDialog(this, "Comprobante eliminado correctamente");
+            //mostrarProductos(arregloProductos);
+        }
+    }//GEN-LAST:event_btnBorraLEActionPerformed
+
+    private void btnConsultaLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaLEActionPerformed
+        
+            frmComprobanteSee ventana = new frmComprobanteSee();
+            
+            ventana.setVisible(true);
+
+    }//GEN-LAST:event_btnConsultaLEActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -505,22 +637,7 @@ public class frmGeneral extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmGeneral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmGeneral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmGeneral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmGeneral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        
         //</editor-fold>
 
         /* Create and display the form */

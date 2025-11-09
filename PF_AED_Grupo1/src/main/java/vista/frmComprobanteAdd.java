@@ -4,17 +4,26 @@
  */
 package vista;
 
+import modelo.cComprobante;
+
 /**
  *
  * @author adria
  */
 public class frmComprobanteAdd extends javax.swing.JFrame {
-
+        
+    
+    private cComprobante comprobante;
     /**
      * Creates new form frmComprobanteAdd
      */
     public frmComprobanteAdd() {
         initComponents();
+    }
+    public frmComprobanteAdd(cComprobante p){
+        initComponents();
+        this.comprobante=p;
+       // cargarDatos();
     }
 
     /**

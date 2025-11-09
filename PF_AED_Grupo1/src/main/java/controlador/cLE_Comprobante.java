@@ -1,4 +1,3 @@
-
 package controlador;
 
 /**
@@ -56,17 +55,19 @@ public class cLE_Comprobante {
         }
     }
     
-    public boolean busqueda(String valor){
-        boolean res=false;
+    public cComprobante busqueda(String valor){
+        cComprobante compro =null;
         if(inicio != null){
             p = inicio;
             while(!p.getValor().getCodigo().equalsIgnoreCase(valor) && p.getSgte() != null){
                 p = p.getSgte();
             }
             if(p.getValor().getCodigo().equals(valor)){
-                res=true;
+                compro=p.getValor();
             }
         }
-        return res;
+        return compro;
     }  
+    
+    
 }
