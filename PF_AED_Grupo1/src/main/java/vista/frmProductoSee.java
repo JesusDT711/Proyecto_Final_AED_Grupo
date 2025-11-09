@@ -4,12 +4,16 @@
  */
 package vista;
 
+import controlador.cArreglo;
+import javax.swing.JOptionPane;
+import modelo.cProducto;
+
 /**
  *
  * @author adria
  */
 public class frmProductoSee extends javax.swing.JFrame {
-
+       private cArreglo arreProd = frmGeneral.arregloProductos;
     /**
      * Creates new form frmProductoSee
      */
@@ -45,12 +49,23 @@ public class frmProductoSee extends javax.swing.JFrame {
         });
 
         btnBusca.setText("Consultar");
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaActionPerformed(evt);
+            }
+        });
 
         txtaProducto.setColumns(20);
         txtaProducto.setRows(5);
         jScrollPane1.setViewportView(txtaProducto);
 
         btnLimpiaS.setText("Limpiar");
+        btnLimpiaS.setEnabled(false);
+        btnLimpiaS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiaSActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel2.setText("CONSULTA DE PRODUCTOS ");
@@ -73,18 +88,19 @@ public class frmProductoSee extends javax.swing.JFrame {
                                 .addComponent(btnBusca)))
                         .addGap(47, 47, 47))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(80, 80, 80))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnLimpiaS)
                         .addGap(223, 223, 223))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(jLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel2)
-                .addGap(35, 35, 35)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBusca)
                     .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -102,6 +118,32 @@ public class frmProductoSee extends javax.swing.JFrame {
     private void txtCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodActionPerformed
+
+    private void btnLimpiaSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiaSActionPerformed
+        txtCod.setText("");
+        txtaProducto.setText("");
+        
+        btnLimpiaS.setEnabled(false);
+    }//GEN-LAST:event_btnLimpiaSActionPerformed
+
+    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
+        if (txtCod.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,"Complete el campo 🐒");
+        }else{
+        String codigo = txtCod.getText();
+        cProducto pro = arreProd.buscar(codigo);
+        if(pro == null){
+            txtaProducto.setText("Producto no Encontrado");
+        }else{
+            txtaProducto.setText("Código: " +pro.getCodigo());
+            txtaProducto.append("\n Nombre:" + pro.getDescripcion());
+            txtaProducto.append("\n Precio/u:" + pro.getPrecio());
+            txtaProducto.append("\n Stock actual:" + pro.getStock());
+            
+            btnLimpiaS.setEnabled(true);
+        }
+        }
+    }//GEN-LAST:event_btnBuscaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -15,7 +15,7 @@ import modelo.cProducto;
  */
 public class frmGeneral extends javax.swing.JFrame {
 
-    private cArreglo arregloProductos = new cArreglo(1000); // capacidad inicial
+    public static cArreglo arregloProductos = new cArreglo(1000); // capacidad inicial
 
     /**
      * Creates new form frmGeneral
@@ -161,6 +161,11 @@ public class frmGeneral extends javax.swing.JFrame {
         });
 
         btnConsultaA.setText("Consultar");
+        btnConsultaA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaAActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -486,6 +491,12 @@ public class frmGeneral extends javax.swing.JFrame {
             mostrarProductos(arregloProductos);
         }
     }//GEN-LAST:event_btnBorraAActionPerformed
+
+    private void btnConsultaAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaAActionPerformed
+        
+        frmProductoSee ventana= new frmProductoSee();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_btnConsultaAActionPerformed
 
     /**
      * @param args the command line arguments

@@ -60,6 +60,12 @@ public class frmProductAdd extends javax.swing.JFrame {
 
         jLabel4.setText("INGRESE CANTIDAD DEL PRODUCTO:");
 
+        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescripcionActionPerformed(evt);
+            }
+        });
+
         btnAdd.setText("Registrar");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,6 +75,11 @@ public class frmProductAdd extends javax.swing.JFrame {
 
         btnLimpia.setText("Limpiar");
         btnLimpia.setEnabled(false);
+        btnLimpia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiaActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel5.setText("REGISTRO DE PRODUCTO");
@@ -136,27 +147,55 @@ public class frmProductAdd extends javax.swing.JFrame {
     }
     
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+
+        
+        if(txtDescripcion.getText().isEmpty() || txtPrecio.getText().isEmpty() || txtCantidad.getText().isEmpty()){
+           JOptionPane.showMessageDialog(this, "Complete todos los campos ");
+       }else{
         String nombre = txtDescripcion.getText();
         double precio = Double.parseDouble(txtPrecio.getText());
         int cantidad = Integer.parseInt(txtCantidad.getText());
 
-        if (producto != null) {
+       if (producto != null) {
             // Actualizar producto existente
             producto.setDescripcion(nombre);
             producto.setPrecio(precio);
             producto.setStock(cantidad);
             JOptionPane.showMessageDialog(this, "Producto actualizado correctamente");
+            this.dispose();
         } else {
-            //aca iría la logica para el boton AÑADIR
-            
+                
+               cProducto nuevoP;
+            nuevoP = new cProducto(nombre,precio,cantidad);
             
             JOptionPane.showMessageDialog(this, "Producto añadido correctamente");
-        }
+            
+            btnLimpia.setEnabled(true);
+            
+            btnAdd.setEnabled(false);
+                
+            }
+       }
+        
+          
+        
 
-        this.dispose();
+        
                        
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescripcionActionPerformed
+
+    private void btnLimpiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiaActionPerformed
+       txtDescripcion.setText("");
+       txtPrecio.setText("");
+       txtCantidad.setText("");
+       
+       btnLimpia.setEnabled(false);
+       btnAdd.setEnabled(true);
+    }//GEN-LAST:event_btnLimpiaActionPerformed
 
     /**
      * @param args the command line arguments

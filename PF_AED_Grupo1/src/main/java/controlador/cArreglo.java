@@ -103,4 +103,10 @@ public class cArreglo {
     public double getTotalVentas() {
         return this.totalVentas;
     }
+    
+    
+    public cProducto[] getArreglo(){
+    
+         return productos;
+    }
 }
