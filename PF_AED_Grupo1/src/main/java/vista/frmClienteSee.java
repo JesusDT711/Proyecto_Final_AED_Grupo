@@ -4,15 +4,18 @@
  */
 package vista;
 
+import controlador.cCola_LE;
+import javax.swing.JOptionPane;
+import modelo.cCliente;
+
 /**
  *
  * @author adria
  */
 public class frmClienteSee extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmClienteSee
-     */
+    private cCola_LE colaClientes = frmGeneral.leCola;
+    
     public frmClienteSee() {
         initComponents();
     }
@@ -30,24 +33,28 @@ public class frmClienteSee extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaCliente = new javax.swing.JTextArea();
         btnConsultaC = new javax.swing.JButton();
-        txtCodCli = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtCodCli = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnLimpiarC.setText("Limpiar");
         btnLimpiarC.setEnabled(false);
+        btnLimpiarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarCActionPerformed(evt);
+            }
+        });
 
         txtaCliente.setColumns(20);
         txtaCliente.setRows(5);
         jScrollPane1.setViewportView(txtaCliente);
 
         btnConsultaC.setText("Consultar");
-
-        txtCodCli.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultaC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodCliActionPerformed(evt);
+                btnConsultaCActionPerformed(evt);
             }
         });
 
@@ -89,8 +96,8 @@ public class frmClienteSee extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsultaC))
+                    .addComponent(btnConsultaC)
+                    .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -101,9 +108,34 @@ public class frmClienteSee extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCodCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodCliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodCliActionPerformed
+    private void btnConsultaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaCActionPerformed
+        if(txtCodCli.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Complete el campo");
+        }else{
+            String codigo = txtCodCli.getText();
+            cCliente cliente = colaClientes.busqueda(codigo);
+            if(cliente==null){
+                txtaCliente.setText("Cliente no Encontrado.");
+            }else{
+                txtaCliente.setText("Código: "+cliente.getCodigo());
+                txtaCliente.append("\nRazon Social: "+cliente.getRsocial());
+                txtaCliente.append("\nTeléfono: "+cliente.getTelefono());
+                txtaCliente.append("\nDocumento de Identificación: "+cliente.getDocIdentifica());
+                txtaCliente.append("\nFecha de Compra"+cliente.fecha_compraCadena());
+                txtaCliente.append("\nTipo de Cliente: "+cliente.tipoCadena());
+                txtaCliente.append("\nContacto: "+cliente.getContacto());
+                
+                btnLimpiarC.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_btnConsultaCActionPerformed
+
+    private void btnLimpiarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCActionPerformed
+        txtCodCli.setText("");
+        txtaCliente.setText("");
+        
+        btnLimpiarC.setEnabled(false);
+    }//GEN-LAST:event_btnLimpiarCActionPerformed
 
     /**
      * @param args the command line arguments

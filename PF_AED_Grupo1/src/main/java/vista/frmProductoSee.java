@@ -119,7 +119,7 @@ public class frmProductoSee extends javax.swing.JFrame {
             String codigo = txtCod.getText();
             cProducto pro = arreProd.buscar(codigo);
             if(pro == null){
-                txtaProducto.setText("Producto no Encontrado");
+                txtaProducto.setText("Producto no Encontrado.");
             }else{
                 txtaProducto.setText("Código: " +pro.getCodigo());
                 txtaProducto.append("\n Nombre:" + pro.getDescripcion());

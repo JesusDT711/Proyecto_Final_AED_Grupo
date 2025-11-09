@@ -52,6 +52,20 @@ public class cCola_LE {
         return valor;
     }
     
+    public cCliente busqueda(String valor){
+        cCliente cliente =null;
+        if(first != null){
+            p = first;
+            while(!p.getValor().getCodigo().equalsIgnoreCase(valor) && p.getSgte() != null){
+                p = p.getSgte();
+            }
+            if(p.getValor().getCodigo().equals(valor)){
+                cliente=p.getValor();
+            }
+        }
+        return cliente;
+    }
+    
     public void recorrerCola(JTable tabla){
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         modelo.setRowCount(0);
