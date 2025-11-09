@@ -20,8 +20,7 @@ import java.text.SimpleDateFormat;
  */
 public class frmGeneral extends javax.swing.JFrame {
 
-    public static cArreglo arregloProductos = new cArreglo(1000); // capacidad inicial
-    
+    public static cArreglo arregloProductos = new cArreglo(1000);
     public static cLE_Comprobante leComprobante = new cLE_Comprobante();
 
     /**
@@ -31,7 +30,9 @@ public class frmGeneral extends javax.swing.JFrame {
         initComponents();
         cargarProductosBase();
         cargarComprobantesBase();
+        
         habilitarBotonesProductos();
+        habilitarBotonesComprobantes();
     }
 
     /**
@@ -72,37 +73,23 @@ public class frmGeneral extends javax.swing.JFrame {
     }
     
     private void cargarComprobantesBase() {
-        
-        
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         
-        String fecha1str = "02/04/2005";
-       
-        
-        String fecha2str = "04/09/2010";
-        
-        
-        
+        String fecha1str = "02/04/2005";      
+        String fecha2str = "04/09/2010";      
         String fecha3str = "07/10/2006";
         
         Date fecha1 = null;
         Date fecha2 = null;
         Date fecha3 = null;
-       
         
         try {
             fecha1 = formato.parse(fecha1str);
-            fecha2 = formato.parse(fecha2str) ;
-            fecha3 = formato.parse(fecha3str) ;
-        
+            fecha2 = formato.parse(fecha2str);
+            fecha3 = formato.parse(fecha3str);
         } catch (ParseException e) {
-            
            System.out.println("Error al convertir una de las fechas:" + e.getMessage());
-            
-            
-        }
-        
-    
+        }   
         
         leComprobante.insertarxFinal(new cFactura(fecha1,"C008","V002"));
         leComprobante.insertarxFinal(new cBoleta(fecha2,"C004", "V003"));
@@ -111,12 +98,8 @@ public class frmGeneral extends javax.swing.JFrame {
         mostrarComprobantes(tableLE);
     }
     
-    
-    
-    
-    
 
-    //metodo para habilitar los botones actualizar-eliminar
+    //Métodos para habilitar los botones actualizar-eliminar
     private void habilitarBotonesProductos() {
         tableA.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) { 
@@ -126,14 +109,34 @@ public class frmGeneral extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void habilitarBotonesComprobantes() {
+        tableLE.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) { 
+                boolean filaSeleccionada = tableLE.getSelectedRow() != -1;
+                btnActualizaLE.setEnabled(filaSeleccionada);
+                btnBorraLE.setEnabled(filaSeleccionada);
+            }
+        });
+    }
 
     //metodo para refrescar la tabla (uso la logica de cuando se cierre un form externo se refresque de por si)
-    private void refrescarTabla(javax.swing.JFrame ventana) {
+    private void refrescarTablaProd(javax.swing.JFrame ventana) {
         ventana.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
                 //aca uso el metodo para mostrar los productos en la tabla
                 mostrarProductos(arregloProductos);
+            }
+        });
+    }
+    
+    private void refrescarTablaCompro(javax.swing.JFrame ventana) {
+        ventana.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                //aca uso el metodo para mostrar los productos en la tabla
+                mostrarComprobantes(tableLE);
             }
         });
     }
@@ -534,6 +537,8 @@ public class frmGeneral extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    //BOTONES DE LA PESTAÑA PRODUCTOS
     private void btnIngresaAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaAActionPerformed
         //ABRE CON EL CONSTRUCTOR PARA AÑADIR 
         frmProductoAdd ventana = new frmProductoAdd();
@@ -545,7 +550,7 @@ public class frmGeneral extends javax.swing.JFrame {
         cProducto producto = arregloProductos.obtener(tableA.getSelectedRow());
         frmProductoAdd ventana = new frmProductoAdd(producto); // pasa el producto existente mediante el objeto
 
-        refrescarTabla(ventana);
+        refrescarTablaProd(ventana);
 
         ventana.setVisible(true);
     }//GEN-LAST:event_btnActualizaAActionPerformed
@@ -573,28 +578,28 @@ public class frmGeneral extends javax.swing.JFrame {
         ventana.setVisible(true);
     }//GEN-LAST:event_btnConsultaAActionPerformed
 
+    
+    //BOTÓN DE INTEGRANTES
     private void btnIntegrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIntegrantesActionPerformed
         frmIntegrantes integrantes = new frmIntegrantes();
         integrantes.setVisible(true);
     }//GEN-LAST:event_btnIntegrantesActionPerformed
 
+    
+    
+    //BOTONES DE LA PESTAÑA COMPROBANTES
     private void btnIngresaLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaLEActionPerformed
-          frmComprobanteAdd ventana = new frmComprobanteAdd();
-           ventana.setVisible(true);
+        frmComprobanteAdd ventana = new frmComprobanteAdd();
+        ventana.setVisible(true);
     }//GEN-LAST:event_btnIngresaLEActionPerformed
 
     private void btnActualizaLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaLEActionPerformed
-        
         int fila = tableLE.getSelectedRow();
-        
         String codigo =String.valueOf(tableLE.getValueAt(fila, 0));
-        
         cComprobante comprobante = leComprobante.busqueda(codigo);
-        
         frmComprobanteAdd ventana = new frmComprobanteAdd(comprobante); // pasa el producto existente mediante el objeto
 
-       // refrescarTabla(ventana);
-
+        refrescarTablaCompro(ventana);
         ventana.setVisible(true);
     }//GEN-LAST:event_btnActualizaLEActionPerformed
 
