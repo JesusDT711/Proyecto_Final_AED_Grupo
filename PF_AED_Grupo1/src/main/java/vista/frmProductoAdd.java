@@ -1,30 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package vista;
 
 import javax.swing.JOptionPane;
 import modelo.cProducto;
+import controlador.cArreglo;
 
 /**
  *
  * @author adria
  */
-public class frmProductAdd extends javax.swing.JFrame {
+public class frmProductoAdd extends javax.swing.JFrame {
 
     private cProducto producto;
+    private cArreglo arre_Prod = frmGeneral.arregloProductos;
     
-    /**
-     * Creates new form frmProductAdd
-     */
-    public frmProductAdd() {
+    public frmProductoAdd() {
         initComponents();
         this.producto=null;
         
     }
     
-    public frmProductAdd(cProducto p){
+    public frmProductoAdd(cProducto p){
         initComponents();
         this.producto=p;
         cargarDatos();
@@ -43,12 +39,12 @@ public class frmProductAdd extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtDescripcion = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnLimpia = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        txtDescripcion = new javax.swing.JTextField();
 
         jLabel1.setText("jLabel1");
 
@@ -59,12 +55,6 @@ public class frmProductAdd extends javax.swing.JFrame {
         jLabel3.setText("INGRESE PRECIO POR UNIDAD DEL PRODUCTO:");
 
         jLabel4.setText("INGRESE CANTIDAD DEL PRODUCTO:");
-
-        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescripcionActionPerformed(evt);
-            }
-        });
 
         btnAdd.setText("Registrar");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -98,10 +88,10 @@ public class frmProductAdd extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtPrecio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                                .addComponent(txtCantidad, javax.swing.GroupLayout.Alignment.LEADING))))
+                                .addComponent(txtCantidad, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(134, 134, 134)
                         .addComponent(btnLimpia)
@@ -110,7 +100,7 @@ public class frmProductAdd extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(jLabel5)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,46 +137,30 @@ public class frmProductAdd extends javax.swing.JFrame {
     }
     
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        if(txtDescripcion.getText().trim().isEmpty() || txtPrecio.getText().trim().isEmpty() || txtCantidad.getText().trim().isEmpty()){
+           JOptionPane.showMessageDialog(this, "Complete todos los campos");
+        }else{
+            String nombre = txtDescripcion.getText();
+            double precio = Double.parseDouble(txtPrecio.getText());
+            int cantidad = Integer.parseInt(txtCantidad.getText());
 
-        
-        if(txtDescripcion.getText().isEmpty() || txtPrecio.getText().isEmpty() || txtCantidad.getText().isEmpty()){
-           JOptionPane.showMessageDialog(this, "Complete todos los campos ");
-       }else{
-        String nombre = txtDescripcion.getText();
-        double precio = Double.parseDouble(txtPrecio.getText());
-        int cantidad = Integer.parseInt(txtCantidad.getText());
-
-       if (producto != null) {
-            // Actualizar producto existente
-            producto.setDescripcion(nombre);
-            producto.setPrecio(precio);
-            producto.setStock(cantidad);
-            JOptionPane.showMessageDialog(this, "Producto actualizado correctamente");
-            this.dispose();
-        } else {
-                
-               cProducto nuevoP;
-            nuevoP = new cProducto(nombre,precio,cantidad);
+            if (producto != null) {
+                // Actualizar producto existente
+                producto.setDescripcion(nombre);
+                producto.setPrecio(precio);
+                producto.setStock(cantidad);
+                JOptionPane.showMessageDialog(this, "Producto actualizado correctamente");
+                this.dispose();
+            }else {  
+                cProducto nuevoP = new cProducto(nombre,precio,cantidad);
+                arre_Prod.agregar(nuevoP);
+                JOptionPane.showMessageDialog(this, "Producto añadido correctamente");
             
-            JOptionPane.showMessageDialog(this, "Producto añadido correctamente");
-            
-            btnLimpia.setEnabled(true);
-            
-            btnAdd.setEnabled(false);
-                
+                btnLimpia.setEnabled(true);
+                btnAdd.setEnabled(false);
             }
-       }
-        
-          
-        
-
-        
-                       
+        }                  
     }//GEN-LAST:event_btnAddActionPerformed
-
-    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescripcionActionPerformed
 
     private void btnLimpiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiaActionPerformed
        txtDescripcion.setText("");
@@ -214,20 +188,21 @@ public class frmProductAdd extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmProductAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProductoAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmProductAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProductoAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmProductAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProductoAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmProductAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProductoAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmProductAdd().setVisible(true);
+                new frmProductoAdd().setVisible(true);
             }
         });
     }

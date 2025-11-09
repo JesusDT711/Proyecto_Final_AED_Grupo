@@ -60,8 +60,8 @@
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnBusca" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCod" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCod" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="167" max="-2" attributes="0"/>
@@ -77,11 +77,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="INGRESE C&#xd3;DIGO DEL PRODUCTO: "/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtCod">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBusca">
       <Properties>
@@ -122,6 +117,8 @@
         </Property>
         <Property name="text" type="java.lang.String" value="CONSULTA DE PRODUCTOS "/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCod">
     </Component>
   </SubComponents>
 </Form>

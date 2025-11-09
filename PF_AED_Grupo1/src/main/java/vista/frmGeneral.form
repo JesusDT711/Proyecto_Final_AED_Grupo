@@ -542,6 +542,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Integrantes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIntegrantesActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

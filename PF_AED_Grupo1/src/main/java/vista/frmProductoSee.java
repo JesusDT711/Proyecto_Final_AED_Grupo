@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package vista;
 
 import controlador.cArreglo;
@@ -13,10 +10,9 @@ import modelo.cProducto;
  * @author adria
  */
 public class frmProductoSee extends javax.swing.JFrame {
-       private cArreglo arreProd = frmGeneral.arregloProductos;
-    /**
-     * Creates new form frmProductoSee
-     */
+    
+    private cArreglo arreProd = frmGeneral.arregloProductos;
+    
     public frmProductoSee() {
         initComponents();
     }
@@ -31,22 +27,16 @@ public class frmProductoSee extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtCod = new javax.swing.JTextField();
         btnBusca = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaProducto = new javax.swing.JTextArea();
         btnLimpiaS = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        txtCod = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("INGRESE CÓDIGO DEL PRODUCTO: ");
-
-        txtCod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodActionPerformed(evt);
-            }
-        });
 
         btnBusca.setText("Consultar");
         btnBusca.addActionListener(new java.awt.event.ActionListener() {
@@ -103,8 +93,8 @@ public class frmProductoSee extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBusca)
-                    .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -115,10 +105,6 @@ public class frmProductoSee extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodActionPerformed
-
     private void btnLimpiaSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiaSActionPerformed
         txtCod.setText("");
         txtaProducto.setText("");
@@ -127,21 +113,21 @@ public class frmProductoSee extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiaSActionPerformed
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        if (txtCod.getText().isEmpty()) {
+        if (txtCod.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this,"Complete el campo 🐒");
         }else{
-        String codigo = txtCod.getText();
-        cProducto pro = arreProd.buscar(codigo);
-        if(pro == null){
-            txtaProducto.setText("Producto no Encontrado");
-        }else{
-            txtaProducto.setText("Código: " +pro.getCodigo());
-            txtaProducto.append("\n Nombre:" + pro.getDescripcion());
-            txtaProducto.append("\n Precio/u:" + pro.getPrecio());
-            txtaProducto.append("\n Stock actual:" + pro.getStock());
+            String codigo = txtCod.getText();
+            cProducto pro = arreProd.buscar(codigo);
+            if(pro == null){
+                txtaProducto.setText("Producto no Encontrado");
+            }else{
+                txtaProducto.setText("Código: " +pro.getCodigo());
+                txtaProducto.append("\n Nombre:" + pro.getDescripcion());
+                txtaProducto.append("\n Precio/u:" + pro.getPrecio());
+                txtaProducto.append("\n Stock actual:" + pro.getStock());
             
-            btnLimpiaS.setEnabled(true);
-        }
+                btnLimpiaS.setEnabled(true);
+            }
         }
     }//GEN-LAST:event_btnBuscaActionPerformed
 

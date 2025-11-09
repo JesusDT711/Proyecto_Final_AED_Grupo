@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package vista;
+
 import javax.swing.JOptionPane;
 import modelo.cUsuario;
 /**
@@ -90,20 +88,19 @@ public class frmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        if(!txtUsuario.getText().isEmpty() && !txtContraseña.getText().isEmpty()){
+        if(!txtUsuario.getText().trim().isEmpty() && !txtContraseña.getText().trim().isEmpty()){
             String usuario = txtUsuario.getText();
             String contraseña= txtContraseña.getText();
             if(usuario.equals(oUsuario.getUsuario())&& contraseña.equals(oUsuario.getContraseña())){
                 frmGeneral frmGeneral = new frmGeneral();
                 frmGeneral.setVisible(true);
                 this.setVisible(false);
-              
             }else{
-                JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos :p");
+                JOptionPane.showMessageDialog(this, "Usuario o Contraseña incorrectos :p");
             }   
         }else{
-                JOptionPane.showMessageDialog(null, "Complete todos los campos");
-                    }
+            JOptionPane.showMessageDialog(this, "Complete todos los campos");
+        }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
