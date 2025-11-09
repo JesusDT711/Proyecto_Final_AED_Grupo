@@ -23,7 +23,7 @@ public class frmClienteAdd extends javax.swing.JFrame {
     
     public frmClienteAdd(cCliente c){
         initComponents();
-        this.cliente=c;
+        this.cliente = c;
         cargarDatos();
     }
 
@@ -152,6 +152,11 @@ public class frmClienteAdd extends javax.swing.JFrame {
 
         btnLimpiarC.setText("Limpiar");
         btnLimpiarC.setEnabled(false);
+        btnLimpiarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarCActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -258,7 +263,7 @@ public class frmClienteAdd extends javax.swing.JFrame {
                 contacto = txtContacto.getText();
             }
             if (cliente != null) {
-                // Actualizar producto existente
+                // Actualizar cliente existente
                 cliente.setRsocial(rSocial);
                 cliente.setTelefono(telf);
                 cliente.setDocIdentifica(docIdentifi);
@@ -277,6 +282,19 @@ public class frmClienteAdd extends javax.swing.JFrame {
             }
         } 
     }//GEN-LAST:event_btnRegistarCActionPerformed
+
+    private void btnLimpiarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCActionPerformed
+        buttonGroup1.clearSelection();
+        txtDocIndentifica.setText("");
+        txtRazon.setText("");
+        txtTelf.setText("");
+        dcFechaCompraCli.setDate(null);
+        txtTipoCliente.setText("");
+        txtContacto.setText("");
+        
+        btnLimpiarC.setEnabled(false);
+        btnRegistarC.setEnabled(true);
+    }//GEN-LAST:event_btnLimpiarCActionPerformed
 
     /**
      * @param args the command line arguments
