@@ -1,17 +1,22 @@
 
 package controlador;
 
+import modelo.cTrabajador;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
 /**
  *
  * @author Giuss
  */
 public class cPila {
-    private int[] pila;
+    private cTrabajador[] pila;
+    private int capacidad;
     private int tope;
     private int indMax;
     
     public cPila(int n){
-        pila = new int[n];
+        this.capacidad = n;
+        pila = new cTrabajador[n];
         indMax = n-1;
         pilavacia();
     }
@@ -19,20 +24,23 @@ public class cPila {
     public int getTope() {
         return tope;
     }
-        
+    
+    public int getCapacidad(){
+        return capacidad;
+    }
     public void pilavacia(){
         tope=-1;
     }
     
-    public void insertar(int valor){
+    public void insertar(cTrabajador valor){
         if(tope < indMax){
             tope++;
             pila[tope]=valor;
         }
     }
     
-    public int eliminar(){
-        int valor=0;
+    public cTrabajador eliminar(){
+        cTrabajador valor=null;
         if(tope > -1){
             valor=pila[tope];
             tope--;
@@ -40,22 +48,28 @@ public class cPila {
         return valor;
     }
     
-    public int accesar(){
-        int valor=0;
+    public cTrabajador accesar(){
+        cTrabajador valor=null;
         if(tope > -1){
             valor=pila[tope];
         }
         return valor;
     }
     
-    public String muestraArreglo(){
-        String cadena="Pila Vacia";
-        if(tope > -1){
-            cadena="";
-            for(int i=0; i<=tope; i++){
-                cadena += pila[i]+" - ";
-            }
+    
+    public void recorrePila(JTable tabla){
+        DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+        modelo.setRowCount(0);
+        for(int i=0; i<=tope; i++){
+            cTrabajador trabajador = pila[i];
+            Object[] vec = {
+                trabajador.getCodigo(),
+                trabajador.getNombre(),
+                trabajador.fecha_ingresoCadena(),
+                trabajador.getSueldo(),
+                trabajador.cargo()
+                };
+            modelo.addRow(vec);
         }
-        return cadena;
     }
 }

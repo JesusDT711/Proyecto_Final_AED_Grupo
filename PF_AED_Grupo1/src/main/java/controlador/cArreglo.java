@@ -85,6 +85,28 @@ public class cArreglo {
         return exito;
     }
     
+    public boolean registrarVenta(String codigo, int cantidadComprada) {
+        boolean exito = false;
+        cProducto producto = buscar(codigo);
+
+        if (producto != null) {
+            if (producto.getStock() >= cantidadComprada) {
+                int nuevoStock = producto.getStock() - cantidadComprada;
+                producto.setStock(nuevoStock);
+                
+                double montoDeVenta = producto.getPrecio() * cantidadComprada;
+                this.totalVentas += montoDeVenta;
+                
+                exito = true;
+            }
+        }
+        return exito;
+    }
+    
+    public double getTotalVentas() {
+        return this.totalVentas;
+    }
+    
     public void llenarComboProductos(JComboBox combo){
         combo.removeAllItems();
         combo.addItem("Elegir");
@@ -106,27 +128,5 @@ public class cArreglo {
             };
             modelo.addRow(fila); 
         }        
-    }
-
-    public boolean registrarVenta(String codigo, int cantidadComprada) {
-        boolean exito = false;
-        cProducto producto = buscar(codigo);
-
-        if (producto != null) {
-            if (producto.getStock() >= cantidadComprada) {
-                int nuevoStock = producto.getStock() - cantidadComprada;
-                producto.setStock(nuevoStock);
-                
-                double montoDeVenta = producto.getPrecio() * cantidadComprada;
-                this.totalVentas += montoDeVenta;
-                
-                exito = true;
-            }
-        }
-        return exito;
-    }
-    
-    public double getTotalVentas() {
-        return this.totalVentas;
     }
 }

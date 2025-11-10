@@ -36,7 +36,7 @@ public class cTrabajador {
         return vec[tipo];
     }
     
-    //Esta función se usará para mostrarse en el JTable de Vendedores
+    //Esta función se usará para mostrarse en el JTable de Trabajadores
     public String cargo(){
         String[] vec = {"","Administrador","Cajero","Reponedor"};
         return vec[tipo];
