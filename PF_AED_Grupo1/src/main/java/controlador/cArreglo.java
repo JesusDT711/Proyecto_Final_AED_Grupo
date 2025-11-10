@@ -1,6 +1,7 @@
 
 package controlador;
 
+import javax.swing.JComboBox;
 import modelo.cProducto;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -82,6 +83,14 @@ public class cArreglo {
         }
 
         return exito;
+    }
+    
+    public void llenarComboProductos(JComboBox combo){
+        combo.removeAllItems();
+        combo.addItem("Elegir");
+        for(cProducto p:productos){
+            combo.addItem(p.getDescripcion());
+        }
     }
     
     public void recorreLE(JTable tabla){

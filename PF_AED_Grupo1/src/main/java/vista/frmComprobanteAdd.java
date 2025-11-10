@@ -4,7 +4,12 @@
  */
 package vista;
 
+import controlador.cArreglo;
+import controlador.cCola_LE;
+import controlador.cLE_Comprobante;
+import modelo.cBoleta;
 import modelo.cComprobante;
+import modelo.cFactura;
 
 /**
  *
@@ -14,17 +19,24 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         
     
     private cComprobante comprobante;
+    private cArreglo arre_Pro = frmGeneral.arregloProductos;
+    private cCola_LE colaClientes = frmGeneral.leCola;
+    private cLE_Comprobante listaComprobante = frmGeneral.leComprobante;
     /**
      * Creates new form frmComprobanteAdd
      */
     public frmComprobanteAdd() {
         initComponents();
         this.comprobante= null;
+        llenarComboClientes();
+        llenarComboProductos();
     }
-    public frmComprobanteAdd(cComprobante p){
+    public frmComprobanteAdd(cComprobante compro){
         initComponents();
-        this.comprobante=p;
-       // cargarDatos();
+        this.comprobante = compro;
+        cargarDatos();
+        llenarComboClientes();
+        llenarComboProductos();
     }
 
     /**
@@ -48,7 +60,6 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cbCliente = new javax.swing.JComboBox<>();
         cbVendedor = new javax.swing.JComboBox<>();
         btnAddCo = new javax.swing.JButton();
         btnLimpiarCo = new javax.swing.JButton();
@@ -56,11 +67,12 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         dcFechaEmisionCo = new com.toedter.calendar.JDateChooser();
         panAddProduct = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        cbNomP = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         btnFinaliza = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         txtCanp = new javax.swing.JTextField();
+        cbNomP = new javax.swing.JComboBox<>();
+        cbCliente = new javax.swing.JComboBox<>();
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -107,13 +119,6 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
 
         jLabel3.setText("ESCOJA UN CLIENTE:");
 
-        cbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir" }));
-        cbCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbClienteActionPerformed(evt);
-            }
-        });
-
         cbVendedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir" }));
 
         btnAddCo.setText("Emitir");
@@ -133,18 +138,13 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
 
         jLabel5.setText("NOMBRE DEL PRODUCTO");
 
-        cbNomP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir" }));
-        cbNomP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbNomPActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("CANTIDAD");
 
         btnFinaliza.setText("Finalizar");
 
         btnAgregar.setText("Agregar");
+
+        cbNomP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir" }));
 
         javax.swing.GroupLayout panAddProductLayout = new javax.swing.GroupLayout(panAddProduct);
         panAddProduct.setLayout(panAddProductLayout);
@@ -162,10 +162,10 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addGap(51, 51, 51)
-                .addGroup(panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbNomP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCanp))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGroup(panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCanp, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbNomP, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         panAddProductLayout.setVerticalGroup(
             panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,6 +184,8 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                     .addComponent(btnAgregar))
                 .addContainerGap())
         );
+
+        cbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -212,10 +214,10 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel2))
                                 .addGap(73, 73, 73)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cbVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dcFechaEmisionCo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(dcFechaEmisionCo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(134, 134, 134)
                         .addComponent(panAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -252,17 +254,51 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbClienteActionPerformed
-
+    
+    //LLENADO Y SELECCIONADO DEL ITEM DE LOS COMBOBOX
+    private void llenarComboClientes(){
+        colaClientes.llenarComboClientes(cbCliente);
+    }
+    
+    private void seleccionaCliente(){
+        if(comprobante != null){
+            String cod_cli = comprobante.getCliente();
+            for(int i=0; i<cbCliente.getItemCount(); i++){
+                Object item = cbCliente.getItemAt(i);
+                if(item.toString().startsWith(cod_cli)){
+                    cbCliente.setSelectedIndex(i);
+                }
+            }
+        }
+    }
+    
+    private void llenarComboProductos(){
+        arre_Pro.llenarComboProductos(cbCliente);
+    }
+    
+    private void cargarDatos(){
+        if(comprobante instanceof cBoleta){
+            rbBoleta.setSelected(true);
+        }
+        if(comprobante instanceof cFactura){
+            rbFactura.setSelected(true);
+        }
+        dcFechaEmisionCo.setDate(comprobante.getFecha());
+        seleccionaCliente();
+        //FALTA COMPLETAR PARA LLAMADO DEL VENDEDOR
+                
+    }
     private void btnLimpiarCoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCoActionPerformed
-        // TODO add your handling code here:
+        buttonGroup1.clearSelection();
+        dcFechaEmisionCo.setDate(null);
+        cbCliente.setSelectedIndex(0);
+        cbVendedor.setSelectedIndex(0);
+        cbNomP.setSelectedIndex(0);
+        txtCanp.setText("");
+        
+        btnLimpiarCo.setEnabled(false);
+        btnAddCo.setEnabled(true);
     }//GEN-LAST:event_btnLimpiarCoActionPerformed
-
-    private void cbNomPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNomPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbNomPActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,7 @@ package controlador;
  *
  * @author Giuss
  */
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.cCliente;
@@ -64,6 +65,17 @@ public class cCola_LE {
             }
         }
         return cliente;
+    }
+    
+    public void llenarComboClientes(JComboBox combo){
+        combo.removeAllItems();
+        combo.addItem("Elegir");
+        p = first;
+        while(p!=null){
+            cCliente cliente = p.getValor();
+            combo.addItem(cliente.getRsocial());
+            p = p.getSgte();
+        }
     }
     
     public void recorrerCola(JTable tabla){

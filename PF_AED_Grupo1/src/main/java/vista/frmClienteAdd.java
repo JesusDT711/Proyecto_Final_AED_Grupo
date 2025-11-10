@@ -243,8 +243,7 @@ public class frmClienteAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_rbDniActionPerformed
 
     private void btnRegistarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistarCActionPerformed
-        if(rbDni.isSelected()==false
-                || rbRuc.isSelected()==false
+        if(!rbDni.isSelected() && !rbRuc.isSelected()
                 || txtDocIndentifica.getText().trim().isEmpty() 
                 || txtRazon.getText().trim().isEmpty()
                 || txtTelf.getText().trim().isEmpty()
