@@ -788,16 +788,13 @@ public class frmGeneral extends javax.swing.JFrame {
         if (opcion==JOptionPane.YES_OPTION) {
             leComprobante.eliminaEntreNodos(c.getCodigo());
             JOptionPane.showMessageDialog(this, "Comprobante eliminado correctamente");
-            //mostrarProductos(arregloProductos);
+            mostrarComprobantes(tableLE);
         }
     }//GEN-LAST:event_btnBorraLEActionPerformed
 
     private void btnConsultaLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaLEActionPerformed
-        
             frmComprobanteSee ventana = new frmComprobanteSee();
-            
             ventana.setVisible(true);
-
     }//GEN-LAST:event_btnConsultaLEActionPerformed
     
     
@@ -827,16 +824,14 @@ public class frmGeneral extends javax.swing.JFrame {
         if (opcion==JOptionPane.YES_OPTION) {
            leCola.eliminar();
             JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente");
-            //mostrarProductos(arregloProductos);
+            mostrarClientes(tableC);
         }  
         
     }//GEN-LAST:event_btnEliminaCActionPerformed
 
     private void btnConsultaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaCActionPerformed
-        
             frmClienteSee ventana = new frmClienteSee();
             ventana.setVisible(true);
-
     }//GEN-LAST:event_btnConsultaCActionPerformed
     
     
