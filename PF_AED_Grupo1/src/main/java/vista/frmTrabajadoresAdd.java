@@ -4,7 +4,7 @@ package vista;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.cTrabajador;
-import controlador.cPila;
+import controlador.cArreglo_Trabajador;
 
 /**
  *
@@ -13,7 +13,7 @@ import controlador.cPila;
 public class frmTrabajadoresAdd extends javax.swing.JFrame {
 
     cTrabajador trabajador;
-    cPila pilaTrabajadores = frmGeneral.pilaTrabajador;
+    cArreglo_Trabajador arregloTrabajadores = frmGeneral.oArregloTrab;
     
     
     public frmTrabajadoresAdd() {
@@ -177,7 +177,7 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
                 this.dispose();
             }else{
                 cTrabajador nuevoTrab=new cTrabajador(nombre, fecha, tipo);
-                pilaTrabajadores.insertar(nuevoTrab);
+                arregloTrabajadores.agregar(nuevoTrab);
                 JOptionPane.showMessageDialog(this, "Trabajador registrado correctamente.");
             }
             btnAddT.setEnabled(false);

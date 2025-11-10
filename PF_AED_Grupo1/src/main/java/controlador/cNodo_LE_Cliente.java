@@ -8,11 +8,11 @@ package controlador;
 
 import modelo.cCliente;
 
-public class cNodo_Cola {
+public class cNodo_LE_Cliente {
     private cCliente valor;
-    private cNodo_Cola sgte, ant;
+    private cNodo_LE_Cliente sgte, ant;
     
-    public cNodo_Cola(cCliente valor){
+    public cNodo_LE_Cliente(cCliente valor){
         this.valor = valor;
     }
 
@@ -24,19 +24,19 @@ public class cNodo_Cola {
         this.valor = valor;
     }
 
-    public cNodo_Cola getSgte() {
+    public cNodo_LE_Cliente getSgte() {
         return sgte;
     }
 
-    public void setSgte(cNodo_Cola sgte) {
+    public void setSgte(cNodo_LE_Cliente sgte) {
         this.sgte = sgte;
     }
 
-    public cNodo_Cola getAnt() {
+    public cNodo_LE_Cliente getAnt() {
         return ant;
     }
 
-    public void setAnt(cNodo_Cola ant) {
+    public void setAnt(cNodo_LE_Cliente ant) {
         this.ant = ant;
     }
     

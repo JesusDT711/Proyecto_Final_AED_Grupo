@@ -3,7 +3,7 @@ package vista;
 
 import javax.swing.JOptionPane;
 import modelo.cProducto;
-import controlador.cArreglo;
+import controlador.cArreglo_Producto;
 
 /**
  *
@@ -12,7 +12,7 @@ import controlador.cArreglo;
 public class frmProductoAdd extends javax.swing.JFrame {
 
     private cProducto producto;
-    private cArreglo arre_Prod = frmGeneral.arregloProductos;
+    private cArreglo_Producto arregloProductos = frmGeneral.oArregloProd;
     
     
     public frmProductoAdd() {
@@ -149,7 +149,7 @@ public class frmProductoAdd extends javax.swing.JFrame {
                 this.dispose();
             }else {  
                 cProducto nuevoP = new cProducto(nombre,precio,cantidad);
-                arre_Prod.agregar(nuevoP);
+                arregloProductos.agregar(nuevoP);
                 JOptionPane.showMessageDialog(this, "Producto añadido correctamente");
             
                 btnLimpia.setEnabled(true);

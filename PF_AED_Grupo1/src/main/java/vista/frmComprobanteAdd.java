@@ -1,9 +1,9 @@
 
 package vista;
 
-import controlador.cArreglo;
-import controlador.cCola_LE;
+import controlador.cArreglo_Producto;
 import controlador.cLE_Comprobante;
+import controlador.cLE_Cliente;
 import modelo.cBoleta;
 import modelo.cComprobante;
 import modelo.cFactura;
@@ -15,9 +15,9 @@ import modelo.cFactura;
 public class frmComprobanteAdd extends javax.swing.JFrame {
             
     private cComprobante comprobante;
-    private cArreglo arre_Pro = frmGeneral.arregloProductos;
-    private cCola_LE colaClientes = frmGeneral.leCola;
-    private cLE_Comprobante listaComprobante = frmGeneral.leComprobante;
+    private cArreglo_Producto arregloProductos = frmGeneral.oArregloProd;
+    private cLE_Cliente listaClientes = frmGeneral.oLECliente;
+    private cLE_Comprobante listaComprobante = frmGeneral.oLEComprobante;
     
     
     public frmComprobanteAdd() {
@@ -38,7 +38,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
 
     //LLENADO Y SELECCIONADO DE ITEMS DE LOS COMBOBOX
     private void llenarComboClientes(){
-        colaClientes.llenarComboClientes(cbCliente);
+        listaClientes.llenarComboClientes(cbCliente);
     }
     
     private void llenarComboTrabajador(){
@@ -46,7 +46,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
     }
     
     private void llenarComboProductos(){
-        arre_Pro.llenarComboProductos(cbCliente);
+        arregloProductos.llenarComboProductos(cbCliente);
     }
     
     private void seleccionaCliente(){

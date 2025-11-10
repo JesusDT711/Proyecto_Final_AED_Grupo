@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package vista;
 
-import controlador.cCola_LE;
+import controlador.cLE_Cliente;
 import javax.swing.JOptionPane;
 import modelo.cCliente;
 
@@ -14,7 +11,7 @@ import modelo.cCliente;
  */
 public class frmClienteSee extends javax.swing.JFrame {
 
-    private cCola_LE colaClientes = frmGeneral.leCola;
+    private cLE_Cliente listaClientes = frmGeneral.oLECliente;
     
     
     public frmClienteSee() {
@@ -111,7 +108,7 @@ public class frmClienteSee extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Complete el campo");
         }else{
             String codigo = txtCodCli.getText();
-            cCliente cliente = colaClientes.busqueda(codigo);
+            cCliente cliente = listaClientes.busqueda(codigo);
             if(cliente==null){
                 txtaCliente.setText("Cliente no Encontrado.");
             }else{

@@ -3,7 +3,7 @@ package vista;
 
 import javax.swing.JOptionPane;
 import modelo.cCliente;
-import controlador.cCola_LE;
+import controlador.cLE_Cliente;
 import java.util.Date;
 
 /**
@@ -13,7 +13,7 @@ import java.util.Date;
 public class frmClienteAdd extends javax.swing.JFrame {
 
     private cCliente cliente;
-    private cCola_LE colaClientes = frmGeneral.leCola;
+    private cLE_Cliente listaClientes = frmGeneral.oLECliente;
     private int tipo;
 
     
@@ -272,7 +272,7 @@ public class frmClienteAdd extends javax.swing.JFrame {
                 this.dispose();
             }else {  
                 cCliente nuevoCli = new cCliente(rSocial,telf,docIdentifi,fecha_compra,tipo,contacto);
-                colaClientes.incluir(nuevoCli);
+                listaClientes.insertarxFinal(nuevoCli);
                 JOptionPane.showMessageDialog(this, "Cliente añadido correctamente");
             
                 btnLimpiarC.setEnabled(true);

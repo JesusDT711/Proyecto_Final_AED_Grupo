@@ -8,7 +8,7 @@ import controlador.cLE_Comprobante;
  */
 public class frmComprobanteSee extends javax.swing.JFrame {
 
-    private cLE_Comprobante listaComprobantes = frmGeneral.leComprobante;
+    private cLE_Comprobante listaComprobantes = frmGeneral.oLEComprobante;
     
     
     public frmComprobanteSee() {

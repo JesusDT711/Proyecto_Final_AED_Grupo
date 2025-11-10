@@ -1,9 +1,8 @@
 
 package vista;
 
-import controlador.cPila;
 import javax.swing.JOptionPane;
-import modelo.cCliente;
+import controlador.cArreglo_Trabajador;
 import modelo.cTrabajador;
 
 /**
@@ -12,7 +11,7 @@ import modelo.cTrabajador;
  */
 public class frmTrabajadoresSee extends javax.swing.JFrame {
 
-    private cPila pilaTrabajadores=frmGeneral.pilaTrabajador;
+    private cArreglo_Trabajador arregloTrabajadores = frmGeneral.oArregloTrab;
     
     public frmTrabajadoresSee() {
         initComponents();
@@ -110,7 +109,7 @@ public class frmTrabajadoresSee extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Complete el campo");
         }else{
             String codigo = txtCodT.getText();
-            cTrabajador trabajador = pilaTrabajadores.busqueda(codigo);
+            cTrabajador trabajador = arregloTrabajadores.buscar(codigo);
             if(trabajador==null){
                 txtaTrabajador.setText("Cliente no Encontrado.");
             }else{

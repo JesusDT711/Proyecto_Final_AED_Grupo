@@ -1,12 +1,13 @@
 package vista;
 
-import controlador.cArreglo;
-import controlador.cCola_LE;
+import controlador.cArreglo_Producto;
+import controlador.cArreglo_Trabajador;
 import controlador.cLE_Comprobante;
+import controlador.cLE_Cliente;
+import controlador.cCola;
 import controlador.cPila;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import modelo.cProducto;
 import modelo.cBoleta;
 import modelo.cFactura;
@@ -24,10 +25,10 @@ import modelo.cTrabajador;
  */
 public class frmGeneral extends javax.swing.JFrame {
 
-    public static cArreglo arregloProductos = new cArreglo(1000);
-    public static cLE_Comprobante leComprobante = new cLE_Comprobante();
-    public static cCola_LE leCola = new cCola_LE();
-    public static cPila pilaTrabajador = new cPila(100);
+    public static cArreglo_Producto oArregloProd = new cArreglo_Producto(1000);
+    public static cLE_Comprobante oLEComprobante = new cLE_Comprobante();
+    public static cLE_Cliente oLECliente = new cLE_Cliente();
+    public static cArreglo_Trabajador oArregloTrab = new cArreglo_Trabajador(100);
 
     public frmGeneral() {
         initComponents();
@@ -38,32 +39,33 @@ public class frmGeneral extends javax.swing.JFrame {
 
         habilitarBotonesProductos();
         habilitarBotonesComprobantes();
+        habilitarBotonesClientes();
         habilitarBotonesTrabajadores();
     }
 
     //METODO PARA CARGAR LOS OBJETOS BASE
-    private void mostrarProductos(JTable tableA) {
-        arregloProductos.recorreLE(tableA);
+    private void mostrarProductos(JTable tablaProd) {
+        oArregloProd.recorreLE(tablaProd);
     }
 
-    private void mostrarComprobantes(JTable tableLE) {
-        leComprobante.recorreLE(tableLE);
+    private void mostrarComprobantes(JTable tablaCompro) {
+        oLEComprobante.recorreLE(tablaCompro);
     }
 
-    private void mostrarClientes(JTable tableC) {
-        leCola.recorrerCola(tableC);
+    private void mostrarClientes(JTable tablaCli) {
+        oLECliente.recorrerLE(tablaCli);
     }
 
-    private void mostrarTrabajadores(JTable tableP) {
-        pilaTrabajador.recorrePila(tableP);
+    private void mostrarTrabajadores(JTable tablaTrab) {
+        oArregloTrab.recorrerArreglo(tablaTrab);
     }
 
     private void cargarProductosBase() {
-        arregloProductos.agregar(new cProducto("LAPTOP - I7 13400k", 2999.99, 100));
-        arregloProductos.agregar(new cProducto("MOUSE - LOGITECH G645", 119.99, 100));
-        arregloProductos.agregar(new cProducto("TECLADO RGB - DRAGON", 249.99, 100));
+        oArregloProd.agregar(new cProducto("LAPTOP - I7 13400k", 2999.99, 100));
+        oArregloProd.agregar(new cProducto("MOUSE - LOGITECH G645", 119.99, 100));
+        oArregloProd.agregar(new cProducto("TECLADO RGB - DRAGON", 249.99, 100));
 
-        mostrarProductos(tableA);
+        mostrarProductos(tablaProd);
     }
 
     private void cargarComprobantesBase() {
@@ -90,33 +92,33 @@ public class frmGeneral extends javax.swing.JFrame {
         cFactura f2 = new cFactura(fecha3, "C002", "V001");
 
         f1.setDetalle(new cDetalle_Comprobante(f1.getCodigo(),
-                arregloProductos.obtener(0).getCodigo(),
+                oArregloProd.obtener(0).getCodigo(),
                 2,
-                arregloProductos.obtener(0).getPrecio()));
+                oArregloProd.obtener(0).getPrecio()));
         f1.setDetalle(new cDetalle_Comprobante(f1.getCodigo(),
-                arregloProductos.obtener(1).getCodigo(),
+                oArregloProd.obtener(1).getCodigo(),
                 3,
-                arregloProductos.obtener(1).getPrecio()));
+                oArregloProd.obtener(1).getPrecio()));
 
         b1.setDetalle(new cDetalle_Comprobante(b1.getCodigo(),
-                arregloProductos.obtener(0).getCodigo(),
+                oArregloProd.obtener(0).getCodigo(),
                 3,
-                arregloProductos.obtener(0).getPrecio()));
+                oArregloProd.obtener(0).getPrecio()));
         b1.setDetalle(new cDetalle_Comprobante(b1.getCodigo(),
-                arregloProductos.obtener(2).getCodigo(),
+                oArregloProd.obtener(2).getCodigo(),
                 1,
-                arregloProductos.obtener(2).getPrecio()));
+                oArregloProd.obtener(2).getPrecio()));
 
         f2.setDetalle(new cDetalle_Comprobante(f2.getCodigo(),
-                arregloProductos.obtener(0).getCodigo(),
+                oArregloProd.obtener(0).getCodigo(),
                 1,
-                arregloProductos.obtener(0).getPrecio()));
+                oArregloProd.obtener(0).getPrecio()));
 
-        leComprobante.insertarxFinal(f1);
-        leComprobante.insertarxFinal(b1);
-        leComprobante.insertarxFinal(f2);
+        oLEComprobante.insertarxFinal(f1);
+        oLEComprobante.insertarxFinal(b1);
+        oLEComprobante.insertarxFinal(f2);
 
-        mostrarComprobantes(tableLE);
+        mostrarComprobantes(tablaCompro);
     }
 
     private void cargarClientesBase() {
@@ -146,11 +148,11 @@ public class frmGeneral extends javax.swing.JFrame {
         long doc2 = 76192192;
         long doc3 = 1071623251;
 
-        leCola.incluir(new cCliente("Tenda", tel1, doc1, fecha1, 2, "Lizardo Silva"));
-        leCola.incluir(new cCliente("Juan Quillo", tel2, doc2, fecha2, 1, "Juan Quillo"));
-        leCola.incluir(new cCliente("Gatitas.com", tel3, doc3, fecha3, 2, "Jesús Giussepe"));
+        oLECliente.insertarxFinal(new cCliente("Tenda", tel1, doc1, fecha1, 2, "Lizardo Silva"));
+        oLECliente.insertarxFinal(new cCliente("Juan Quillo", tel2, doc2, fecha2, 1, "Juan Quillo"));
+        oLECliente.insertarxFinal(new cCliente("Gatitas.com", tel3, doc3, fecha3, 2, "Jesús Giussepe"));
 
-        mostrarClientes(tableC);
+        mostrarClientes(tablaCli);
     }
 
     private void cargarTrabajadoresBase() {
@@ -177,41 +179,51 @@ public class frmGeneral extends javax.swing.JFrame {
         cTrabajador t2 = new cTrabajador("Lionel Messi", fecha2, 2); // tipo cajero
         cTrabajador t3 = new cTrabajador("Zinedine Zidane", fecha3, 3);  // tipo reponedor
 
-        pilaTrabajador.insertar(t1);
-        pilaTrabajador.insertar(t2);
-        pilaTrabajador.insertar(t3);
+        oArregloTrab.agregar(t1);
+        oArregloTrab.agregar(t2);
+        oArregloTrab.agregar(t3);
 
-        mostrarTrabajadores(tableP);
+        mostrarTrabajadores(tablaTrab);
 
     }
 
     //MÉTODOS PARA HABILITAR LOS BOTONES ACTUALIZAR & ELIMINAR
     private void habilitarBotonesProductos() {
-        tableA.getSelectionModel().addListSelectionListener(e -> {
+        tablaProd.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
-                boolean filaSeleccionada = tableA.getSelectedRow() != -1;
-                btnActualizaA.setEnabled(filaSeleccionada);
-                btnBorraA.setEnabled(filaSeleccionada);
+                boolean filaSeleccionada = tablaProd.getSelectedRow() != -1;
+                btnActualizaPro.setEnabled(filaSeleccionada);
+                btnBorraPro.setEnabled(filaSeleccionada);
             }
         });
     }
 
     private void habilitarBotonesComprobantes() {
-        tableLE.getSelectionModel().addListSelectionListener(e -> {
+        tablaCompro.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
-                boolean filaSeleccionada = tableLE.getSelectedRow() != -1;
-                btnActualizaLE.setEnabled(filaSeleccionada);
-                btnBorraLE.setEnabled(filaSeleccionada);
+                boolean filaSeleccionada = tablaCompro.getSelectedRow() != -1;
+                btnActualizaCom.setEnabled(filaSeleccionada);
+                btnBorraCom.setEnabled(filaSeleccionada);
+            }
+        });
+    }
+    
+    private void habilitarBotonesClientes(){
+        tablaCli.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                boolean filaSeleccionada = tablaCli.getSelectedRow() != -1;
+                btnActualizaCli.setEnabled(filaSeleccionada);
+                btnBorraCli.setEnabled(filaSeleccionada);
             }
         });
     }
     
     private void habilitarBotonesTrabajadores(){
-        tableP.getSelectionModel().addListSelectionListener(e -> {
+        tablaTrab.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
-                boolean filaSeleccionada = tableP.getSelectedRow() != -1;
-                btnActualizaP.setEnabled(filaSeleccionada);
-                btnBorraP.setEnabled(filaSeleccionada);
+                boolean filaSeleccionada = tablaTrab.getSelectedRow() != -1;
+                btnActualizaTrab.setEnabled(filaSeleccionada);
+                btnBorraTrab.setEnabled(filaSeleccionada);
             }
         });
     }
@@ -222,7 +234,7 @@ public class frmGeneral extends javax.swing.JFrame {
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
                 //aca uso el metodo para mostrar los productos en la tabla
-                mostrarProductos(tableA);
+                mostrarProductos(tablaProd);
             }
         });
     }
@@ -232,7 +244,7 @@ public class frmGeneral extends javax.swing.JFrame {
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
                 //aca uso el metodo para mostrar los productos en la tabla
-                mostrarComprobantes(tableLE);
+                mostrarComprobantes(tablaCompro);
             }
         });
     }
@@ -242,7 +254,7 @@ public class frmGeneral extends javax.swing.JFrame {
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
                 //aca uso el metodo para mostrar los productos en la tabla
-                mostrarClientes(tableC);
+                mostrarClientes(tablaCli);
             }
         });
     }
@@ -252,7 +264,7 @@ public class frmGeneral extends javax.swing.JFrame {
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
                 //aca uso el metodo para mostrar los TRABAJADORES en la tabla
-                mostrarTrabajadores(tableP);
+                mostrarTrabajadores(tablaTrab);
             }
         });
     }
@@ -266,46 +278,46 @@ public class frmGeneral extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableA = new javax.swing.JTable();
-        btnIngresaA = new javax.swing.JButton();
-        btnActualizaA = new javax.swing.JButton();
-        btnBorraA = new javax.swing.JButton();
-        btnConsultaA = new javax.swing.JButton();
+        tablaProd = new javax.swing.JTable();
+        btnIngresaPro = new javax.swing.JButton();
+        btnActualizaPro = new javax.swing.JButton();
+        btnBorraPro = new javax.swing.JButton();
+        btnConsultaPro = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableLE = new javax.swing.JTable();
-        btnIngresaLE = new javax.swing.JButton();
-        btnActualizaLE = new javax.swing.JButton();
-        btnBorraLE = new javax.swing.JButton();
-        btnConsultaLE = new javax.swing.JButton();
+        tablaCompro = new javax.swing.JTable();
+        btnIngresaCom = new javax.swing.JButton();
+        btnActualizaCom = new javax.swing.JButton();
+        btnBorraCom = new javax.swing.JButton();
+        btnConsultaCom = new javax.swing.JButton();
         panCompro = new javax.swing.JPanel();
         rbBol = new javax.swing.JRadioButton();
         rbFac = new javax.swing.JRadioButton();
         rbTodo = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tableC = new javax.swing.JTable();
-        btnIngresaC = new javax.swing.JButton();
-        btnActualizaC = new javax.swing.JButton();
-        btnEliminaC = new javax.swing.JButton();
+        tablaCli = new javax.swing.JTable();
+        btnIngresaCli = new javax.swing.JButton();
+        btnActualizaCli = new javax.swing.JButton();
+        btnBorraCli = new javax.swing.JButton();
         panCliente = new javax.swing.JPanel();
         rbPersona = new javax.swing.JRadioButton();
         rbEmpresa = new javax.swing.JRadioButton();
         rbTodos = new javax.swing.JRadioButton();
-        btnConsultaC = new javax.swing.JButton();
+        btnConsultaCli = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tableP = new javax.swing.JTable();
-        btnIngresaP = new javax.swing.JButton();
-        btnActualizaP = new javax.swing.JButton();
-        btnBorraP = new javax.swing.JButton();
-        btnConsultaP = new javax.swing.JButton();
+        tablaTrab = new javax.swing.JTable();
+        btnIngresaTrab = new javax.swing.JButton();
+        btnActualizaTrab = new javax.swing.JButton();
+        btnBorraTrab = new javax.swing.JButton();
+        btnConsultaTrab = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnIntegrantes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tableA.setModel(new javax.swing.table.DefaultTableModel(
+        tablaProd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -316,35 +328,35 @@ public class frmGeneral extends javax.swing.JFrame {
                 "Código", "Descripción", "Precio", "Cantidad"
             }
         ));
-        jScrollPane1.setViewportView(tableA);
+        jScrollPane1.setViewportView(tablaProd);
 
-        btnIngresaA.setText("Añadir");
-        btnIngresaA.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresaPro.setText("Añadir");
+        btnIngresaPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresaAActionPerformed(evt);
+                btnIngresaProActionPerformed(evt);
             }
         });
 
-        btnActualizaA.setText("Actualizar");
-        btnActualizaA.setEnabled(false);
-        btnActualizaA.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizaPro.setText("Actualizar");
+        btnActualizaPro.setEnabled(false);
+        btnActualizaPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizaAActionPerformed(evt);
+                btnActualizaProActionPerformed(evt);
             }
         });
 
-        btnBorraA.setText("Eliminar");
-        btnBorraA.setEnabled(false);
-        btnBorraA.addActionListener(new java.awt.event.ActionListener() {
+        btnBorraPro.setText("Eliminar");
+        btnBorraPro.setEnabled(false);
+        btnBorraPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorraAActionPerformed(evt);
+                btnBorraProActionPerformed(evt);
             }
         });
 
-        btnConsultaA.setText("Consultar");
-        btnConsultaA.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultaPro.setText("Consultar");
+        btnConsultaPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultaAActionPerformed(evt);
+                btnConsultaProActionPerformed(evt);
             }
         });
 
@@ -357,13 +369,13 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnIngresaA)
+                        .addComponent(btnIngresaPro)
                         .addGap(56, 56, 56)
-                        .addComponent(btnActualizaA)
+                        .addComponent(btnActualizaPro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
-                        .addComponent(btnBorraA)
+                        .addComponent(btnBorraPro)
                         .addGap(54, 54, 54)
-                        .addComponent(btnConsultaA)))
+                        .addComponent(btnConsultaPro)))
                 .addGap(55, 55, 55))
         );
         jPanel1Layout.setVerticalGroup(
@@ -371,10 +383,10 @@ public class frmGeneral extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresaA)
-                    .addComponent(btnActualizaA)
-                    .addComponent(btnBorraA)
-                    .addComponent(btnConsultaA))
+                    .addComponent(btnIngresaPro)
+                    .addComponent(btnActualizaPro)
+                    .addComponent(btnBorraPro)
+                    .addComponent(btnConsultaPro))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -382,7 +394,7 @@ public class frmGeneral extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Productos", jPanel1);
 
-        tableLE.setModel(new javax.swing.table.DefaultTableModel(
+        tablaCompro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -393,35 +405,35 @@ public class frmGeneral extends javax.swing.JFrame {
                 "Código", "Fecha", "Código_Cliente", "Código_Vendedor", "Subotal", "Total"
             }
         ));
-        jScrollPane2.setViewportView(tableLE);
+        jScrollPane2.setViewportView(tablaCompro);
 
-        btnIngresaLE.setText("Añadir");
-        btnIngresaLE.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresaCom.setText("Añadir");
+        btnIngresaCom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresaLEActionPerformed(evt);
+                btnIngresaComActionPerformed(evt);
             }
         });
 
-        btnActualizaLE.setText("Actualizar");
-        btnActualizaLE.setEnabled(false);
-        btnActualizaLE.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizaCom.setText("Actualizar");
+        btnActualizaCom.setEnabled(false);
+        btnActualizaCom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizaLEActionPerformed(evt);
+                btnActualizaComActionPerformed(evt);
             }
         });
 
-        btnBorraLE.setText("Eliminar");
-        btnBorraLE.setEnabled(false);
-        btnBorraLE.addActionListener(new java.awt.event.ActionListener() {
+        btnBorraCom.setText("Eliminar");
+        btnBorraCom.setEnabled(false);
+        btnBorraCom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorraLEActionPerformed(evt);
+                btnBorraComActionPerformed(evt);
             }
         });
 
-        btnConsultaLE.setText("Consultar");
-        btnConsultaLE.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultaCom.setText("Consultar");
+        btnConsultaCom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultaLEActionPerformed(evt);
+                btnConsultaComActionPerformed(evt);
             }
         });
 
@@ -481,13 +493,13 @@ public class frmGeneral extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addComponent(btnIngresaLE)
+                .addComponent(btnIngresaCom)
                 .addGap(41, 41, 41)
-                .addComponent(btnActualizaLE)
+                .addComponent(btnActualizaCom)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBorraLE)
+                .addComponent(btnBorraCom)
                 .addGap(18, 18, 18)
-                .addComponent(btnConsultaLE)
+                .addComponent(btnConsultaCom)
                 .addGap(70, 70, 70))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
@@ -504,10 +516,10 @@ public class frmGeneral extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresaLE)
-                    .addComponent(btnActualizaLE)
-                    .addComponent(btnBorraLE)
-                    .addComponent(btnConsultaLE))
+                    .addComponent(btnIngresaCom)
+                    .addComponent(btnActualizaCom)
+                    .addComponent(btnBorraCom)
+                    .addComponent(btnConsultaCom))
                 .addGap(18, 18, 18)
                 .addComponent(panCompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -517,7 +529,7 @@ public class frmGeneral extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Comprobantes", jPanel2);
 
-        tableC.setModel(new javax.swing.table.DefaultTableModel(
+        tablaCli.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -528,26 +540,28 @@ public class frmGeneral extends javax.swing.JFrame {
                 "Código", "Razón Social", "Teléfono", "DNI/RUC", "Fecha_Compra", "Tipo", "Contacto"
             }
         ));
-        jScrollPane3.setViewportView(tableC);
+        jScrollPane3.setViewportView(tablaCli);
 
-        btnIngresaC.setText("Añadir");
-        btnIngresaC.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresaCli.setText("Añadir");
+        btnIngresaCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresaCActionPerformed(evt);
+                btnIngresaCliActionPerformed(evt);
             }
         });
 
-        btnActualizaC.setText("Actualizar");
-        btnActualizaC.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizaCli.setText("Actualizar");
+        btnActualizaCli.setEnabled(false);
+        btnActualizaCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizaCActionPerformed(evt);
+                btnActualizaCliActionPerformed(evt);
             }
         });
 
-        btnEliminaC.setText("Eliminar");
-        btnEliminaC.addActionListener(new java.awt.event.ActionListener() {
+        btnBorraCli.setText("Eliminar");
+        btnBorraCli.setEnabled(false);
+        btnBorraCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminaCActionPerformed(evt);
+                btnBorraCliActionPerformed(evt);
             }
         });
 
@@ -601,10 +615,10 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnConsultaC.setText("Consultar");
-        btnConsultaC.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultaCli.setText("Consultar");
+        btnConsultaCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultaCActionPerformed(evt);
+                btnConsultaCliActionPerformed(evt);
             }
         });
 
@@ -617,13 +631,13 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addContainerGap(117, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnIngresaC)
+                        .addComponent(btnIngresaCli)
                         .addGap(51, 51, 51)
-                        .addComponent(btnActualizaC)
+                        .addComponent(btnActualizaCli)
                         .addGap(60, 60, 60)
-                        .addComponent(btnEliminaC)
+                        .addComponent(btnBorraCli)
                         .addGap(62, 62, 62)
-                        .addComponent(btnConsultaC)
+                        .addComponent(btnConsultaCli)
                         .addGap(97, 97, 97))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(panCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -634,10 +648,10 @@ public class frmGeneral extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnActualizaC)
-                    .addComponent(btnEliminaC)
-                    .addComponent(btnIngresaC)
-                    .addComponent(btnConsultaC))
+                    .addComponent(btnActualizaCli)
+                    .addComponent(btnBorraCli)
+                    .addComponent(btnIngresaCli)
+                    .addComponent(btnConsultaCli))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -647,7 +661,7 @@ public class frmGeneral extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Clientes", jPanel3);
 
-        tableP.setModel(new javax.swing.table.DefaultTableModel(
+        tablaTrab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -658,35 +672,35 @@ public class frmGeneral extends javax.swing.JFrame {
                 "Código", "Nombre", "Fecha de Ingreso", "Sueldo", "Cargo"
             }
         ));
-        jScrollPane4.setViewportView(tableP);
+        jScrollPane4.setViewportView(tablaTrab);
 
-        btnIngresaP.setText("Añadir");
-        btnIngresaP.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresaTrab.setText("Añadir");
+        btnIngresaTrab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresaPActionPerformed(evt);
+                btnIngresaTrabActionPerformed(evt);
             }
         });
 
-        btnActualizaP.setText("Actualizar");
-        btnActualizaP.setEnabled(false);
-        btnActualizaP.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizaTrab.setText("Actualizar");
+        btnActualizaTrab.setEnabled(false);
+        btnActualizaTrab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizaPActionPerformed(evt);
+                btnActualizaTrabActionPerformed(evt);
             }
         });
 
-        btnBorraP.setText("Eliminar");
-        btnBorraP.setEnabled(false);
-        btnBorraP.addActionListener(new java.awt.event.ActionListener() {
+        btnBorraTrab.setText("Eliminar");
+        btnBorraTrab.setEnabled(false);
+        btnBorraTrab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorraPActionPerformed(evt);
+                btnBorraTrabActionPerformed(evt);
             }
         });
 
-        btnConsultaP.setText("Consultar");
-        btnConsultaP.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultaTrab.setText("Consultar");
+        btnConsultaTrab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultaPActionPerformed(evt);
+                btnConsultaTrabActionPerformed(evt);
             }
         });
 
@@ -698,13 +712,13 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addComponent(btnIngresaP)
+                        .addComponent(btnIngresaTrab)
                         .addGap(56, 56, 56)
-                        .addComponent(btnActualizaP)
+                        .addComponent(btnActualizaTrab)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
-                        .addComponent(btnBorraP)
+                        .addComponent(btnBorraTrab)
                         .addGap(40, 40, 40)
-                        .addComponent(btnConsultaP))
+                        .addComponent(btnConsultaTrab))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -715,10 +729,10 @@ public class frmGeneral extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresaP)
-                    .addComponent(btnActualizaP)
-                    .addComponent(btnBorraP)
-                    .addComponent(btnConsultaP))
+                    .addComponent(btnIngresaTrab)
+                    .addComponent(btnActualizaTrab)
+                    .addComponent(btnBorraTrab)
+                    .addComponent(btnConsultaTrab))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -766,24 +780,23 @@ public class frmGeneral extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //BOTONES DE LA PESTAÑA PRODUCTOS
-    private void btnIngresaAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaAActionPerformed
+    private void btnIngresaProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaProActionPerformed
         //ABRE CON EL CONSTRUCTOR PARA AÑADIR 
         frmProductoAdd ventana = new frmProductoAdd();
         ventana.setVisible(true);
-    }//GEN-LAST:event_btnIngresaAActionPerformed
+    }//GEN-LAST:event_btnIngresaProActionPerformed
 
-    private void btnActualizaAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaAActionPerformed
+    private void btnActualizaProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaProActionPerformed
         //ABRE CON EL CONSTRUCTOR PARA ACTUALIZAR
-        cProducto producto = arregloProductos.obtener(tableA.getSelectedRow());
-        frmProductoAdd ventana = new frmProductoAdd(producto); // pasa el producto existente mediante el objeto
+        cProducto producto = oArregloProd.obtener(tablaProd.getSelectedRow());
+        frmProductoAdd ventana = new frmProductoAdd(producto);
 
         refrescarTablaProd(ventana);
-
         ventana.setVisible(true);
-    }//GEN-LAST:event_btnActualizaAActionPerformed
+    }//GEN-LAST:event_btnActualizaProActionPerformed
 
-    private void btnBorraAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorraAActionPerformed
-        cProducto p = arregloProductos.obtener(tableA.getSelectedRow());
+    private void btnBorraProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorraProActionPerformed
+        cProducto p = oArregloProd.obtener(tablaProd.getSelectedRow());
 
         int opcion = JOptionPane.showConfirmDialog(
                 this,
@@ -794,45 +807,45 @@ public class frmGeneral extends javax.swing.JFrame {
         );
 
         if (opcion == JOptionPane.YES_OPTION) {
-            arregloProductos.eliminar(p.getCodigo());
+            oArregloProd.eliminar(p.getCodigo());
             JOptionPane.showMessageDialog(this, "Producto eliminado correctamente");
-            mostrarProductos(tableA);
+            mostrarProductos(tablaProd);
         }
-    }//GEN-LAST:event_btnBorraAActionPerformed
+    }//GEN-LAST:event_btnBorraProActionPerformed
 
-    private void btnConsultaAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaAActionPerformed
+    private void btnConsultaProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaProActionPerformed
         frmProductoSee ventana = new frmProductoSee();
         ventana.setVisible(true);
-    }//GEN-LAST:event_btnConsultaAActionPerformed
+    }//GEN-LAST:event_btnConsultaProActionPerformed
 
+    
     //BOTÓN DE INTEGRANTES
     private void btnIntegrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIntegrantesActionPerformed
         frmIntegrantes integrantes = new frmIntegrantes();
         integrantes.setVisible(true);
     }//GEN-LAST:event_btnIntegrantesActionPerformed
 
+    
     //BOTONES DE LA PESTAÑA COMPROBANTES
-    private void btnIngresaLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaLEActionPerformed
+    private void btnIngresaComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaComActionPerformed
         frmComprobanteAdd ventana = new frmComprobanteAdd();
         ventana.setVisible(true);
-    }//GEN-LAST:event_btnIngresaLEActionPerformed
+    }//GEN-LAST:event_btnIngresaComActionPerformed
 
-    private void btnActualizaLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaLEActionPerformed
-        int fila = tableLE.getSelectedRow();
-        String codigo = String.valueOf(tableLE.getValueAt(fila, 0));
-        cComprobante comprobante = leComprobante.busqueda(codigo);
+    private void btnActualizaComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaComActionPerformed
+        int fila = tablaCompro.getSelectedRow();
+        String codigo = String.valueOf(tablaCompro.getValueAt(fila, 0));
+        cComprobante comprobante = oLEComprobante.busqueda(codigo);
         frmComprobanteAdd ventana = new frmComprobanteAdd(comprobante);
 
         refrescarTablaCompro(ventana);
         ventana.setVisible(true);
-    }//GEN-LAST:event_btnActualizaLEActionPerformed
+    }//GEN-LAST:event_btnActualizaComActionPerformed
 
-    private void btnBorraLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorraLEActionPerformed
-        int fila = tableLE.getSelectedRow();
-
-        String codigo = String.valueOf(tableLE.getValueAt(fila, 0));
-
-        cComprobante c = leComprobante.busqueda(codigo);
+    private void btnBorraComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorraComActionPerformed
+        int fila = tablaCompro.getSelectedRow();
+        String codigo = String.valueOf(tablaCompro.getValueAt(fila, 0));
+        cComprobante compro = oLEComprobante.busqueda(codigo);
 
         int opcion = JOptionPane.showConfirmDialog(
                 this,
@@ -843,32 +856,39 @@ public class frmGeneral extends javax.swing.JFrame {
         );
 
         if (opcion == JOptionPane.YES_OPTION) {
-            leComprobante.eliminaEntreNodos(c.getCodigo());
+            oLEComprobante.eliminaEntreNodos(compro.getCodigo());
             JOptionPane.showMessageDialog(this, "Comprobante eliminado correctamente");
-            mostrarComprobantes(tableLE);
+            mostrarComprobantes(tablaCompro);
         }
-    }//GEN-LAST:event_btnBorraLEActionPerformed
+    }//GEN-LAST:event_btnBorraComActionPerformed
 
-    private void btnConsultaLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaLEActionPerformed
+    private void btnConsultaComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaComActionPerformed
         frmComprobanteSee ventana = new frmComprobanteSee();
         ventana.setVisible(true);
-    }//GEN-LAST:event_btnConsultaLEActionPerformed
+    }//GEN-LAST:event_btnConsultaComActionPerformed
 
+    
     //BOTONES DE LA PESTAÑA CLIENTES
-    private void btnIngresaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaCActionPerformed
+    private void btnIngresaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaCliActionPerformed
         frmClienteAdd ventana = new frmClienteAdd();
         ventana.setVisible(true);
-    }//GEN-LAST:event_btnIngresaCActionPerformed
+    }//GEN-LAST:event_btnIngresaCliActionPerformed
 
-    private void btnActualizaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaCActionPerformed
-        cCliente cliente = leCola.acceso();
+    private void btnActualizaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaCliActionPerformed
+        int fila = tablaCli.getSelectedRow();
+        String codigo = String.valueOf(tablaCli.getValueAt(fila, 0));
+        cCliente cliente = oLECliente.busqueda(codigo);
         frmClienteAdd ventana = new frmClienteAdd(cliente);
         
         refrescarTablaCli(ventana);
         ventana.setVisible(true);
-    }//GEN-LAST:event_btnActualizaCActionPerformed
+    }//GEN-LAST:event_btnActualizaCliActionPerformed
 
-    private void btnEliminaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaCActionPerformed
+    private void btnBorraCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorraCliActionPerformed
+        int fila = tablaCli.getSelectedRow();
+        String codigo = String.valueOf(tablaCli.getValueAt(fila, 0));
+        cCliente cliente = oLECliente.busqueda(codigo);
+        
         int opcion = JOptionPane.showConfirmDialog(
                 this,
                 "¿Está seguro de eliminar al cliente?",
@@ -878,73 +898,70 @@ public class frmGeneral extends javax.swing.JFrame {
         );
 
         if (opcion == JOptionPane.YES_OPTION) {
-            leCola.eliminar();
+            oLECliente.eliminaEntreNodos(cliente.getCodigo());
             JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente");
-            mostrarClientes(tableC);
+            mostrarClientes(tablaCli);
         }
 
-    }//GEN-LAST:event_btnEliminaCActionPerformed
+    }//GEN-LAST:event_btnBorraCliActionPerformed
 
-    private void btnConsultaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaCActionPerformed
+    private void btnConsultaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaCliActionPerformed
         frmClienteSee ventana = new frmClienteSee();
         ventana.setVisible(true);
-    }//GEN-LAST:event_btnConsultaCActionPerformed
+    }//GEN-LAST:event_btnConsultaCliActionPerformed
 
     //FILTROS DE CLIENTES
     private void rbPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPersonaActionPerformed
-        leCola.recorrerColaP(tableC);
+        oLECliente.recorrerLeP(tablaCli);
     }//GEN-LAST:event_rbPersonaActionPerformed
 
     private void rbEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEmpresaActionPerformed
-        leCola.recorrerColaE(tableC);
+        oLECliente.recorrerLeE(tablaCli);
     }//GEN-LAST:event_rbEmpresaActionPerformed
 
     private void rbTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTodosActionPerformed
-        mostrarClientes(tableC);
+        mostrarClientes(tablaCli);
     }//GEN-LAST:event_rbTodosActionPerformed
 
     //FILTROS PARA COMPROBANTES
     private void rbBolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbBolActionPerformed
-        leComprobante.recorreLEBoleta(tableLE);
+        oLEComprobante.recorreLEBoleta(tablaCompro);
     }//GEN-LAST:event_rbBolActionPerformed
 
     private void rbFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbFacActionPerformed
-        leComprobante.recorreLEFactura(tableLE);
+        oLEComprobante.recorreLEFactura(tablaCompro);
     }//GEN-LAST:event_rbFacActionPerformed
 
     private void rbTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTodoActionPerformed
-        mostrarComprobantes(tableLE);
+        mostrarComprobantes(tablaCompro);
     }//GEN-LAST:event_rbTodoActionPerformed
 
-    private void btnIngresaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaPActionPerformed
-        // TODO add your handling code here:
+    private void btnIngresaTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaTrabActionPerformed
         frmTrabajadoresAdd ventana = new frmTrabajadoresAdd();
         refrescarTablaTrab(ventana);
         ventana.setVisible(true);
-    }//GEN-LAST:event_btnIngresaPActionPerformed
+    }//GEN-LAST:event_btnIngresaTrabActionPerformed
 
-    private void btnActualizaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaPActionPerformed
+    private void btnActualizaTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaTrabActionPerformed
         // TODO add your handling code here:
-        int fila=tableP.getSelectedRow();
-        String codigo=tableP.getValueAt(fila, 0).toString();
-        cTrabajador trabajador=pilaTrabajador.busqueda(codigo);
+        int fila=tablaTrab.getSelectedRow();
+        String codigo=tablaTrab.getValueAt(fila, 0).toString();
+        cTrabajador trabajador=oArregloTrab.buscar(codigo);
         
         frmTrabajadoresAdd ventana = new frmTrabajadoresAdd(trabajador);
         refrescarTablaTrab(ventana);
         ventana.setVisible(true);
-       
-    }//GEN-LAST:event_btnActualizaPActionPerformed
+    }//GEN-LAST:event_btnActualizaTrabActionPerformed
 
-    private void btnBorraPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorraPActionPerformed
+    private void btnBorraTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorraTrabActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_btnBorraPActionPerformed
+    }//GEN-LAST:event_btnBorraTrabActionPerformed
 
-    private void btnConsultaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaPActionPerformed
-        // TODO add your handling code here:
+    private void btnConsultaTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaTrabActionPerformed
         frmTrabajadoresSee ventana=new frmTrabajadoresSee();
         ventana.setVisible(true);
-    }//GEN-LAST:event_btnConsultaPActionPerformed
+    }//GEN-LAST:event_btnConsultaTrabActionPerformed
 
     /**
      * @param args the command line arguments
@@ -968,22 +985,22 @@ public class frmGeneral extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizaA;
-    private javax.swing.JButton btnActualizaC;
-    private javax.swing.JButton btnActualizaLE;
-    private javax.swing.JButton btnActualizaP;
-    private javax.swing.JButton btnBorraA;
-    private javax.swing.JButton btnBorraLE;
-    private javax.swing.JButton btnBorraP;
-    private javax.swing.JButton btnConsultaA;
-    private javax.swing.JButton btnConsultaC;
-    private javax.swing.JButton btnConsultaLE;
-    private javax.swing.JButton btnConsultaP;
-    private javax.swing.JButton btnEliminaC;
-    private javax.swing.JButton btnIngresaA;
-    private javax.swing.JButton btnIngresaC;
-    private javax.swing.JButton btnIngresaLE;
-    private javax.swing.JButton btnIngresaP;
+    private javax.swing.JButton btnActualizaCli;
+    private javax.swing.JButton btnActualizaCom;
+    private javax.swing.JButton btnActualizaPro;
+    private javax.swing.JButton btnActualizaTrab;
+    private javax.swing.JButton btnBorraCli;
+    private javax.swing.JButton btnBorraCom;
+    private javax.swing.JButton btnBorraPro;
+    private javax.swing.JButton btnBorraTrab;
+    private javax.swing.JButton btnConsultaCli;
+    private javax.swing.JButton btnConsultaCom;
+    private javax.swing.JButton btnConsultaPro;
+    private javax.swing.JButton btnConsultaTrab;
+    private javax.swing.JButton btnIngresaCli;
+    private javax.swing.JButton btnIngresaCom;
+    private javax.swing.JButton btnIngresaPro;
+    private javax.swing.JButton btnIngresaTrab;
     private javax.swing.JButton btnIntegrantes;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -1005,9 +1022,9 @@ public class frmGeneral extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbPersona;
     private javax.swing.JRadioButton rbTodo;
     private javax.swing.JRadioButton rbTodos;
-    private javax.swing.JTable tableA;
-    private javax.swing.JTable tableC;
-    private javax.swing.JTable tableLE;
-    private javax.swing.JTable tableP;
+    private javax.swing.JTable tablaCli;
+    private javax.swing.JTable tablaCompro;
+    private javax.swing.JTable tablaProd;
+    private javax.swing.JTable tablaTrab;
     // End of variables declaration//GEN-END:variables
 }

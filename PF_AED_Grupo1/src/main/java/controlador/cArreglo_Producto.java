@@ -6,13 +6,13 @@ import modelo.cProducto;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class cArreglo {
+public class cArreglo_Producto {
     private cProducto[] productos;
     private int n;
     private int capacidad;
     private double totalVentas; 
 
-    public cArreglo(int capacidad) {
+    public cArreglo_Producto(int capacidad) {
         this.capacidad = capacidad;
         this.productos = new cProducto[this.capacidad];
         this.n = 0;

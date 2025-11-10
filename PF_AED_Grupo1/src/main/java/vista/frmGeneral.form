@@ -79,13 +79,13 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="btnIngresaA" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnIngresaPro" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                              <Component id="btnActualizaA" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnActualizaPro" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="164" max="32767" attributes="0"/>
-                              <Component id="btnBorraA" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnBorraPro" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                              <Component id="btnConsultaA" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnConsultaPro" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
@@ -97,10 +97,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="22" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnIngresaA" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnActualizaA" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnBorraA" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnConsultaA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIngresaPro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnActualizaPro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBorraPro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnConsultaPro" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="370" max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tableA">
+                <Component class="javax.swing.JTable" name="tablaProd">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
@@ -131,38 +131,38 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnIngresaA">
+            <Component class="javax.swing.JButton" name="btnIngresaPro">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresaAActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresaProActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnActualizaA">
+            <Component class="javax.swing.JButton" name="btnActualizaPro">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Actualizar"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizaAActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizaProActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnBorraA">
+            <Component class="javax.swing.JButton" name="btnBorraPro">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBorraAActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBorraProActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnConsultaA">
+            <Component class="javax.swing.JButton" name="btnConsultaPro">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaAActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaProActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -181,13 +181,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                      <Component id="btnIngresaLE" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnIngresaCom" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="btnActualizaLE" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnActualizaCom" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnBorraLE" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnBorraCom" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnConsultaLE" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnConsultaCom" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -210,10 +210,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnIngresaLE" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnActualizaLE" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnBorraLE" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnConsultaLE" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIngresaCom" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnActualizaCom" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBorraCom" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnConsultaCom" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="panCompro" min="-2" max="-2" attributes="0"/>
@@ -232,7 +232,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tableLE">
+                <Component class="javax.swing.JTable" name="tablaCompro">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="6" rowCount="4">
@@ -248,38 +248,38 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnIngresaLE">
+            <Component class="javax.swing.JButton" name="btnIngresaCom">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresaLEActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresaComActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnActualizaLE">
+            <Component class="javax.swing.JButton" name="btnActualizaCom">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Actualizar"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizaLEActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizaComActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnBorraLE">
+            <Component class="javax.swing.JButton" name="btnBorraCom">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBorraLEActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBorraComActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnConsultaLE">
+            <Component class="javax.swing.JButton" name="btnConsultaCom">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaLEActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaComActionPerformed"/>
               </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="panCompro">
@@ -374,13 +374,13 @@
                       <EmptySpace pref="117" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnIngresaC" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnIngresaCli" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                              <Component id="btnActualizaC" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnActualizaCli" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="btnEliminaC" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnBorraCli" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                              <Component id="btnConsultaC" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnConsultaCli" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -396,10 +396,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnActualizaC" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnEliminaC" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnIngresaC" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnConsultaC" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnActualizaCli" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBorraCli" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIngresaCli" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnConsultaCli" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="panCliente" min="-2" max="-2" attributes="0"/>
@@ -418,7 +418,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tableC">
+                <Component class="javax.swing.JTable" name="tablaCli">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="7" rowCount="4">
@@ -435,28 +435,30 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnIngresaC">
+            <Component class="javax.swing.JButton" name="btnIngresaCli">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresaCActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresaCliActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnActualizaC">
+            <Component class="javax.swing.JButton" name="btnActualizaCli">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Actualizar"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizaCActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizaCliActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnEliminaC">
+            <Component class="javax.swing.JButton" name="btnBorraCli">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminaCActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBorraCliActionPerformed"/>
               </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="panCliente">
@@ -532,12 +534,12 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnConsultaC">
+            <Component class="javax.swing.JButton" name="btnConsultaCli">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaCActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaCliActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -558,13 +560,13 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                              <Component id="btnIngresaP" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnIngresaTrab" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                              <Component id="btnActualizaP" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnActualizaTrab" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="164" max="32767" attributes="0"/>
-                              <Component id="btnBorraP" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnBorraTrab" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="btnConsultaP" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnConsultaTrab" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
@@ -580,10 +582,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="22" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnIngresaP" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnActualizaP" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnBorraP" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnConsultaP" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIngresaTrab" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnActualizaTrab" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBorraTrab" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnConsultaTrab" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane4" min="-2" pref="370" max="-2" attributes="0"/>
@@ -600,7 +602,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tableP">
+                <Component class="javax.swing.JTable" name="tablaTrab">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="4">
@@ -615,38 +617,38 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnIngresaP">
+            <Component class="javax.swing.JButton" name="btnIngresaTrab">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresaPActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresaTrabActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnActualizaP">
+            <Component class="javax.swing.JButton" name="btnActualizaTrab">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Actualizar"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizaPActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizaTrabActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnBorraP">
+            <Component class="javax.swing.JButton" name="btnBorraTrab">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBorraPActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBorraTrabActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnConsultaP">
+            <Component class="javax.swing.JButton" name="btnConsultaTrab">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaPActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaTrabActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

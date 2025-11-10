@@ -1,7 +1,7 @@
 
 package vista;
 
-import controlador.cArreglo;
+import controlador.cArreglo_Producto;
 import javax.swing.JOptionPane;
 import modelo.cProducto;
 
@@ -11,7 +11,7 @@ import modelo.cProducto;
  */
 public class frmProductoSee extends javax.swing.JFrame {
     
-    private cArreglo arreProd = frmGeneral.arregloProductos;
+    private cArreglo_Producto arregloProductos = frmGeneral.oArregloProd;
     
     
     public frmProductoSee() {
@@ -115,7 +115,7 @@ public class frmProductoSee extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Complete el campo 🐒");
         }else{
             String codigo = txtCod.getText();
-            cProducto pro = arreProd.buscar(codigo);
+            cProducto pro = arregloProductos.buscar(codigo);
             if(pro == null){
                 txtaProducto.setText("Producto no Encontrado.");
             }else{
