@@ -27,8 +27,9 @@ public class cTrabajador {
         this();
         this.nombre = nombre;
         this.fecha_ingreso = fecha_ingreso;
-        this.sueldo = sueldoxTipo();
+        
         this.tipo = tipo;
+        this.sueldo = sueldoxTipo();
     }
     
     public double sueldoxTipo(){

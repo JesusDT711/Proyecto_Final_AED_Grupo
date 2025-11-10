@@ -1,9 +1,9 @@
-
 package vista;
 
 import controlador.cArreglo;
 import controlador.cCola_LE;
 import controlador.cLE_Comprobante;
+import controlador.cPila;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +16,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import modelo.cDetalle_Comprobante;
 import modelo.cCliente;
-
+import modelo.cTrabajador;
 
 /**
  *
@@ -27,28 +27,35 @@ public class frmGeneral extends javax.swing.JFrame {
     public static cArreglo arregloProductos = new cArreglo(1000);
     public static cLE_Comprobante leComprobante = new cLE_Comprobante();
     public static cCola_LE leCola = new cCola_LE();
+    public static cPila pilaTrabajador = new cPila(100);
 
     public frmGeneral() {
         initComponents();
         cargarProductosBase();
         cargarComprobantesBase();
         cargarClientesBase();
-        
+        cargarTrabajadoresBase();
+
         habilitarBotonesProductos();
         habilitarBotonesComprobantes();
+        habilitarBotonesTrabajadores();
     }
-    
+
     //METODO PARA CARGAR LOS OBJETOS BASE
     private void mostrarProductos(JTable tableA) {
         arregloProductos.recorreLE(tableA);
     }
-    
-    private void mostrarComprobantes(JTable tableLE){
+
+    private void mostrarComprobantes(JTable tableLE) {
         leComprobante.recorreLE(tableLE);
     }
-    
-    private void mostrarClientes(JTable tableC){
-        leCola.recorrerCola(tableC);        
+
+    private void mostrarClientes(JTable tableC) {
+        leCola.recorrerCola(tableC);
+    }
+
+    private void mostrarTrabajadores(JTable tableP) {
+        pilaTrabajador.recorrePila(tableP);
     }
 
     private void cargarProductosBase() {
@@ -58,67 +65,102 @@ public class frmGeneral extends javax.swing.JFrame {
 
         mostrarProductos(tableA);
     }
-    
+
     private void cargarComprobantesBase() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        
-        String fecha1str = "02/04/2005";      
-        String fecha2str = "04/09/2010";      
+
+        String fecha1str = "02/04/2005";
+        String fecha2str = "04/09/2010";
         String fecha3str = "07/10/2006";
-        
+
         Date fecha1 = null;
         Date fecha2 = null;
         Date fecha3 = null;
-        
+
         try {
             fecha1 = formato.parse(fecha1str);
             fecha2 = formato.parse(fecha2str);
             fecha3 = formato.parse(fecha3str);
         } catch (ParseException e) {
-           System.out.println("Error al convertir una de las fechas:" + e.getMessage());
-        }   
-        
-        cFactura f1 = new cFactura(fecha1,"C008","V002");
-        cBoleta b1 = new cBoleta(fecha2,"C004", "V003");
-        cFactura f2 = new cFactura(fecha3,"C002", "V001");
-        
+            System.out.println("Error al convertir una de las fechas:" + e.getMessage());
+        }
+
+        cFactura f1 = new cFactura(fecha1, "C008", "V002");
+        cBoleta b1 = new cBoleta(fecha2, "C004", "V003");
+        cFactura f2 = new cFactura(fecha3, "C002", "V001");
+
         f1.setDetalle(new cDetalle_Comprobante(f1.getCodigo(),
-                        arregloProductos.obtener(0).getCodigo(),
-                        2,
-                        arregloProductos.obtener(0).getPrecio()));
+                arregloProductos.obtener(0).getCodigo(),
+                2,
+                arregloProductos.obtener(0).getPrecio()));
         f1.setDetalle(new cDetalle_Comprobante(f1.getCodigo(),
-                        arregloProductos.obtener(1).getCodigo(),
-                        3,
-                        arregloProductos.obtener(1).getPrecio()));
-        
+                arregloProductos.obtener(1).getCodigo(),
+                3,
+                arregloProductos.obtener(1).getPrecio()));
+
         b1.setDetalle(new cDetalle_Comprobante(b1.getCodigo(),
-                        arregloProductos.obtener(0).getCodigo(),
-                        3,
-                        arregloProductos.obtener(0).getPrecio()));
+                arregloProductos.obtener(0).getCodigo(),
+                3,
+                arregloProductos.obtener(0).getPrecio()));
         b1.setDetalle(new cDetalle_Comprobante(b1.getCodigo(),
-                        arregloProductos.obtener(2).getCodigo(),
-                        1,
-                        arregloProductos.obtener(2).getPrecio()));
-        
+                arregloProductos.obtener(2).getCodigo(),
+                1,
+                arregloProductos.obtener(2).getPrecio()));
+
         f2.setDetalle(new cDetalle_Comprobante(f2.getCodigo(),
-                        arregloProductos.obtener(0).getCodigo(),
-                        1,
-                        arregloProductos.obtener(0).getPrecio()));
-        
+                arregloProductos.obtener(0).getCodigo(),
+                1,
+                arregloProductos.obtener(0).getPrecio()));
+
         leComprobante.insertarxFinal(f1);
         leComprobante.insertarxFinal(b1);
         leComprobante.insertarxFinal(f2);
 
         mostrarComprobantes(tableLE);
     }
-    
+
     private void cargarClientesBase() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        
-        String fecha1str = "02/04/2005";      
-        String fecha2str = "04/09/2010";      
+
+        String fecha1str = "02/04/2005";
+        String fecha2str = "04/09/2010";
         String fecha3str = "07/10/2006";
+
+        Date fecha1 = null;
+        Date fecha2 = null;
+        Date fecha3 = null;
+
+        try {
+            fecha1 = formato.parse(fecha1str);
+            fecha2 = formato.parse(fecha2str);
+            fecha3 = formato.parse(fecha3str);
+        } catch (ParseException e) {
+            System.out.println("Error al convertir una de las fechas:" + e.getMessage());
+        }
+
+        long tel1 = 991992990;
+        long tel2 = 959192231;
+        long tel3 = 910233677;
+
+        long doc1 = 1078181921;
+        long doc2 = 76192192;
+        long doc3 = 1071623251;
+
+        leCola.incluir(new cCliente("Tenda", tel1, doc1, fecha1, 2, "Lizardo Silva"));
+        leCola.incluir(new cCliente("Juan Quillo", tel2, doc2, fecha2, 1, "Juan Quillo"));
+        leCola.incluir(new cCliente("Gatitas.com", tel3, doc3, fecha3, 2, "Jesús Giussepe"));
+
+        mostrarClientes(tableC);
+    }
+
+    private void cargarTrabajadoresBase() {
         
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
+        String fecha1str = "05/11/2024";
+        String fecha2str = "15/03/2024";
+        String fecha3str = "20/01/2023";
+
         Date fecha1 = null;
         Date fecha2 = null;
         Date fecha3 = null;
@@ -127,46 +169,49 @@ public class frmGeneral extends javax.swing.JFrame {
             fecha1 = formato.parse(fecha1str);
             fecha2 = formato.parse(fecha2str);
             fecha3 = formato.parse(fecha3str);
-        } catch (ParseException e) {
-           System.out.println("Error al convertir una de las fechas:" + e.getMessage());
-        }  
-        
-        
-        long tel1= 991992990;
-        long tel2= 959192231;
-        long tel3= 910233677;
-        
-        long doc1=1078181921;
-        long doc2= 76192192;
-        long doc3=1071623251;
-        
-        leCola.incluir(new cCliente("Tenda",tel1,doc1,fecha1,2,"Lizardo Silva"));
-        leCola.incluir(new cCliente("Juan Quillo",tel2,doc2,fecha2,1,"Juan Quillo"));
-        leCola.incluir(new cCliente("Gatitas.com",tel3,doc3,fecha3,2,"Jesús Giussepe"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar trabajadores base: " + e.getMessage());
+        }
 
-        mostrarClientes(tableC);
+        cTrabajador t1 = new cTrabajador("Cristiano Ronaldo", fecha1, 1); // tipo administrador
+        cTrabajador t2 = new cTrabajador("Lionel Messi", fecha2, 2); // tipo cajero
+        cTrabajador t3 = new cTrabajador("Zinedine Zidane", fecha3, 3);  // tipo reponedor
+
+        pilaTrabajador.insertar(t1);
+        pilaTrabajador.insertar(t2);
+        pilaTrabajador.insertar(t3);
+
+        mostrarTrabajadores(tableP);
+
     }
-    
-    
-    
 
     //MÉTODOS PARA HABILITAR LOS BOTONES ACTUALIZAR & ELIMINAR
     private void habilitarBotonesProductos() {
         tableA.getSelectionModel().addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) { 
+            if (!e.getValueIsAdjusting()) {
                 boolean filaSeleccionada = tableA.getSelectedRow() != -1;
                 btnActualizaA.setEnabled(filaSeleccionada);
                 btnBorraA.setEnabled(filaSeleccionada);
             }
         });
     }
-    
+
     private void habilitarBotonesComprobantes() {
         tableLE.getSelectionModel().addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) { 
+            if (!e.getValueIsAdjusting()) {
                 boolean filaSeleccionada = tableLE.getSelectedRow() != -1;
                 btnActualizaLE.setEnabled(filaSeleccionada);
                 btnBorraLE.setEnabled(filaSeleccionada);
+            }
+        });
+    }
+    
+    private void habilitarBotonesTrabajadores(){
+        tableP.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                boolean filaSeleccionada = tableP.getSelectedRow() != -1;
+                btnActualizaP.setEnabled(filaSeleccionada);
+                btnBorraP.setEnabled(filaSeleccionada);
             }
         });
     }
@@ -181,7 +226,7 @@ public class frmGeneral extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void refrescarTablaCompro(javax.swing.JFrame ventana) {
         ventana.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -191,8 +236,7 @@ public class frmGeneral extends javax.swing.JFrame {
             }
         });
     }
-    
-    
+
     private void refrescarTablaCli(javax.swing.JFrame ventana) {
         ventana.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -202,7 +246,17 @@ public class frmGeneral extends javax.swing.JFrame {
             }
         });
     }
-    
+
+    private void refrescarTablaTrab(javax.swing.JFrame ventana) {
+        ventana.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                //aca uso el metodo para mostrar los TRABAJADORES en la tabla
+                mostrarTrabajadores(tableP);
+            }
+        });
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -607,14 +661,34 @@ public class frmGeneral extends javax.swing.JFrame {
         jScrollPane4.setViewportView(tableP);
 
         btnIngresaP.setText("Añadir");
+        btnIngresaP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresaPActionPerformed(evt);
+            }
+        });
 
         btnActualizaP.setText("Actualizar");
         btnActualizaP.setEnabled(false);
+        btnActualizaP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizaPActionPerformed(evt);
+            }
+        });
 
         btnBorraP.setText("Eliminar");
         btnBorraP.setEnabled(false);
+        btnBorraP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorraPActionPerformed(evt);
+            }
+        });
 
         btnConsultaP.setText("Consultar");
+        btnConsultaP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -691,7 +765,6 @@ public class frmGeneral extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
     //BOTONES DE LA PESTAÑA PRODUCTOS
     private void btnIngresaAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaAActionPerformed
         //ABRE CON EL CONSTRUCTOR PARA AÑADIR 
@@ -710,8 +783,8 @@ public class frmGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizaAActionPerformed
 
     private void btnBorraAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorraAActionPerformed
-        cProducto p= arregloProductos.obtener(tableA.getSelectedRow());
-        
+        cProducto p = arregloProductos.obtener(tableA.getSelectedRow());
+
         int opcion = JOptionPane.showConfirmDialog(
                 this,
                 "¿Está seguro de eliminar este producto?",
@@ -719,8 +792,8 @@ public class frmGeneral extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.WARNING_MESSAGE
         );
-        
-        if (opcion==JOptionPane.YES_OPTION) {
+
+        if (opcion == JOptionPane.YES_OPTION) {
             arregloProductos.eliminar(p.getCodigo());
             JOptionPane.showMessageDialog(this, "Producto eliminado correctamente");
             mostrarProductos(tableA);
@@ -728,19 +801,16 @@ public class frmGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBorraAActionPerformed
 
     private void btnConsultaAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaAActionPerformed
-        frmProductoSee ventana= new frmProductoSee();
+        frmProductoSee ventana = new frmProductoSee();
         ventana.setVisible(true);
     }//GEN-LAST:event_btnConsultaAActionPerformed
 
-    
     //BOTÓN DE INTEGRANTES
     private void btnIntegrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIntegrantesActionPerformed
         frmIntegrantes integrantes = new frmIntegrantes();
         integrantes.setVisible(true);
     }//GEN-LAST:event_btnIntegrantesActionPerformed
 
-    
-    
     //BOTONES DE LA PESTAÑA COMPROBANTES
     private void btnIngresaLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaLEActionPerformed
         frmComprobanteAdd ventana = new frmComprobanteAdd();
@@ -749,7 +819,7 @@ public class frmGeneral extends javax.swing.JFrame {
 
     private void btnActualizaLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaLEActionPerformed
         int fila = tableLE.getSelectedRow();
-        String codigo =String.valueOf(tableLE.getValueAt(fila, 0));
+        String codigo = String.valueOf(tableLE.getValueAt(fila, 0));
         cComprobante comprobante = leComprobante.busqueda(codigo);
         frmComprobanteAdd ventana = new frmComprobanteAdd(comprobante);
 
@@ -759,11 +829,11 @@ public class frmGeneral extends javax.swing.JFrame {
 
     private void btnBorraLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorraLEActionPerformed
         int fila = tableLE.getSelectedRow();
-        
-        String codigo =String.valueOf(tableLE.getValueAt(fila, 0));
-        
+
+        String codigo = String.valueOf(tableLE.getValueAt(fila, 0));
+
         cComprobante c = leComprobante.busqueda(codigo);
-        
+
         int opcion = JOptionPane.showConfirmDialog(
                 this,
                 "¿Está seguro de eliminar este comprobante?",
@@ -771,8 +841,8 @@ public class frmGeneral extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.WARNING_MESSAGE
         );
-        
-        if (opcion==JOptionPane.YES_OPTION) {
+
+        if (opcion == JOptionPane.YES_OPTION) {
             leComprobante.eliminaEntreNodos(c.getCodigo());
             JOptionPane.showMessageDialog(this, "Comprobante eliminado correctamente");
             mostrarComprobantes(tableLE);
@@ -780,21 +850,20 @@ public class frmGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBorraLEActionPerformed
 
     private void btnConsultaLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaLEActionPerformed
-            frmComprobanteSee ventana = new frmComprobanteSee();
-            ventana.setVisible(true);
+        frmComprobanteSee ventana = new frmComprobanteSee();
+        ventana.setVisible(true);
     }//GEN-LAST:event_btnConsultaLEActionPerformed
-    
-    
+
     //BOTONES DE LA PESTAÑA CLIENTES
     private void btnIngresaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaCActionPerformed
-        frmClienteAdd  ventana= new frmClienteAdd();
+        frmClienteAdd ventana = new frmClienteAdd();
         ventana.setVisible(true);
     }//GEN-LAST:event_btnIngresaCActionPerformed
 
     private void btnActualizaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaCActionPerformed
         cCliente cliente = leCola.acceso();
         frmClienteAdd ventana = new frmClienteAdd(cliente);
-
+        
         refrescarTablaCli(ventana);
         ventana.setVisible(true);
     }//GEN-LAST:event_btnActualizaCActionPerformed
@@ -807,21 +876,20 @@ public class frmGeneral extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.WARNING_MESSAGE
         );
-        
-        if (opcion==JOptionPane.YES_OPTION) {
-           leCola.eliminar();
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            leCola.eliminar();
             JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente");
             mostrarClientes(tableC);
-        }  
-        
+        }
+
     }//GEN-LAST:event_btnEliminaCActionPerformed
 
     private void btnConsultaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaCActionPerformed
-            frmClienteSee ventana = new frmClienteSee();
-            ventana.setVisible(true);
+        frmClienteSee ventana = new frmClienteSee();
+        ventana.setVisible(true);
     }//GEN-LAST:event_btnConsultaCActionPerformed
-    
-    
+
     //FILTROS DE CLIENTES
     private void rbPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPersonaActionPerformed
         leCola.recorrerColaP(tableC);
@@ -835,7 +903,6 @@ public class frmGeneral extends javax.swing.JFrame {
         mostrarClientes(tableC);
     }//GEN-LAST:event_rbTodosActionPerformed
 
-    
     //FILTROS PARA COMPROBANTES
     private void rbBolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbBolActionPerformed
         leComprobante.recorreLEBoleta(tableLE);
@@ -849,26 +916,56 @@ public class frmGeneral extends javax.swing.JFrame {
         mostrarComprobantes(tableLE);
     }//GEN-LAST:event_rbTodoActionPerformed
 
+    private void btnIngresaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaPActionPerformed
+        // TODO add your handling code here:
+        frmTrabajadoresAdd ventana = new frmTrabajadoresAdd();
+        refrescarTablaTrab(ventana);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_btnIngresaPActionPerformed
+
+    private void btnActualizaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaPActionPerformed
+        // TODO add your handling code here:
+        int fila=tableP.getSelectedRow();
+        String codigo=tableP.getValueAt(fila, 0).toString();
+        cTrabajador trabajador=pilaTrabajador.busqueda(codigo);
+        
+        frmTrabajadoresAdd ventana = new frmTrabajadoresAdd(trabajador);
+        refrescarTablaTrab(ventana);
+        ventana.setVisible(true);
+       
+    }//GEN-LAST:event_btnActualizaPActionPerformed
+
+    private void btnBorraPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorraPActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnBorraPActionPerformed
+
+    private void btnConsultaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaPActionPerformed
+        // TODO add your handling code here:
+        frmTrabajadoresSee ventana=new frmTrabajadoresSee();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_btnConsultaPActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-    try {
-        // Activa el look and feel "Nimbus" (moderno por defecto en NetBeans)
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+        try {
+            // Activa el look and feel "Nimbus" (moderno por defecto en NetBeans)
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(frmGeneral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (Exception ex) {
-        java.util.logging.Logger.getLogger(frmGeneral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
 
-    java.awt.EventQueue.invokeLater(() -> {
-        new frmGeneral().setVisible(true);
-    });
-}
+        java.awt.EventQueue.invokeLater(() -> {
+            new frmGeneral().setVisible(true);
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizaA;

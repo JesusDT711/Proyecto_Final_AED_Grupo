@@ -1,12 +1,19 @@
 
 package vista;
 
+import controlador.cPila;
+import javax.swing.JOptionPane;
+import modelo.cCliente;
+import modelo.cTrabajador;
+
 /**
  *
  * @author adria
  */
 public class frmTrabajadoresSee extends javax.swing.JFrame {
 
+    private cPila pilaTrabajadores=frmGeneral.pilaTrabajador;
+    
     public frmTrabajadoresSee() {
         initComponents();
     }
@@ -99,11 +106,30 @@ public class frmTrabajadoresSee extends javax.swing.JFrame {
     
     //FUNCIONALIDADES DE LOS BOTONES
     private void btnConTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConTActionPerformed
-        
+        if(txtCodT.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Complete el campo");
+        }else{
+            String codigo = txtCodT.getText();
+            cTrabajador trabajador = pilaTrabajadores.busqueda(codigo);
+            if(trabajador==null){
+                txtaTrabajador.setText("Cliente no Encontrado.");
+            }else{
+                txtaTrabajador.setText("Código: "+trabajador.getCodigo());
+                txtaTrabajador.append("\nNombres: "+trabajador.getNombre());
+                txtaTrabajador.append("\nFecha de ingreso: "+trabajador.fecha_ingresoCadena());
+                txtaTrabajador.append("\nSueldo: "+trabajador.getSueldo());
+                txtaTrabajador.append("\nCargo: "+trabajador.cargo());
+                
+                btnLimpiaT.setEnabled(true);
+            }
+        }
     }//GEN-LAST:event_btnConTActionPerformed
 
     private void btnLimpiaTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiaTActionPerformed
+        txtCodT.setText("");
+        txtaTrabajador.setText("");
         
+        btnLimpiaT.setEnabled(false);
     }//GEN-LAST:event_btnLimpiaTActionPerformed
 
     /**

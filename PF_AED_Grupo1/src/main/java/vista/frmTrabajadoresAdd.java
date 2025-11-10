@@ -1,6 +1,8 @@
 
 package vista;
 
+import java.util.Date;
+import javax.swing.JOptionPane;
 import modelo.cTrabajador;
 /**
  *
@@ -25,6 +27,7 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
     private void cargarDatos(){
         txtNombreT.setText(trabajador.getNombre());
         //FALTA LLENAR EL COMBOBOX
+        cbTipoT.setSelectedIndex(trabajador.getTipo());
         dcFechaIngresoT.setDate(trabajador.getFecha_ingreso());
         txtSueldoT.setText(String.valueOf(trabajador.getSueldo()));
     }
@@ -53,10 +56,21 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
         jLabel3.setText("INTRODUZCA FECHA DE INGRESO:");
 
         cbTipoT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir", "Administrador", "Cajero", "Reponedor" }));
+        cbTipoT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTipoTActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("SUELDO BASE:");
 
         txtSueldoT.setEditable(false);
+        txtSueldoT.setEnabled(false);
+        txtSueldoT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSueldoTActionPerformed(evt);
+            }
+        });
 
         btnAddT.setText("Añadir");
         btnAddT.addActionListener(new java.awt.event.ActionListener() {
@@ -103,8 +117,8 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbTipoT, 0, 124, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbTipoT, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dcFechaIngresoT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
@@ -142,12 +156,42 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
     
     //FUNCIONALIDADES DE LOS BOTONES
     private void btnAddTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTActionPerformed
+        String nombre=txtNombreT.getText();
+        int tipo=cbTipoT.getSelectedIndex();
+        Date fecha=dcFechaIngresoT.getDate();
+        double sueldo=Double.parseDouble(txtSueldoT.getText());
         
+        if (trabajador!=null) {
+            trabajador.setNombre(nombre);
+            trabajador.setTipo(tipo);
+            trabajador.setFecha_ingreso(fecha);
+            trabajador.setSueldo(sueldo);
+            JOptionPane.showMessageDialog(this, "Trabajador actualizado correctamente.");
+            this.dispose();
+        } else{
+            cTrabajador nTrabajador=new cTrabajador(nombre, fecha, tipo);
+            frmGeneral.pilaTrabajador.insertar(nTrabajador);
+            JOptionPane.showMessageDialog(this, "Trabajador registrado correctamente.");
+        }
     }//GEN-LAST:event_btnAddTActionPerformed
 
     private void btnLimpiarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarTActionPerformed
         
     }//GEN-LAST:event_btnLimpiarTActionPerformed
+
+    private void txtSueldoTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSueldoTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSueldoTActionPerformed
+
+    private void cbTipoTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoTActionPerformed
+        // TODO add your handling code here:
+        int tipo=cbTipoT.getSelectedIndex();
+        
+        cTrabajador temp=new cTrabajador();
+        temp.setTipo(tipo);
+        double sueldo= temp.sueldoxTipo();
+        txtSueldoT.setText(String.valueOf(sueldo));
+    }//GEN-LAST:event_cbTipoTActionPerformed
 
     /**
      * @param args the command line arguments
