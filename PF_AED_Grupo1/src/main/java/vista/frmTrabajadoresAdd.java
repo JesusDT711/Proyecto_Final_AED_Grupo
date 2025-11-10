@@ -4,6 +4,8 @@ package vista;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.cTrabajador;
+import controlador.cPila;
+
 /**
  *
  * @author adria
@@ -11,10 +13,12 @@ import modelo.cTrabajador;
 public class frmTrabajadoresAdd extends javax.swing.JFrame {
 
     cTrabajador trabajador;
+    cPila pilaTrabajadores = frmGeneral.pilaTrabajador;
     
     
     public frmTrabajadoresAdd() {
         initComponents();
+        this.trabajador=null;
     }
     
     public frmTrabajadoresAdd(cTrabajador tra){
@@ -22,11 +26,11 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
         this.trabajador=tra;
         cargarDatos();
     }
+
     
     //CARGA DE DATOS EXTRAÍDOS DE LA TABLAP
     private void cargarDatos(){
         txtNombreT.setText(trabajador.getNombre());
-        //FALTA LLENAR EL COMBOBOX
         cbTipoT.setSelectedIndex(trabajador.getTipo());
         dcFechaIngresoT.setDate(trabajador.getFecha_ingreso());
         txtSueldoT.setText(String.valueOf(trabajador.getSueldo()));
@@ -41,11 +45,11 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
         txtNombreT = new javax.swing.JTextField();
         cbTipoT = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        txtSueldoT = new javax.swing.JTextField();
         btnAddT = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnLimpiarT = new javax.swing.JButton();
         dcFechaIngresoT = new com.toedter.calendar.JDateChooser();
+        txtSueldoT = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -63,14 +67,6 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
         });
 
         jLabel4.setText("SUELDO BASE:");
-
-        txtSueldoT.setEditable(false);
-        txtSueldoT.setEnabled(false);
-        txtSueldoT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSueldoTActionPerformed(evt);
-            }
-        });
 
         btnAddT.setText("Añadir");
         btnAddT.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +86,8 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
             }
         });
 
+        txtSueldoT.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,10 +106,13 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(69, 69, 69)
                                 .addComponent(btnLimpiarT)))
-                        .addGap(73, 73, 73)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAddT)
-                            .addComponent(txtSueldoT, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(73, 73, 73)
+                                .addComponent(btnAddT))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(txtSueldoT, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -156,35 +157,45 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
     
     //FUNCIONALIDADES DE LOS BOTONES
     private void btnAddTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTActionPerformed
-        String nombre=txtNombreT.getText();
-        int tipo=cbTipoT.getSelectedIndex();
-        Date fecha=dcFechaIngresoT.getDate();
-        double sueldo=Double.parseDouble(txtSueldoT.getText());
+        if(txtNombreT.getText().trim().isEmpty()
+                || cbTipoT.getSelectedIndex()==-1
+                || dcFechaIngresoT.getDate()==null
+                || txtSueldoT.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Complete todos los campos");
+        }else{
+            String nombre=txtNombreT.getText();
+            int tipo=cbTipoT.getSelectedIndex();
+            Date fecha=dcFechaIngresoT.getDate();
+            double sueldo=Double.parseDouble(txtSueldoT.getText());
         
-        if (trabajador!=null) {
-            trabajador.setNombre(nombre);
-            trabajador.setTipo(tipo);
-            trabajador.setFecha_ingreso(fecha);
-            trabajador.setSueldo(sueldo);
-            JOptionPane.showMessageDialog(this, "Trabajador actualizado correctamente.");
-            this.dispose();
-        } else{
-            cTrabajador nTrabajador=new cTrabajador(nombre, fecha, tipo);
-            frmGeneral.pilaTrabajador.insertar(nTrabajador);
-            JOptionPane.showMessageDialog(this, "Trabajador registrado correctamente.");
-        }
+            if (trabajador != null) {
+                trabajador.setNombre(nombre);
+                trabajador.setTipo(tipo);
+                trabajador.setFecha_ingreso(fecha);
+                trabajador.setSueldo(sueldo);
+                JOptionPane.showMessageDialog(this, "Trabajador actualizado correctamente.");
+                this.dispose();
+            }else{
+                cTrabajador nuevoTrab=new cTrabajador(nombre, fecha, tipo);
+                pilaTrabajadores.insertar(nuevoTrab);
+                JOptionPane.showMessageDialog(this, "Trabajador registrado correctamente.");
+            }
+            btnAddT.setEnabled(false);
+            btnLimpiarT.setEnabled(true);
+        }    
     }//GEN-LAST:event_btnAddTActionPerformed
 
     private void btnLimpiarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarTActionPerformed
+        txtNombreT.setText("");
+        cbTipoT.setSelectedIndex(0);
+        dcFechaIngresoT.setDate(null);
+        txtSueldoT.setText("");
         
+        btnAddT.setEnabled(true);
+        btnLimpiarT.setEnabled(false);
     }//GEN-LAST:event_btnLimpiarTActionPerformed
 
-    private void txtSueldoTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSueldoTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSueldoTActionPerformed
-
     private void cbTipoTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoTActionPerformed
-        // TODO add your handling code here:
         int tipo=cbTipoT.getSelectedIndex();
         
         cTrabajador temp=new cTrabajador();

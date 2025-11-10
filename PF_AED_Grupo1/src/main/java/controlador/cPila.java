@@ -1,5 +1,7 @@
+
 package controlador;
 
+import javax.swing.JComboBox;
 import modelo.cTrabajador;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;

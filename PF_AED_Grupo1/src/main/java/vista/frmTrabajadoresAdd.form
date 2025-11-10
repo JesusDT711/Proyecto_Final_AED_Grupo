@@ -40,10 +40,15 @@
                               <Component id="btnLimpiarT" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnAddT" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtSueldoT" min="-2" pref="87" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                              <Component id="btnAddT" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="txtSueldoT" min="-2" pref="96" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -138,15 +143,6 @@
         <Property name="text" type="java.lang.String" value="SUELDO BASE:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtSueldoT">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSueldoTActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnAddT">
       <Properties>
         <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
@@ -173,6 +169,11 @@
       </Events>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dcFechaIngresoT">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtSueldoT">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
