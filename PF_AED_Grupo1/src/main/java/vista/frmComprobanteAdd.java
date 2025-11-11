@@ -33,8 +33,6 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
 
     //LLENADO Y SELECCIONADO DE ITEMS DE LOS COMBOBOX
     private void llenarComboClientes(){
-        cbCliente.removeAllItems();
-        cbCliente.addItem("Elegir");
         if(frmGeneral.oLECliente != null){
             frmGeneral.oLECliente.llenarComboClientes(cbCliente);
         }
@@ -42,24 +40,16 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
     }
     
     private void llenarComboTrabajador(){
-        cbVendedor.removeAllItems();
-        cbVendedor.addItem("Elegir");
         if(frmGeneral.oArregloTrab != null){
-            System.out.println("Lista de trabajadores encontrada");
             frmGeneral.oArregloTrab.llenarComboTrabajadores(cbVendedor);
         }
         seleccionaTrabajador(comprobante);
-        System.out.println("Combo TRABAJADOR listo.");
     }
     
     private void llenarComboProductos(){
-        cbNomP.removeAllItems();
-        cbNomP.addItem("Elegir");
         if(frmGeneral.oArregloProd != null){
-            System.out.println("Lista de productos encontrada");
             frmGeneral.oArregloProd.llenarComboProductos(cbNomP);
-        } 
-        System.out.println("Combo PRODUCTOS listo.");
+        }
     }
     
     private void seleccionaCliente(cComprobante comprobante){
@@ -218,21 +208,21 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         panAddProductLayout.setHorizontalGroup(
             panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panAddProductLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAgregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFinaliza)
-                .addGap(14, 14, 14))
-            .addGroup(panAddProductLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addGap(51, 51, 51)
-                .addGroup(panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCanp, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbNomP, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGroup(panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cbNomP, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panAddProductLayout.createSequentialGroup()
+                        .addComponent(txtCanp, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panAddProductLayout.createSequentialGroup()
+                        .addComponent(btnAgregar)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnFinaliza)))
+                .addGap(14, 14, 14))
         );
         panAddProductLayout.setVerticalGroup(
             panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,11 +235,11 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                 .addGroup(panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCanp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFinaliza)
-                    .addComponent(btnAgregar))
-                .addContainerGap())
+                    .addComponent(btnAgregar)
+                    .addComponent(btnFinaliza))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         cbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir" }));
@@ -268,9 +258,9 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(167, 167, 167)
+                                .addGap(79, 79, 79)
                                 .addComponent(btnLimpiarCo)
-                                .addGap(37, 37, 37)
+                                .addGap(99, 99, 99)
                                 .addComponent(btnAddCo))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(117, 117, 117)
@@ -286,9 +276,9 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                                     .addComponent(dcFechaEmisionCo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cbCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
+                        .addGap(70, 70, 70)
                         .addComponent(panAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,13 +299,13 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(panAddProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLimpiarCo)
-                    .addComponent(btnAddCo))
-                .addGap(28, 28, 28))
+                    .addComponent(btnAddCo)
+                    .addComponent(btnLimpiarCo))
+                .addGap(16, 16, 16))
         );
 
         pack();

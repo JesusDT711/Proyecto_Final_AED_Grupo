@@ -1,7 +1,6 @@
 
 package vista;
 
-import controlador.cLE_Cliente;
 import javax.swing.JOptionPane;
 import modelo.cCliente;
 
@@ -13,6 +12,7 @@ public class frmClienteSee extends javax.swing.JFrame {
 
     public frmClienteSee() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

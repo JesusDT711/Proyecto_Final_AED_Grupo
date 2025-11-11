@@ -9,6 +9,7 @@ public class frmIntegrantes extends javax.swing.JFrame {
 
     public frmIntegrantes() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

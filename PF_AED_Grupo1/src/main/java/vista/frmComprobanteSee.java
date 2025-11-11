@@ -1,7 +1,6 @@
 
 package vista;
 
-import controlador.cLE_Comprobante;
 import controlador.cLE_Detalle;
 import controlador.cNodo_LE_Detalle;
 import java.text.DecimalFormat;
@@ -16,6 +15,7 @@ public class frmComprobanteSee extends javax.swing.JFrame {
 
     public frmComprobanteSee() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

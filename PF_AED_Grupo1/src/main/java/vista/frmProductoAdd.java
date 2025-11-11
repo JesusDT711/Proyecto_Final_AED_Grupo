@@ -3,7 +3,6 @@ package vista;
 
 import javax.swing.JOptionPane;
 import modelo.cProducto;
-import controlador.cArreglo_Producto;
 
 /**
  *

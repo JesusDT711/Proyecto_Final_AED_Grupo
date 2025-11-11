@@ -3,7 +3,6 @@ package vista;
 
 import javax.swing.JOptionPane;
 import modelo.cCliente;
-import controlador.cLE_Cliente;
 import java.util.Date;
 
 /**
@@ -17,11 +16,13 @@ public class frmClienteAdd extends javax.swing.JFrame {
     
     public frmClienteAdd() {
         initComponents();
+        setLocationRelativeTo(null);
         this.cliente=null;
     }
     
     public frmClienteAdd(cCliente c){
         initComponents();
+        setLocationRelativeTo(null);
         this.cliente = c;
         cargarDatos();
     }

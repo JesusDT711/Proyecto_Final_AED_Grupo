@@ -4,7 +4,6 @@ package vista;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.cTrabajador;
-import controlador.cArreglo_Trabajador;
 
 /**
  *
@@ -16,11 +15,13 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
     
     public frmTrabajadoresAdd() {
         initComponents();
+        setLocationRelativeTo(null);
         this.trabajador=null;
     }
     
     public frmTrabajadoresAdd(cTrabajador tra){
         initComponents();
+        setLocationRelativeTo(null);
         this.trabajador=tra;
         cargarDatos();
     }

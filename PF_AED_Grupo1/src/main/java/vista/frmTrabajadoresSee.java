@@ -2,7 +2,6 @@
 package vista;
 
 import javax.swing.JOptionPane;
-import controlador.cArreglo_Trabajador;
 import modelo.cTrabajador;
 
 /**
@@ -13,6 +12,7 @@ public class frmTrabajadoresSee extends javax.swing.JFrame {
     
     public frmTrabajadoresSee() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

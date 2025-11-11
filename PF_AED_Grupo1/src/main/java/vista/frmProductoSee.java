@@ -1,7 +1,6 @@
 
 package vista;
 
-import controlador.cArreglo_Producto;
 import javax.swing.JOptionPane;
 import modelo.cProducto;
 
@@ -13,6 +12,7 @@ public class frmProductoSee extends javax.swing.JFrame {
 
     public frmProductoSee() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
