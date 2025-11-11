@@ -2,6 +2,12 @@
 package vista;
 
 import controlador.cLE_Comprobante;
+import controlador.cLE_Detalle;
+import controlador.cNodo_LE_Detalle;
+import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
+import modelo.cComprobante;
+import modelo.cDetalle_Comprobante;
 /**
  *
  * @author adria
@@ -9,7 +15,6 @@ import controlador.cLE_Comprobante;
 public class frmComprobanteSee extends javax.swing.JFrame {
 
     private cLE_Comprobante listaComprobantes = frmGeneral.oLEComprobante;
-    
     
     public frmComprobanteSee() {
         initComponents();
@@ -100,11 +105,47 @@ public class frmComprobanteSee extends javax.swing.JFrame {
     
     //FUNCIONALIDADES DE LOS BOTONES
     private void btnConsultaCoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaCoActionPerformed
-        
+        if(txtCodCo.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Complete el campo");
+        }else{
+            String codigo = txtCodCo.getText();
+            cComprobante compro = listaComprobantes.busqueda(codigo);
+            if(compro==null){
+                txtaComprobante.setText("Comprobante no Encontrado.");
+            }else{
+                DecimalFormat df = new DecimalFormat("#.00");
+                txtaComprobante.setText("Código del Comprobante: "+compro.getCodigo());
+                txtaComprobante.append("\nFecha de Emisión: "+compro.fechaCadena());
+                txtaComprobante.append("\nCódigo de Cliente: "+compro.getCliente());
+                txtaComprobante.append("\nCódigo de Vendedor: "+compro.getVendedor());
+                txtaComprobante.append("\n\nProductos Comprados:");
+                cLE_Detalle listaDetalle = compro.getDetalle();
+                cNodo_LE_Detalle p = listaDetalle.getInicio();
+                while(p!=null){
+                    cDetalle_Comprobante detalle = p.getValor();
+                    if(detalle.getCodigo().equals(codigo)){
+                        txtaComprobante.append("\nCódigo de Producto: "+detalle.getCodPro());
+                        txtaComprobante.append("\nCantidad Comprada: "+detalle.getCantidad());
+                        txtaComprobante.append("\nSub Total: "+df.format(detalle.subTotal()));
+                        txtaComprobante.append("\nIGV: "+df.format(detalle.igv()));
+                        txtaComprobante.append("\nTotal: "+df.format(detalle.total()));
+                        txtaComprobante.append("\n===================================");
+                    }
+                    p = p.getSgte();
+                }
+                txtaComprobante.append("\n\nSub Total General: "+df.format(compro.getSubTotal()));
+                txtaComprobante.append("\nIGV General: "+df.format(compro.getIGV()));
+                txtaComprobante.append("\nTotal General: "+df.format(compro.getTotal()));
+                
+                btnLimpiarCo.setEnabled(true);
+            }
+        }
     }//GEN-LAST:event_btnConsultaCoActionPerformed
 
     private void btnLimpiarCoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCoActionPerformed
-       
+        txtCodCo.setText("");
+        txtaComprobante.setText("");
+        btnLimpiarCo.setEnabled(false);
     }//GEN-LAST:event_btnLimpiarCoActionPerformed
 
     /**
