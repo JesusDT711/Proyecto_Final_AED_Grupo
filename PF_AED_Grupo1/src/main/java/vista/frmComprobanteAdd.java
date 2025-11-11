@@ -1,9 +1,13 @@
 
 package vista;
 
+import java.util.Date;
+import javax.swing.JOptionPane;
 import modelo.cBoleta;
 import modelo.cComprobante;
+import modelo.cDetalle_Comprobante;
 import modelo.cFactura;
+import modelo.cProducto;
 
 /**
  *
@@ -326,7 +330,39 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarCoActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
+        if(!rbBoleta.isSelected() && !rbFactura.isSelected()
+                || dcFechaEmisionCo.getDate()==null
+                || cbCliente.getSelectedIndex()==-1
+                || cbVendedor.getSelectedIndex()==-1){
+            JOptionPane.showMessageDialog(this, "Primero complete los campos previos");
+        }else{
+            Date fecha = dcFechaEmisionCo.getDate();
+            String cod_Cli = cbCliente.getSelectedItem().toString();
+            String cod_Ven = cbVendedor.getSelectedItem().toString();
+            cBoleta boleta = null;
+            cFactura factura = null;
+            if(rbBoleta.isSelected()){
+                boleta = new cBoleta(fecha, cod_Cli, cod_Ven);
+                String cod_Com = boleta.getCodigo();
+                int indProd = cbNomP.getSelectedIndex();
+                cProducto producto = frmGeneral.oArregloProd.obtener(indProd);
+                String cod_Pro = producto.getCodigo();
+                double cod_Precio = producto.getPrecio();
+                int cantidad = Integer.parseInt(txtCanp.getText());
+                cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
+                boleta.setDetalle(detalle);
+            }else if(rbFactura.isSelected()){
+                factura = new cFactura(fecha, cod_Cli, cod_Ven);
+                String cod_Com = factura.getCodigo();
+                int prod = cbNomP.getSelectedIndex();
+                cProducto producto = frmGeneral.oArregloProd.obtener(prod);
+                String cod_Pro = producto.getCodigo();
+                double cod_Precio = producto.getPrecio();
+                int cantidad = Integer.parseInt(txtCanp.getText());
+                cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
+                factura.setDetalle(detalle);
+            }  
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnFinalizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizaActionPerformed
