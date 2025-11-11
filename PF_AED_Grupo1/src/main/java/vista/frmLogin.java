@@ -15,8 +15,8 @@ public class frmLogin extends javax.swing.JFrame {
     public frmLogin() {
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(950, 600);
         setLocationRelativeTo(null);
+        pack();
         setVisible(true);
     }
     
