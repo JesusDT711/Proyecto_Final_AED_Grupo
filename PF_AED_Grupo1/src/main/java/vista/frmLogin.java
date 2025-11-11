@@ -16,8 +16,7 @@ public class frmLogin extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        pack();
-        setVisible(true);
+        setResizable(false);
     }
     
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
@@ -112,11 +111,12 @@ public class frmLogin extends javax.swing.JFrame {
         psContraseña.setBorder(null);
         background.add(psContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 330, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+	javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 	getContentPane().setLayout(layout);
 	layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE));
 	layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE));
-    }// </editor-fold>//GEN-END:initComponents
+    }
+// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
