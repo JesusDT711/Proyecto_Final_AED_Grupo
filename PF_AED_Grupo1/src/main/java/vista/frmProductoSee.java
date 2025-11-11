@@ -10,10 +10,7 @@ import modelo.cProducto;
  * @author adria
  */
 public class frmProductoSee extends javax.swing.JFrame {
-    
-    private cArreglo_Producto arregloProductos = frmGeneral.oArregloProd;
-    
-    
+
     public frmProductoSee() {
         initComponents();
     }
@@ -115,7 +112,7 @@ public class frmProductoSee extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Complete el campo 🐒");
         }else{
             String codigo = txtCod.getText();
-            cProducto pro = arregloProductos.buscar(codigo);
+            cProducto pro = frmGeneral.oArregloProd.buscar(codigo);
             if(pro == null){
                 txtaProducto.setText("Producto no Encontrado.");
             }else{

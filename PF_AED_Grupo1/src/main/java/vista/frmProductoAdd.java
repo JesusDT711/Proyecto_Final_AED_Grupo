@@ -11,17 +11,17 @@ import controlador.cArreglo_Producto;
  */
 public class frmProductoAdd extends javax.swing.JFrame {
 
-    private cProducto producto;
-    private cArreglo_Producto arregloProductos = frmGeneral.oArregloProd;
-    
+    private cProducto producto;    
     
     public frmProductoAdd() {
         initComponents();
+        setLocationRelativeTo(null);
         this.producto=null;  
     }
     
     public frmProductoAdd(cProducto p){
         initComponents();
+        setLocationRelativeTo(null);
         this.producto=p;
         cargarDatos();
     }
@@ -149,7 +149,7 @@ public class frmProductoAdd extends javax.swing.JFrame {
                 this.dispose();
             }else {  
                 cProducto nuevoP = new cProducto(nombre,precio,cantidad);
-                arregloProductos.agregar(nuevoP);
+                frmGeneral.oArregloProd.agregar(nuevoP);
                 JOptionPane.showMessageDialog(this, "Producto añadido correctamente");
             
                 btnLimpia.setEnabled(true);

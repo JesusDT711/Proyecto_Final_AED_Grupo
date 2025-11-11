@@ -87,8 +87,10 @@ public class cArreglo_Trabajador {
     public void llenarComboTrabajadores(JComboBox combo){
         combo.removeAllItems();
         combo.addItem("Elegir");
-        for(cTrabajador p:arreglo){
-            combo.addItem(p.getNombre());
+        for(cTrabajador t:arreglo){
+            if(t != null){
+               combo.addItem(t.getCodigo()); 
+            } 
         }
     }
     

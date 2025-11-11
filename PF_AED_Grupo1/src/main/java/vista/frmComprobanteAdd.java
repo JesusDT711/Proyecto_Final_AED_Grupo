@@ -1,10 +1,6 @@
 
 package vista;
 
-import controlador.cArreglo_Producto;
-import controlador.cArreglo_Trabajador;
-import controlador.cLE_Comprobante;
-import controlador.cLE_Cliente;
 import modelo.cBoleta;
 import modelo.cComprobante;
 import modelo.cFactura;
@@ -15,22 +11,19 @@ import modelo.cFactura;
  */
 public class frmComprobanteAdd extends javax.swing.JFrame {
             
-    private cComprobante comprobante;
-    private cArreglo_Producto arregloProductos = frmGeneral.oArregloProd;
-    private cLE_Cliente listaClientes = frmGeneral.oLECliente;
-    private cLE_Comprobante listaComprobante = frmGeneral.oLEComprobante;
-    private cArreglo_Trabajador arregloTrabajadores = frmGeneral.oArregloTrab;
-    
+    private cComprobante comprobante;    
     
     public frmComprobanteAdd() {
         initComponents();
-        this.comprobante= null;
+        setLocationRelativeTo(null);
+        this.comprobante=null;
         llenarComboClientes();
         llenarComboTrabajador();
         llenarComboProductos();
     }
     public frmComprobanteAdd(cComprobante compro){
         initComponents();
+        setLocationRelativeTo(null);
         this.comprobante = compro;
         llenarComboClientes();
         llenarComboTrabajador();
@@ -40,18 +33,36 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
 
     //LLENADO Y SELECCIONADO DE ITEMS DE LOS COMBOBOX
     private void llenarComboClientes(){
-        listaClientes.llenarComboClientes(cbCliente);
+        cbCliente.removeAllItems();
+        cbCliente.addItem("Elegir");
+        if(frmGeneral.oLECliente != null){
+            frmGeneral.oLECliente.llenarComboClientes(cbCliente);
+        }
+        seleccionaCliente(comprobante);
     }
     
     private void llenarComboTrabajador(){
-        arregloTrabajadores.llenarComboTrabajadores(cbVendedor);
+        cbVendedor.removeAllItems();
+        cbVendedor.addItem("Elegir");
+        if(frmGeneral.oArregloTrab != null){
+            System.out.println("Lista de trabajadores encontrada");
+            frmGeneral.oArregloTrab.llenarComboTrabajadores(cbVendedor);
+        }
+        seleccionaTrabajador(comprobante);
+        System.out.println("Combo TRABAJADOR listo.");
     }
     
     private void llenarComboProductos(){
-        arregloProductos.llenarComboProductos(cbCliente);
+        cbNomP.removeAllItems();
+        cbNomP.addItem("Elegir");
+        if(frmGeneral.oArregloProd != null){
+            System.out.println("Lista de productos encontrada");
+            frmGeneral.oArregloProd.llenarComboProductos(cbNomP);
+        } 
+        System.out.println("Combo PRODUCTOS listo.");
     }
     
-    private void seleccionaCliente(){
+    private void seleccionaCliente(cComprobante comprobante){
         if(comprobante != null){
             String cod_cli = comprobante.getCliente();
             for(int i=0; i<cbCliente.getItemCount(); i++){
@@ -63,7 +74,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         }
     }
     
-    private void seleccionaTrabajador(){
+    private void seleccionaTrabajador(cComprobante comprobante){
         if(comprobante != null){
             String cod_trab = comprobante.getVendedor();
             for(int i=0; i<cbVendedor.getItemCount(); i++){
@@ -75,7 +86,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         }
     }
     
-    //CARGA DE DATSO EXTRAÍDOS DE LA TABLALE
+    //CARGA DE DATOS EXTRAÍDOS DE LA TABLACOM
     private void cargarDatos(){
         if(comprobante instanceof cBoleta){
             rbBoleta.setSelected(true);
@@ -83,9 +94,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         if(comprobante instanceof cFactura){
             rbFactura.setSelected(true);
         }
-        dcFechaEmisionCo.setDate(comprobante.getFecha());
-        seleccionaCliente();
-        seleccionaTrabajador();        
+        dcFechaEmisionCo.setDate(comprobante.getFecha());            
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -10,8 +10,6 @@ import modelo.cTrabajador;
  * @author adria
  */
 public class frmTrabajadoresSee extends javax.swing.JFrame {
-
-    private cArreglo_Trabajador arregloTrabajadores = frmGeneral.oArregloTrab;
     
     public frmTrabajadoresSee() {
         initComponents();
@@ -109,7 +107,7 @@ public class frmTrabajadoresSee extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Complete el campo");
         }else{
             String codigo = txtCodT.getText();
-            cTrabajador trabajador = arregloTrabajadores.buscar(codigo);
+            cTrabajador trabajador = frmGeneral.oArregloTrab.buscar(codigo);
             if(trabajador==null){
                 txtaTrabajador.setText("Cliente no Encontrado.");
             }else{

@@ -12,9 +12,7 @@ import controlador.cArreglo_Trabajador;
  */
 public class frmTrabajadoresAdd extends javax.swing.JFrame {
 
-    cTrabajador trabajador;
-    cArreglo_Trabajador arregloTrabajadores = frmGeneral.oArregloTrab;
-    
+    cTrabajador trabajador;    
     
     public frmTrabajadoresAdd() {
         initComponents();
@@ -177,7 +175,7 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
                 this.dispose();
             }else{
                 cTrabajador nuevoTrab=new cTrabajador(nombre, fecha, tipo);
-                arregloTrabajadores.agregar(nuevoTrab);
+                frmGeneral.oArregloTrab.agregar(nuevoTrab);
                 JOptionPane.showMessageDialog(this, "Trabajador registrado correctamente.");
             }
             btnAddT.setEnabled(false);

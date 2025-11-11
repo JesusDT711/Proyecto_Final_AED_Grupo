@@ -32,6 +32,7 @@ public class frmGeneral extends javax.swing.JFrame {
 
     public frmGeneral() {
         initComponents();
+        setLocationRelativeTo(null);
         cargarProductosBase();
         cargarComprobantesBase();
         cargarClientesBase();
@@ -294,6 +295,7 @@ public class frmGeneral extends javax.swing.JFrame {
         rbBol = new javax.swing.JRadioButton();
         rbFac = new javax.swing.JRadioButton();
         rbTodo = new javax.swing.JRadioButton();
+        btnRecuperaCom = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaCli = new javax.swing.JTable();
@@ -381,7 +383,7 @@ public class frmGeneral extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(62, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIngresaPro)
                     .addComponent(btnActualizaPro)
@@ -487,6 +489,13 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnRecuperaCom.setText("Recuperar Eliminado");
+        btnRecuperaCom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecuperaComActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -509,7 +518,10 @@ public class frmGeneral extends javax.swing.JFrame {
                         .addGap(17, 17, 17))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(panCompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(227, 227, 227))))
+                        .addGap(227, 227, 227))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnRecuperaCom)
+                        .addGap(270, 270, 270))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -524,7 +536,9 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addComponent(panCompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnRecuperaCom)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Comprobantes", jPanel2);
@@ -727,7 +741,7 @@ public class frmGeneral extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(62, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIngresaTrab)
                     .addComponent(btnActualizaTrab)
@@ -773,7 +787,8 @@ public class frmGeneral extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(btnIntegrantes))
                 .addGap(12, 12, 12)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -783,6 +798,7 @@ public class frmGeneral extends javax.swing.JFrame {
     private void btnIngresaProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaProActionPerformed
         //ABRE CON EL CONSTRUCTOR PARA AÑADIR 
         frmProductoAdd ventana = new frmProductoAdd();
+        refrescarTablaProd(ventana);
         ventana.setVisible(true);
     }//GEN-LAST:event_btnIngresaProActionPerformed
 
@@ -829,6 +845,7 @@ public class frmGeneral extends javax.swing.JFrame {
     //BOTONES DE LA PESTAÑA COMPROBANTES
     private void btnIngresaComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaComActionPerformed
         frmComprobanteAdd ventana = new frmComprobanteAdd();
+        refrescarTablaCompro(ventana);
         ventana.setVisible(true);
     }//GEN-LAST:event_btnIngresaComActionPerformed
 
@@ -836,8 +853,8 @@ public class frmGeneral extends javax.swing.JFrame {
         int fila = tablaCompro.getSelectedRow();
         String codigo = String.valueOf(tablaCompro.getValueAt(fila, 0));
         cComprobante comprobante = oLEComprobante.busqueda(codigo);
+        
         frmComprobanteAdd ventana = new frmComprobanteAdd(comprobante);
-
         refrescarTablaCompro(ventana);
         ventana.setVisible(true);
     }//GEN-LAST:event_btnActualizaComActionPerformed
@@ -871,6 +888,7 @@ public class frmGeneral extends javax.swing.JFrame {
     //BOTONES DE LA PESTAÑA CLIENTES
     private void btnIngresaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaCliActionPerformed
         frmClienteAdd ventana = new frmClienteAdd();
+        refrescarTablaCli(ventana);
         ventana.setVisible(true);
     }//GEN-LAST:event_btnIngresaCliActionPerformed
 
@@ -891,7 +909,7 @@ public class frmGeneral extends javax.swing.JFrame {
         
         int opcion = JOptionPane.showConfirmDialog(
                 this,
-                "¿Está seguro de eliminar al cliente?",
+                "¿Está seguro de eliminar este cliente?",
                 "Confirmar eliminación",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.WARNING_MESSAGE
@@ -902,7 +920,6 @@ public class frmGeneral extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente");
             mostrarClientes(tablaCli);
         }
-
     }//GEN-LAST:event_btnBorraCliActionPerformed
 
     private void btnConsultaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaCliActionPerformed
@@ -936,6 +953,8 @@ public class frmGeneral extends javax.swing.JFrame {
         mostrarComprobantes(tablaCompro);
     }//GEN-LAST:event_rbTodoActionPerformed
 
+    
+    //BOTONES DE LA PESTAÑA TRABAJADORES
     private void btnIngresaTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaTrabActionPerformed
         frmTrabajadoresAdd ventana = new frmTrabajadoresAdd();
         refrescarTablaTrab(ventana);
@@ -943,10 +962,8 @@ public class frmGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresaTrabActionPerformed
 
     private void btnActualizaTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaTrabActionPerformed
-        // TODO add your handling code here:
-        int fila=tablaTrab.getSelectedRow();
-        String codigo=tablaTrab.getValueAt(fila, 0).toString();
-        cTrabajador trabajador=oArregloTrab.buscar(codigo);
+        int fila = tablaTrab.getSelectedRow();
+        cTrabajador trabajador=oArregloTrab.obtener(fila);
         
         frmTrabajadoresAdd ventana = new frmTrabajadoresAdd(trabajador);
         refrescarTablaTrab(ventana);
@@ -954,14 +971,34 @@ public class frmGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizaTrabActionPerformed
 
     private void btnBorraTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorraTrabActionPerformed
-        // TODO add your handling code here:
+        int fila = tablaTrab.getSelectedRow();
+        cTrabajador trabajador=oArregloTrab.obtener(fila);
         
+        int opcion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Está seguro de eliminar este trabajador?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE
+        );
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            oArregloTrab.eliminar(trabajador.getCodigo());
+            JOptionPane.showMessageDialog(this, "Trabajador eliminado correctamente");
+            mostrarClientes(tablaCli);
+        }
     }//GEN-LAST:event_btnBorraTrabActionPerformed
 
     private void btnConsultaTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaTrabActionPerformed
         frmTrabajadoresSee ventana=new frmTrabajadoresSee();
         ventana.setVisible(true);
     }//GEN-LAST:event_btnConsultaTrabActionPerformed
+
+    
+    //FUNCIONALIDAD DE CPILA PARA RECUPERAR COMPROBANTES
+    private void btnRecuperaComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecuperaComActionPerformed
+        
+    }//GEN-LAST:event_btnRecuperaComActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1002,6 +1039,7 @@ public class frmGeneral extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresaPro;
     private javax.swing.JButton btnIngresaTrab;
     private javax.swing.JButton btnIntegrantes;
+    private javax.swing.JButton btnRecuperaCom;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;

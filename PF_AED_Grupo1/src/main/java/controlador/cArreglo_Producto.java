@@ -111,7 +111,9 @@ public class cArreglo_Producto {
         combo.removeAllItems();
         combo.addItem("Elegir");
         for(cProducto p:productos){
-            combo.addItem(p.getDescripcion());
+            if(p!=null){
+                combo.addItem(p.getDescripcion());
+            }  
         }
     }
     

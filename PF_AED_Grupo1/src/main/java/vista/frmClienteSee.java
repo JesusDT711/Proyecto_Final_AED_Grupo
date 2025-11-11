@@ -11,9 +11,6 @@ import modelo.cCliente;
  */
 public class frmClienteSee extends javax.swing.JFrame {
 
-    private cLE_Cliente listaClientes = frmGeneral.oLECliente;
-    
-    
     public frmClienteSee() {
         initComponents();
     }
@@ -108,7 +105,7 @@ public class frmClienteSee extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Complete el campo");
         }else{
             String codigo = txtCodCli.getText();
-            cCliente cliente = listaClientes.busqueda(codigo);
+            cCliente cliente = frmGeneral.oLECliente.busqueda(codigo);
             if(cliente==null){
                 txtaCliente.setText("Cliente no Encontrado.");
             }else{

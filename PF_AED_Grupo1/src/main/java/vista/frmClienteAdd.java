@@ -13,9 +13,7 @@ import java.util.Date;
 public class frmClienteAdd extends javax.swing.JFrame {
 
     private cCliente cliente;
-    private cLE_Cliente listaClientes = frmGeneral.oLECliente;
     private int tipo;
-
     
     public frmClienteAdd() {
         initComponents();
@@ -272,7 +270,7 @@ public class frmClienteAdd extends javax.swing.JFrame {
                 this.dispose();
             }else {  
                 cCliente nuevoCli = new cCliente(rSocial,telf,docIdentifi,fecha_compra,tipo,contacto);
-                listaClientes.insertarxFinal(nuevoCli);
+                frmGeneral.oLECliente.insertarxFinal(nuevoCli);
                 JOptionPane.showMessageDialog(this, "Cliente añadido correctamente");
             
                 btnLimpiarC.setEnabled(true);

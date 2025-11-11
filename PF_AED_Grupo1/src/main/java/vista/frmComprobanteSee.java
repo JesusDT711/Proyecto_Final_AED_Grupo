@@ -14,8 +14,6 @@ import modelo.cDetalle_Comprobante;
  */
 public class frmComprobanteSee extends javax.swing.JFrame {
 
-    private cLE_Comprobante listaComprobantes = frmGeneral.oLEComprobante;
-    
     public frmComprobanteSee() {
         initComponents();
     }
@@ -109,7 +107,7 @@ public class frmComprobanteSee extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Complete el campo");
         }else{
             String codigo = txtCodCo.getText();
-            cComprobante compro = listaComprobantes.busqueda(codigo);
+            cComprobante compro = frmGeneral.oLEComprobante.busqueda(codigo);
             if(compro==null){
                 txtaComprobante.setText("Comprobante no Encontrado.");
             }else{
