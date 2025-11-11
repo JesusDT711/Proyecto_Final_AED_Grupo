@@ -1,6 +1,7 @@
 
 package controlador;
 
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.cTrabajador;
@@ -81,6 +82,14 @@ public class cArreglo_Trabajador {
         }
 
         return exito;
+    }
+    
+    public void llenarComboTrabajadores(JComboBox combo){
+        combo.removeAllItems();
+        combo.addItem("Elegir");
+        for(cTrabajador p:arreglo){
+            combo.addItem(p.getNombre());
+        }
     }
     
     /*MODIFICAR EL MÉTODO PARA REGISTRAR LAS VENTAS QUE REALIZAN LOS TRABAJADORES

@@ -2,6 +2,7 @@
 package vista;
 
 import controlador.cArreglo_Producto;
+import controlador.cArreglo_Trabajador;
 import controlador.cLE_Comprobante;
 import controlador.cLE_Cliente;
 import modelo.cBoleta;
@@ -18,6 +19,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
     private cArreglo_Producto arregloProductos = frmGeneral.oArregloProd;
     private cLE_Cliente listaClientes = frmGeneral.oLECliente;
     private cLE_Comprobante listaComprobante = frmGeneral.oLEComprobante;
+    private cArreglo_Trabajador arregloTrabajadores = frmGeneral.oArregloTrab;
     
     
     public frmComprobanteAdd() {
@@ -42,7 +44,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
     }
     
     private void llenarComboTrabajador(){
-        
+        arregloTrabajadores.llenarComboTrabajadores(cbVendedor);
     }
     
     private void llenarComboProductos(){
@@ -62,7 +64,15 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
     }
     
     private void seleccionaTrabajador(){
-        
+        if(comprobante != null){
+            String cod_trab = comprobante.getVendedor();
+            for(int i=0; i<cbVendedor.getItemCount(); i++){
+                Object item = cbVendedor.getItemAt(i);
+                if(item.toString().startsWith(cod_trab)){
+                    cbVendedor.setSelectedIndex(i);
+                }
+            }
+        }
     }
     
     //CARGA DE DATSO EXTRAÍDOS DE LA TABLALE
@@ -75,8 +85,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         }
         dcFechaEmisionCo.setDate(comprobante.getFecha());
         seleccionaCliente();
-        //FALTA COMPLETAR PARA LLAMADO DEL VENDEDOR
-                
+        seleccionaTrabajador();        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
