@@ -1,11 +1,7 @@
 
 package vista;
 
-import java.awt.Image;
-import java.net.URL;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import modelo.cUsuario;
 
@@ -19,29 +15,17 @@ public class frmLogin2 extends javax.swing.JFrame {
     
     public frmLogin2() {
         initComponents();
-        ponerImagen(labelLogo,"panel");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
 
-    
-    private void ponerImagen(JLabel label, String url){
-        try {
-            URL ruta = getClass().getResource("/"+url+".png");
-            ImageIcon imageIcon = new ImageIcon(ruta);
-            Image image = imageIcon.getImage().getScaledInstance(label.getWidth(),label.getHeight(),Image.SCALE_SMOOTH);
-            label.setIcon(new ImageIcon(image));
-        } catch (Exception e) {
-            System.out.println("No se pudo cargar la imagen: "+e.getMessage());
-        }   
-    }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panLogo = new javax.swing.JPanel();
         panLogin = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -49,10 +33,19 @@ public class frmLogin2 extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         psContraseña = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
-        labelLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout panLogoLayout = new javax.swing.GroupLayout(panLogo);
+        panLogo.setLayout(panLogoLayout);
+        panLogoLayout.setHorizontalGroup(
+            panLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 266, Short.MAX_VALUE)
+        );
+        panLogoLayout.setVerticalGroup(
+            panLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         panLogin.setBackground(new java.awt.Color(255, 255, 255));
         panLogin.setForeground(new java.awt.Color(153, 153, 153));
@@ -89,28 +82,30 @@ public class frmLogin2 extends javax.swing.JFrame {
         panLoginLayout.setHorizontalGroup(
             panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panLoginLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
                 .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(psContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
                             .addGroup(panLoginLayout.createSequentialGroup()
-                                .addGap(71, 71, 71)
+                                .addGap(54, 54, 54)
+                                .addGroup(panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)))
+                            .addGroup(panLoginLayout.createSequentialGroup()
+                                .addGap(125, 125, 125)
                                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(panLoginLayout.createSequentialGroup()
-                        .addGap(146, 146, 146)
+                        .addGap(200, 200, 200)
                         .addComponent(btnIngresar))
                     .addGroup(panLoginLayout.createSequentialGroup()
-                        .addGap(96, 96, 96)
+                        .addGap(150, 150, 150)
                         .addComponent(jLabel1)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         panLoginLayout.setVerticalGroup(
             panLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panLoginLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
+                .addGap(42, 42, 42)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
@@ -122,7 +117,7 @@ public class frmLogin2 extends javax.swing.JFrame {
                 .addComponent(psContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(btnIngresar)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,14 +125,14 @@ public class frmLogin2 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -200,8 +195,8 @@ public class frmLogin2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel labelLogo;
     private javax.swing.JPanel panLogin;
+    private javax.swing.JPanel panLogo;
     private javax.swing.JPasswordField psContraseña;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
