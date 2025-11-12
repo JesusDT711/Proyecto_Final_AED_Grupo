@@ -2,6 +2,7 @@
 package vista;
 
 import controlador.cLE_Detalle;
+import controlador.cNodo_LE_Detalle;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.cBoleta;
@@ -9,6 +10,7 @@ import modelo.cComprobante;
 import modelo.cDetalle_Comprobante;
 import modelo.cFactura;
 import modelo.cProducto;
+import org.w3c.dom.CDATASection;
 
 /**
  *
@@ -333,8 +335,155 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     //FUNCIONALIDADES DE LOS BOTONES
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        if(!rbBoleta.isSelected() && !rbFactura.isSelected()
+                || dcFechaEmisionCo.getDate()==null
+                || cbCliente.getSelectedIndex()==0
+                || cbVendedor.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this, "Primero complete los campos previos");
+        }else{
+            Date fecha = dcFechaEmisionCo.getDate();
+            String cod_Cli = cbCliente.getSelectedItem().toString();
+            String cod_Ven = cbVendedor.getSelectedItem().toString();
+            if(comprobante==null){
+                if(rbBoleta.isSelected()){
+                    boleta = new cBoleta(fecha, cod_Cli, cod_Ven);
+                }else if(rbFactura.isSelected()){
+                    factura = new cFactura(fecha, cod_Cli, cod_Ven);
+                }
+            }
+            cbNomP.setEnabled(true);
+            txtCantidadP.setEnabled(true);
+            cbNomP.setSelectedIndex(0);
+            txtCantidadP.setText("");
+            btnAgregar.setEnabled(true);
+            btnFinaliza.setEnabled(true);
+            btnLimpiarCo.setEnabled(true);
+            btnIniciar.setEnabled(false);
+            rbBoleta.setEnabled(false);
+            rbFactura.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnIniciarActionPerformed
+    
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        if(boleta==null && factura==null){
+            JOptionPane.showMessageDialog(this,"Primero inicie un comprobante");
+        }else{
+            if(cbNomP.getSelectedIndex()==0 || txtCantidadP.getText().trim().isEmpty()){
+                JOptionPane.showMessageDialog(this, "Escoja el producto o ingrese la cantidad primero");
+            }else{
+                if(rbBoleta.isSelected()){
+                    String cod_Com = (boleta!=null) ? boleta.getCodigo() : comprobante.getCodigo();
+                    int indProd = cbNomP.getSelectedIndex()-1;
+                    if(indProd>=0){
+                        cProducto producto = frmGeneral.oArregloProd.obtener(indProd);
+                        String cod_Pro = producto.getCodigo();
+                        double cod_Precio = producto.getPrecio();
+                        int cantidad = Integer.parseInt(txtCantidadP.getText());
+                        cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
+                        if(boleta!=null){
+                            boleta.setDetalle(detalle);
+                        }else{
+                            comprobante.setDetalle(detalle);
+                        }                        
+                    }
+                }else if(rbFactura.isSelected()){
+                    String cod_Com = (factura!=null) ? factura.getCodigo() : comprobante.getCodigo();
+                    int indProd = cbNomP.getSelectedIndex()-1;
+                    if(indProd>=0){
+                        cProducto producto = frmGeneral.oArregloProd.obtener(indProd);
+                        String cod_Pro = producto.getCodigo();
+                        double cod_Precio = producto.getPrecio();
+                        int cantidad = Integer.parseInt(txtCantidadP.getText());
+                        cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
+                        if(factura!=null){
+                            factura.setDetalle(detalle);
+                        }else{
+                            comprobante.setDetalle(detalle);
+                        } 
+                    } 
+                }
+            }   
+        }  
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+
+    private void btnFinalizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizaActionPerformed
+        if(boleta==null && factura==null){
+            JOptionPane.showMessageDialog(this,"Primero inicie un comprobante");
+        }else{
+            if(rbBoleta.isSelected()){
+            cLE_Detalle det = (boleta!=null) ? boleta.getDetalle() : comprobante.getDetalle();
+                if(det==null){
+                JOptionPane.showMessageDialog(this, "Primero debe ingresar un producto");
+                }else{
+                    cbNomP.setEnabled(false);
+                    txtCantidadP.setEnabled(false);
+                    btnAgregar.setEnabled(false);
+                    btnFinaliza.setEnabled(false);
+                }
+            }else if(rbFactura.isSelected()){
+                cLE_Detalle det = (factura!=null) ? factura.getDetalle() : comprobante.getDetalle();
+                if(det==null){
+                    JOptionPane.showMessageDialog(this, "Primero debe ingresar un producto");
+                }else{
+                    cbNomP.setEnabled(false);
+                    txtCantidadP.setEnabled(false);
+                    btnAgregar.setEnabled(false);
+                    btnFinaliza.setEnabled(false);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnFinalizaActionPerformed
+
+    
+    private void btnEmitirComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmitirComActionPerformed
+        if(boleta!=null || factura!=null){
+            cLE_Detalle detB = boleta.getDetalle();
+            cLE_Detalle detF = factura.getDetalle();
+            if((!rbBoleta.isSelected() && !rbFactura.isSelected())
+                    || dcFechaEmisionCo.getDate()==null
+                    || cbCliente.getSelectedIndex()==0
+                    || cbVendedor.getSelectedIndex()==0
+                    || (detB==null && detF==null)){
+                JOptionPane.showMessageDialog(this, "Complete todos los campos");
+            }else{
+                if(comprobante!=null){
+                    comprobante.setFecha(dcFechaEmisionCo.getDate());
+                    comprobante.setCliente(cbCliente.getSelectedItem().toString());
+                    comprobante.setVendedor(cbVendedor.getSelectedItem().toString());
+                    
+                    if(rbBoleta.isSelected() && boleta!=null && boleta.getDetalle()!=null){
+                        cLE_Detalle detBoleta = boleta.getDetalle();
+                        cNodo_LE_Detalle p = detBoleta.getInicio();
+                        while(p!=null){
+                            comprobante.setDetalle(p.getValor());
+                            p = p.getSgte();
+                        }
+                    }else if(rbFactura.isSelected() && factura!=null && factura.getDetalle()!=null){
+                        cLE_Detalle detFactura = factura.getDetalle();
+                        cNodo_LE_Detalle p = detFactura.getInicio();
+                        while(p!=null){
+                            comprobante.setDetalle(p.getValor());
+                            p = p.getSgte();
+                        }
+                    }
+                    JOptionPane.showMessageDialog(this,"Comprobante actualizado correctamente");
+                }else{
+                    if(rbBoleta.isSelected()){
+                        frmGeneral.oLEComprobante.insertarxFinal(boleta);
+                    }else if(rbFactura.isSelected()){
+                        frmGeneral.oLEComprobante.insertarxFinal(factura);
+                    }
+                }
+            }
+        }        
+    }//GEN-LAST:event_btnEmitirComActionPerformed
+
+    
     private void btnLimpiarCoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCoActionPerformed
         buttonGroup1.clearSelection();
         rbBoleta.setEnabled(true);
@@ -350,119 +499,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         btnIniciar.setEnabled(true);
     }//GEN-LAST:event_btnLimpiarCoActionPerformed
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if(boleta==null && factura==null){
-            JOptionPane.showMessageDialog(this,"Primero inicie un comprobante");
-        }else{
-            if(cbNomP.getSelectedIndex()==0 || txtCantidadP.getText().trim().isEmpty()){
-                JOptionPane.showMessageDialog(this, "Escoja el producto o ingrese la cantidad primero");
-            }else{
-                if(rbBoleta.isSelected()){
-                    String cod_Com = boleta.getCodigo();
-                    int indProd = cbNomP.getSelectedIndex()-1;
-                    if(indProd>=0){
-                        cProducto producto = frmGeneral.oArregloProd.obtener(indProd);
-                        String cod_Pro = producto.getCodigo();
-                        double cod_Precio = producto.getPrecio();
-                        int cantidad = Integer.parseInt(txtCantidadP.getText());
-                        cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
-                        boleta.setDetalle(detalle);
-                    }
-                }else if(rbFactura.isSelected()){
-                    String cod_Com = factura.getCodigo();
-                    int indProd = cbNomP.getSelectedIndex()-1;
-                    if(indProd>=0){
-                        cProducto producto = frmGeneral.oArregloProd.obtener(indProd);
-                        String cod_Pro = producto.getCodigo();
-                        double cod_Precio = producto.getPrecio();
-                        int cantidad = Integer.parseInt(txtCantidadP.getText());
-                        cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
-                        factura.setDetalle(detalle);
-                    } 
-                }
-            }   
-        }  
-    }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void btnFinalizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizaActionPerformed
-        if(boleta==null && factura==null){
-            JOptionPane.showMessageDialog(this,"Primero inicie un comprobante");
-        }else{
-            if(rbBoleta.isSelected()){
-            cLE_Detalle det = boleta.getDetalle();
-            if(det==null){
-               JOptionPane.showMessageDialog(this, "Primero debe ingresar un producto");
-            }else{
-                cbNomP.setEnabled(false);
-                txtCantidadP.setEnabled(false);
-                btnAgregar.setEnabled(false);
-                btnFinaliza.setEnabled(false);
-            }
-            }else if(rbFactura.isSelected()){
-                cLE_Detalle det = factura.getDetalle();
-                if(det==null){
-                    JOptionPane.showMessageDialog(this, "Primero debe ingresar un producto");
-                }else{
-                    cbNomP.setEnabled(false);
-                    txtCantidadP.setEnabled(false);
-                    btnAgregar.setEnabled(false);
-                    btnFinaliza.setEnabled(false);
-                }
-            }
-        }
-    }//GEN-LAST:event_btnFinalizaActionPerformed
-
-    private void btnEmitirComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmitirComActionPerformed
-        if(boleta!=null || factura!=null){
-            cLE_Detalle detB = boleta.getDetalle();
-            cLE_Detalle detF = factura.getDetalle();
-            if((!rbBoleta.isSelected() && !rbFactura.isSelected())
-                    || dcFechaEmisionCo.getDate()==null
-                    || cbCliente.getSelectedIndex()==0
-                    || cbVendedor.getSelectedIndex()==0
-                    || (detB==null && detF==null)){
-                JOptionPane.showMessageDialog(this, "Complete todos los campos");
-            }else{
-                if(rbBoleta.isSelected()){
-                    frmGeneral.oLEComprobante.insertarxFinal(boleta);
-                }else if(rbFactura.isSelected()){
-                    frmGeneral.oLEComprobante.insertarxFinal(factura);
-                }
-            }
-        }        
-    }//GEN-LAST:event_btnEmitirComActionPerformed
-
-    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        if(!rbBoleta.isSelected() && !rbFactura.isSelected()
-                || dcFechaEmisionCo.getDate()==null
-                || cbCliente.getSelectedIndex()==0
-                || cbVendedor.getSelectedIndex()==0){
-            JOptionPane.showMessageDialog(this, "Primero complete los campos previos");
-        }else{
-            Date fecha = dcFechaEmisionCo.getDate();
-            String cod_Cli = cbCliente.getSelectedItem().toString();
-            String cod_Ven = cbVendedor.getSelectedItem().toString();
-            if(rbBoleta.isSelected()){
-                boleta = new cBoleta(fecha, cod_Cli, cod_Ven);
-            }else if(rbFactura.isSelected()){
-                factura = new cFactura(fecha, cod_Cli, cod_Ven);
-            }
-            cbNomP.setEnabled(true);
-            txtCantidadP.setEnabled(true);
-            cbNomP.setSelectedIndex(0);
-            txtCantidadP.setText("");
-            btnAgregar.setEnabled(true);
-            btnFinaliza.setEnabled(true);
-            btnLimpiarCo.setEnabled(true);
-            btnIniciar.setEnabled(false);
-            rbBoleta.setEnabled(false);
-            rbFactura.setEnabled(false);
-        }
-    }//GEN-LAST:event_btnIniciarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
