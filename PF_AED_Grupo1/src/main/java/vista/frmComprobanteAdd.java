@@ -1,6 +1,7 @@
 
 package vista;
 
+import controlador.cLE_Detalle;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.cBoleta;
@@ -15,7 +16,9 @@ import modelo.cProducto;
  */
 public class frmComprobanteAdd extends javax.swing.JFrame {
             
-    private cComprobante comprobante;    
+    private cComprobante comprobante; 
+    private cBoleta boleta;
+    private cFactura factura;
     
     public frmComprobanteAdd() {
         initComponents();
@@ -107,7 +110,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cbVendedor = new javax.swing.JComboBox<>();
-        btnAddCo = new javax.swing.JButton();
+        btnEmitirCom = new javax.swing.JButton();
         btnLimpiarCo = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         dcFechaEmisionCo = new com.toedter.calendar.JDateChooser();
@@ -116,8 +119,9 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnFinaliza = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
-        txtCanp = new javax.swing.JTextField();
+        txtCantidadP = new javax.swing.JTextField();
         cbNomP = new javax.swing.JComboBox<>();
+        btnIniciar = new javax.swing.JButton();
         cbCliente = new javax.swing.JComboBox<>();
 
         jScrollPane1.setViewportView(jEditorPane1);
@@ -167,10 +171,10 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
 
         cbVendedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir" }));
 
-        btnAddCo.setText("Emitir");
-        btnAddCo.addActionListener(new java.awt.event.ActionListener() {
+        btnEmitirCom.setText("Emitir");
+        btnEmitirCom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddCoActionPerformed(evt);
+                btnEmitirComActionPerformed(evt);
             }
         });
 
@@ -192,6 +196,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         jLabel6.setText("CANTIDAD");
 
         btnFinaliza.setText("Finalizar");
+        btnFinaliza.setEnabled(false);
         btnFinaliza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFinalizaActionPerformed(evt);
@@ -199,13 +204,24 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         });
 
         btnAgregar.setText("Agregar");
+        btnAgregar.setEnabled(false);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
             }
         });
 
+        txtCantidadP.setEnabled(false);
+
         cbNomP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir" }));
+        cbNomP.setEnabled(false);
+
+        btnIniciar.setText("Iniciar");
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panAddProductLayout = new javax.swing.GroupLayout(panAddProduct);
         panAddProduct.setLayout(panAddProductLayout);
@@ -215,12 +231,13 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(btnIniciar))
                 .addGap(51, 51, 51)
                 .addGroup(panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cbNomP, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panAddProductLayout.createSequentialGroup()
-                        .addComponent(txtCanp, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCantidadP, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panAddProductLayout.createSequentialGroup()
                         .addComponent(btnAgregar)
@@ -237,12 +254,13 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                     .addComponent(cbNomP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCanp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCantidadP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(panAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
-                    .addComponent(btnFinaliza))
+                    .addComponent(btnFinaliza)
+                    .addComponent(btnIniciar))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -265,7 +283,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                                 .addGap(79, 79, 79)
                                 .addComponent(btnLimpiarCo)
                                 .addGap(99, 99, 99)
-                                .addComponent(btnAddCo))
+                                .addComponent(btnEmitirCom))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(117, 117, 117)
                                 .addComponent(panCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -307,7 +325,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                 .addComponent(panAddProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddCo)
+                    .addComponent(btnEmitirCom)
                     .addComponent(btnLimpiarCo))
                 .addGap(16, 16, 16))
         );
@@ -319,59 +337,128 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
     //FUNCIONALIDADES DE LOS BOTONES
     private void btnLimpiarCoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCoActionPerformed
         buttonGroup1.clearSelection();
+        rbBoleta.setEnabled(true);
+        rbFactura.setEnabled(true);
         dcFechaEmisionCo.setDate(null);
         cbCliente.setSelectedIndex(0);
         cbVendedor.setSelectedIndex(0);
         cbNomP.setSelectedIndex(0);
-        txtCanp.setText("");
+        txtCantidadP.setText("");
         
         btnLimpiarCo.setEnabled(false);
-        btnAddCo.setEnabled(true);
+        btnEmitirCom.setEnabled(true);
+        btnIniciar.setEnabled(true);
     }//GEN-LAST:event_btnLimpiarCoActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        if(boleta==null && factura==null){
+            JOptionPane.showMessageDialog(this,"Primero inicie un comprobante");
+        }else{
+            if(cbNomP.getSelectedIndex()==0 || txtCantidadP.getText().trim().isEmpty()){
+                JOptionPane.showMessageDialog(this, "Escoja el producto o ingrese la cantidad primero");
+            }else{
+                if(rbBoleta.isSelected()){
+                    String cod_Com = boleta.getCodigo();
+                    int indProd = cbNomP.getSelectedIndex()-1;
+                    if(indProd>=0){
+                        cProducto producto = frmGeneral.oArregloProd.obtener(indProd);
+                        String cod_Pro = producto.getCodigo();
+                        double cod_Precio = producto.getPrecio();
+                        int cantidad = Integer.parseInt(txtCantidadP.getText());
+                        cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
+                        boleta.setDetalle(detalle);
+                    }
+                }else if(rbFactura.isSelected()){
+                    String cod_Com = factura.getCodigo();
+                    int indProd = cbNomP.getSelectedIndex()-1;
+                    if(indProd>=0){
+                        cProducto producto = frmGeneral.oArregloProd.obtener(indProd);
+                        String cod_Pro = producto.getCodigo();
+                        double cod_Precio = producto.getPrecio();
+                        int cantidad = Integer.parseInt(txtCantidadP.getText());
+                        cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
+                        factura.setDetalle(detalle);
+                    } 
+                }
+            }   
+        }  
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnFinalizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizaActionPerformed
+        if(boleta==null && factura==null){
+            JOptionPane.showMessageDialog(this,"Primero inicie un comprobante");
+        }else{
+            if(rbBoleta.isSelected()){
+            cLE_Detalle det = boleta.getDetalle();
+            if(det==null){
+               JOptionPane.showMessageDialog(this, "Primero debe ingresar un producto");
+            }else{
+                cbNomP.setEnabled(false);
+                txtCantidadP.setEnabled(false);
+                btnAgregar.setEnabled(false);
+                btnFinaliza.setEnabled(false);
+            }
+            }else if(rbFactura.isSelected()){
+                cLE_Detalle det = factura.getDetalle();
+                if(det==null){
+                    JOptionPane.showMessageDialog(this, "Primero debe ingresar un producto");
+                }else{
+                    cbNomP.setEnabled(false);
+                    txtCantidadP.setEnabled(false);
+                    btnAgregar.setEnabled(false);
+                    btnFinaliza.setEnabled(false);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnFinalizaActionPerformed
+
+    private void btnEmitirComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmitirComActionPerformed
+        if(boleta!=null || factura!=null){
+            cLE_Detalle detB = boleta.getDetalle();
+            cLE_Detalle detF = factura.getDetalle();
+            if((!rbBoleta.isSelected() && !rbFactura.isSelected())
+                    || dcFechaEmisionCo.getDate()==null
+                    || cbCliente.getSelectedIndex()==0
+                    || cbVendedor.getSelectedIndex()==0
+                    || (detB==null && detF==null)){
+                JOptionPane.showMessageDialog(this, "Complete todos los campos");
+            }else{
+                if(rbBoleta.isSelected()){
+                    frmGeneral.oLEComprobante.insertarxFinal(boleta);
+                }else if(rbFactura.isSelected()){
+                    frmGeneral.oLEComprobante.insertarxFinal(factura);
+                }
+            }
+        }        
+    }//GEN-LAST:event_btnEmitirComActionPerformed
+
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         if(!rbBoleta.isSelected() && !rbFactura.isSelected()
                 || dcFechaEmisionCo.getDate()==null
-                || cbCliente.getSelectedIndex()==-1
-                || cbVendedor.getSelectedIndex()==-1){
+                || cbCliente.getSelectedIndex()==0
+                || cbVendedor.getSelectedIndex()==0){
             JOptionPane.showMessageDialog(this, "Primero complete los campos previos");
         }else{
             Date fecha = dcFechaEmisionCo.getDate();
             String cod_Cli = cbCliente.getSelectedItem().toString();
             String cod_Ven = cbVendedor.getSelectedItem().toString();
-            cBoleta boleta = null;
-            cFactura factura = null;
             if(rbBoleta.isSelected()){
                 boleta = new cBoleta(fecha, cod_Cli, cod_Ven);
-                String cod_Com = boleta.getCodigo();
-                int indProd = cbNomP.getSelectedIndex();
-                cProducto producto = frmGeneral.oArregloProd.obtener(indProd);
-                String cod_Pro = producto.getCodigo();
-                double cod_Precio = producto.getPrecio();
-                int cantidad = Integer.parseInt(txtCanp.getText());
-                cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
-                boleta.setDetalle(detalle);
             }else if(rbFactura.isSelected()){
                 factura = new cFactura(fecha, cod_Cli, cod_Ven);
-                String cod_Com = factura.getCodigo();
-                int prod = cbNomP.getSelectedIndex();
-                cProducto producto = frmGeneral.oArregloProd.obtener(prod);
-                String cod_Pro = producto.getCodigo();
-                double cod_Precio = producto.getPrecio();
-                int cantidad = Integer.parseInt(txtCanp.getText());
-                cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
-                factura.setDetalle(detalle);
-            }  
+            }
+            cbNomP.setEnabled(true);
+            txtCantidadP.setEnabled(true);
+            cbNomP.setSelectedIndex(0);
+            txtCantidadP.setText("");
+            btnAgregar.setEnabled(true);
+            btnFinaliza.setEnabled(true);
+            btnLimpiarCo.setEnabled(true);
+            btnIniciar.setEnabled(false);
+            rbBoleta.setEnabled(false);
+            rbFactura.setEnabled(false);
         }
-    }//GEN-LAST:event_btnAgregarActionPerformed
-
-    private void btnFinalizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizaActionPerformed
-        
-    }//GEN-LAST:event_btnFinalizaActionPerformed
-
-    private void btnAddCoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCoActionPerformed
-        
-    }//GEN-LAST:event_btnAddCoActionPerformed
+    }//GEN-LAST:event_btnIniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -409,9 +496,10 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddCo;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEmitirCom;
     private javax.swing.JButton btnFinaliza;
+    private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnLimpiarCo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbCliente;
@@ -433,6 +521,6 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
     private javax.swing.JPanel panCod;
     private javax.swing.JRadioButton rbBoleta;
     private javax.swing.JRadioButton rbFactura;
-    private javax.swing.JTextField txtCanp;
+    private javax.swing.JTextField txtCantidadP;
     // End of variables declaration//GEN-END:variables
 }
