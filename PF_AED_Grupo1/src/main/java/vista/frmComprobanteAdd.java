@@ -174,6 +174,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         cbVendedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir" }));
 
         btnEmitirCom.setText("Emitir");
+        btnEmitirCom.setEnabled(false);
         btnEmitirCom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEmitirComActionPerformed(evt);
@@ -369,7 +370,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
     
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if(boleta==null && factura==null){
+        if(boleta==null && factura==null && comprobante==null){
             JOptionPane.showMessageDialog(this,"Primero inicie un comprobante");
         }else{
             if(cbNomP.getSelectedIndex()==0 || txtCantidadP.getText().trim().isEmpty()){
@@ -388,7 +389,9 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                             boleta.setDetalle(detalle);
                         }else{
                             comprobante.setDetalle(detalle);
-                        }                        
+                        }
+                        cbNomP.setSelectedIndex(0);
+                        txtCantidadP.setText("");
                     }
                 }else if(rbFactura.isSelected()){
                     String cod_Com = (factura!=null) ? factura.getCodigo() : comprobante.getCodigo();
@@ -403,7 +406,9 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                             factura.setDetalle(detalle);
                         }else{
                             comprobante.setDetalle(detalle);
-                        } 
+                        }
+                        cbNomP.setSelectedIndex(0);
+                        txtCantidadP.setText("");
                     } 
                 }
             }   
@@ -412,14 +417,15 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
 
 
     private void btnFinalizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizaActionPerformed
-        if(boleta==null && factura==null){
+        if(boleta==null && factura==null && comprobante==null){
             JOptionPane.showMessageDialog(this,"Primero inicie un comprobante");
         }else{
             if(rbBoleta.isSelected()){
             cLE_Detalle det = (boleta!=null) ? boleta.getDetalle() : comprobante.getDetalle();
-                if(det==null){
+                if(det==null || det.getInicio()==null){
                 JOptionPane.showMessageDialog(this, "Primero debe ingresar un producto");
                 }else{
+                    btnEmitirCom.setEnabled(true);
                     cbNomP.setEnabled(false);
                     txtCantidadP.setEnabled(false);
                     btnAgregar.setEnabled(false);
@@ -427,9 +433,10 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                 }
             }else if(rbFactura.isSelected()){
                 cLE_Detalle det = (factura!=null) ? factura.getDetalle() : comprobante.getDetalle();
-                if(det==null){
+                if(det==null || det.getInicio()==null){
                     JOptionPane.showMessageDialog(this, "Primero debe ingresar un producto");
                 }else{
+                    btnEmitirCom.setEnabled(true);
                     cbNomP.setEnabled(false);
                     txtCantidadP.setEnabled(false);
                     btnAgregar.setEnabled(false);
@@ -441,14 +448,15 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
 
     
     private void btnEmitirComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmitirComActionPerformed
-        if(boleta!=null || factura!=null){
-            cLE_Detalle detB = boleta.getDetalle();
-            cLE_Detalle detF = factura.getDetalle();
+        if(boleta!=null || factura!=null || comprobante!=null){
+            cLE_Detalle detB = (boleta!=null) ? boleta.getDetalle() : null;
+            cLE_Detalle detF = (factura!=null) ? factura.getDetalle() : null;
+            cLE_Detalle detC = (comprobante!=null) ? comprobante.getDetalle() : null;
             if((!rbBoleta.isSelected() && !rbFactura.isSelected())
                     || dcFechaEmisionCo.getDate()==null
                     || cbCliente.getSelectedIndex()==0
                     || cbVendedor.getSelectedIndex()==0
-                    || (detB==null && detF==null)){
+                    || (detB==null && detF==null && detC==null)){
                 JOptionPane.showMessageDialog(this, "Complete todos los campos");
             }else{
                 if(comprobante!=null){
@@ -472,14 +480,21 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                         }
                     }
                     JOptionPane.showMessageDialog(this,"Comprobante actualizado correctamente");
+                    btnEmitirCom.setEnabled(false);
                 }else{
                     if(rbBoleta.isSelected()){
                         frmGeneral.oLEComprobante.insertarxFinal(boleta);
+                        JOptionPane.showMessageDialog(this, "Boleta emitida correctamente");
+                        btnEmitirCom.setEnabled(false);
                     }else if(rbFactura.isSelected()){
                         frmGeneral.oLEComprobante.insertarxFinal(factura);
+                        JOptionPane.showMessageDialog(this, "Factura emitida correctamente");
+                        btnEmitirCom.setEnabled(false);
                     }
                 }
             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Primero inicie o cargue un comprobante antes de emitir");
         }        
     }//GEN-LAST:event_btnEmitirComActionPerformed
 
@@ -495,7 +510,9 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
         txtCantidadP.setText("");
         
         btnLimpiarCo.setEnabled(false);
-        btnEmitirCom.setEnabled(true);
+        btnEmitirCom.setEnabled(false);
+        btnAgregar.setEnabled(false);
+        btnFinaliza.setEnabled(false);
         btnIniciar.setEnabled(true);
     }//GEN-LAST:event_btnLimpiarCoActionPerformed
 
