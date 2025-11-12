@@ -90,8 +90,8 @@ public class frmGeneral extends javax.swing.JFrame {
             System.out.println("Error al convertir una de las fechas:" + e.getMessage());
         }
 
-        cFactura f1 = new cFactura(fecha1, "C008", "V002");
-        cBoleta b1 = new cBoleta(fecha2, "C004", "V003");
+        cFactura f1 = new cFactura(fecha1, "C001", "V002");
+        cBoleta b1 = new cBoleta(fecha2, "C003", "V003");
         cFactura f2 = new cFactura(fecha3, "C002", "V001");
 
         f1.setDetalle(new cDetalle_Comprobante(f1.getCodigo(),
