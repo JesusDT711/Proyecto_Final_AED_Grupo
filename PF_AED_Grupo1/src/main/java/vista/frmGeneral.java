@@ -29,6 +29,8 @@ public class frmGeneral extends javax.swing.JFrame {
     public static cLE_Comprobante oLEComprobante = new cLE_Comprobante();
     public static cLE_Cliente oLECliente = new cLE_Cliente();
     public static cArreglo_Trabajador oArregloTrab = new cArreglo_Trabajador(100);
+    public static cCola colaDespachoAlta = new cCola(100);  
+    public static cCola colaDespachoBaja = new cCola(100);
 
     public frmGeneral() {
         initComponents();
