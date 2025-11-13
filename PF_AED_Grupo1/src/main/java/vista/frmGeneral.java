@@ -5,6 +5,7 @@ import controlador.cArreglo_Trabajador;
 import controlador.cLE_Comprobante;
 import controlador.cLE_Cliente;
 import controlador.cCola;
+import controlador.cNodo_Pila;
 import controlador.cPila;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -15,6 +16,7 @@ import modelo.cComprobante;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import javax.swing.JTextArea;
 import modelo.cAccion;
 import modelo.cDetalle_Comprobante;
 import modelo.cCliente;
@@ -33,14 +35,17 @@ public class frmGeneral extends javax.swing.JFrame {
     public static cCola oColaDespachoAlta = new cCola(100);  
     public static cCola oColaDespachoBaja = new cCola(100);
     public static cPila oPilaAcciones = new cPila();
+    public static frmGeneral instancia;
 
     public frmGeneral() {
+        instancia = this;
         initComponents();
         setLocationRelativeTo(null);
         cargarProductosBase();
         cargarComprobantesBase();
         cargarClientesBase();
         cargarTrabajadoresBase();
+        mostrarHistorial();
 
         habilitarBotonesProductos();
         habilitarBotonesComprobantes();
@@ -48,7 +53,39 @@ public class frmGeneral extends javax.swing.JFrame {
         habilitarBotonesTrabajadores();
     }
 
-    //METODO PARA CARGAR LOS OBJETOS BASE
+    //MANEJO DE HISTORIAL DE ACCIONES
+    
+    public JTextArea getTxtAcciones(){
+        return txtaAcciones;
+    }
+    
+    public static void mostrarHistorial(){
+        if(instancia != null){
+            JTextArea txta = instancia.getTxtAcciones();
+            txta.setText("");
+            cPila pilaTemp = new cPila();
+            cNodo_Pila tope = oPilaAcciones.getTope();
+            while(tope != null){
+                pilaTemp.apilar(tope.getValor());
+                tope = tope.getSgte();
+            }
+            if(pilaTemp.getTope() == null){
+                txta.append("No hay acciones registradas");
+            }else{
+                while(pilaTemp.getTope() != null){
+                    cAccion accion = pilaTemp.verTope();
+                    String des = accion.getDescripcion();
+                    String fecha = accion.fechaCadena();
+                    txta.append("Descripción: "+des);
+                    txta.append("\nFecha y hora: "+fecha);
+                    txta.append("\n======================\n");
+                    pilaTemp.desapilar();
+                }
+            }
+        }   
+    }
+    
+    //MÉTODOS PARA CARGAR LOS OBJETOS BASE
     private void mostrarProductos(JTable tablaProd) {
         oArregloProd.recorreLE(tablaProd);
     }
@@ -317,6 +354,9 @@ public class frmGeneral extends javax.swing.JFrame {
         btnActualizaTrab = new javax.swing.JButton();
         btnBorraTrab = new javax.swing.JButton();
         btnConsultaTrab = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txtaAcciones = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         btnIntegrantes = new javax.swing.JButton();
         btnDeshacer = new javax.swing.JButton();
@@ -745,6 +785,29 @@ public class frmGeneral extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Trabajadores", jPanel4);
 
+        txtaAcciones.setColumns(20);
+        txtaAcciones.setRows(5);
+        jScrollPane5.setViewportView(txtaAcciones);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(176, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(162, 162, 162))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(78, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Historial de Acciones", jPanel5);
+
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel1.setText("GESTIÓN GENERAL");
 
@@ -832,6 +895,7 @@ public class frmGeneral extends javax.swing.JFrame {
             oArregloProd.eliminar(prod.getCodigo());
             JOptionPane.showMessageDialog(this, "Producto eliminado correctamente");
             oPilaAcciones.apilar(new cAccion("Se eliminó un producto",prod));
+            frmGeneral.mostrarHistorial();
             mostrarProductos(tablaProd);
         }
     }//GEN-LAST:event_btnBorraProActionPerformed
@@ -883,6 +947,7 @@ public class frmGeneral extends javax.swing.JFrame {
             oLEComprobante.eliminaEntreNodos(compro.getCodigo());
             JOptionPane.showMessageDialog(this, "Comprobante eliminado correctamente");
             oPilaAcciones.apilar(new cAccion("Se eliminó un comprobante",compro));
+            frmGeneral.mostrarHistorial();
             mostrarComprobantes(tablaCompro);
         }
     }//GEN-LAST:event_btnBorraComActionPerformed
@@ -927,6 +992,7 @@ public class frmGeneral extends javax.swing.JFrame {
             oLECliente.eliminaEntreNodos(cliente.getCodigo());
             JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente");
             oPilaAcciones.apilar(new cAccion("Se eliminó un cliente",cliente));
+            frmGeneral.mostrarHistorial();
             mostrarClientes(tablaCli);
         }
     }//GEN-LAST:event_btnBorraCliActionPerformed
@@ -995,6 +1061,7 @@ public class frmGeneral extends javax.swing.JFrame {
             oArregloTrab.eliminar(trabajador.getCodigo());
             JOptionPane.showMessageDialog(this, "Trabajador eliminado correctamente");
             oPilaAcciones.apilar(new cAccion("Se eliminó un trabajador",trabajador));
+            frmGeneral.mostrarHistorial();
             mostrarClientes(tablaCli);
         }
     }//GEN-LAST:event_btnBorraTrabActionPerformed
@@ -1014,46 +1081,55 @@ public class frmGeneral extends javax.swing.JFrame {
                     cProducto prod = (cProducto) accion.getObjeto();
                     oArregloProd.eliminar(prod.getCodigo());
                     mostrarProductos(tablaProd);
+                    mostrarHistorial();
                 }
                 case "Emitió una boleta" -> {
                     cComprobante compB = (cComprobante) accion.getObjeto();
                     oLEComprobante.eliminaEntreNodos(compB.getCodigo());
                     mostrarComprobantes(tablaCompro);
+                    mostrarHistorial();
                 }
                 case "Emitió una factura" -> {
                     cComprobante compF = (cComprobante) accion.getObjeto();
                     oLEComprobante.eliminaEntreNodos(compF.getCodigo());
                     mostrarComprobantes(tablaCompro);
+                    mostrarHistorial();
                 }
                 case "Registró un cliente" -> {
                     cCliente cli = (cCliente) accion.getObjeto();
                     oLECliente.eliminaEntreNodos(cli.getCodigo());
                     mostrarClientes(tablaCli);
+                    mostrarHistorial();
                 }
                 case "Registró un trabajador" -> {
                     cTrabajador trab = (cTrabajador) accion.getObjeto();
                     oArregloTrab.eliminar(trab.getCodigo());
                     mostrarTrabajadores(tablaTrab);
+                    mostrarHistorial();
                 }
                 case "Se eliminó un producto" -> {
                     cProducto prodEli = (cProducto) accion.getObjeto();
                     oArregloProd.agregar(prodEli);
                     mostrarProductos(tablaProd);
+                    mostrarHistorial();
                 }
                 case "Se eliminó un comprobante" -> {
                     cComprobante compEli = (cComprobante) accion.getObjeto();
                     oLEComprobante.insertarxFinal(compEli);
                     mostrarComprobantes(tablaCompro);
+                    mostrarHistorial();
                 }
                 case "Se eliminó un cliente" -> {
                     cCliente cliEli = (cCliente) accion.getObjeto();
                     oLECliente.insertarxFinal(cliEli);
                     mostrarClientes(tablaCli);
+                    mostrarHistorial();
                 }
                 case "Se eliminó un trabajador" -> {
                     cTrabajador trabEli = (cTrabajador) accion.getObjeto();
                     oArregloTrab.agregar(trabEli);
                     mostrarTrabajadores(tablaTrab);
+                    mostrarHistorial();
                 }
             } 
         }else{
@@ -1109,10 +1185,12 @@ public class frmGeneral extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel panCliente;
     private javax.swing.JPanel panCompro;
@@ -1126,5 +1204,6 @@ public class frmGeneral extends javax.swing.JFrame {
     private javax.swing.JTable tablaCompro;
     private javax.swing.JTable tablaProd;
     private javax.swing.JTable tablaTrab;
+    private javax.swing.JTextArea txtaAcciones;
     // End of variables declaration//GEN-END:variables
 }

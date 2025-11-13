@@ -1,6 +1,7 @@
 
 package controlador;
 
+import javax.swing.JTextArea;
 import modelo.cAccion;
 /**
  *
@@ -35,5 +36,13 @@ public class cPila {
             accion = tope.getValor();
         }
         return accion;
+    }
+
+    public cPila getPila(){
+        return this;
+    }
+    
+    public cNodo_Pila getTope(){
+        return tope;
     }
 }

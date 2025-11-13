@@ -146,13 +146,13 @@ public class frmProductoAdd extends javax.swing.JFrame {
                 producto.setPrecio(precio);
                 producto.setStock(cantidad);
                 JOptionPane.showMessageDialog(this, "Producto actualizado correctamente");
-                frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un producto",producto));
                 this.dispose();
             }else {  
                 cProducto nuevoP = new cProducto(nombre,precio,cantidad);
                 frmGeneral.oArregloProd.agregar(nuevoP);
                 JOptionPane.showMessageDialog(this, "Producto añadido correctamente");
                 frmGeneral.oPilaAcciones.apilar(new cAccion("Registró un producto",nuevoP));
+                frmGeneral.mostrarHistorial();
             
                 btnLimpia.setEnabled(true);
                 btnRegistra.setEnabled(false);

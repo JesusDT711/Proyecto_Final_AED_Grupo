@@ -174,13 +174,13 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
                 trabajador.setFecha_ingreso(fecha);
                 trabajador.setSueldo(sueldo);
                 JOptionPane.showMessageDialog(this, "Trabajador actualizado correctamente.");
-                frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un trabajador",trabajador));
                 this.dispose();
             }else{
                 cTrabajador nuevoTrab=new cTrabajador(nombre, fecha, tipo);
                 frmGeneral.oArregloTrab.agregar(nuevoTrab);
                 JOptionPane.showMessageDialog(this, "Trabajador registrado correctamente.");
                 frmGeneral.oPilaAcciones.apilar(new cAccion("Registró un trabajador",nuevoTrab));
+                frmGeneral.mostrarHistorial();
             }
             btnAddT.setEnabled(false);
             btnLimpiarT.setEnabled(true);

@@ -480,18 +480,19 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                         }
                     }
                     JOptionPane.showMessageDialog(this,"Comprobante actualizado correctamente");
-                    frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un comprobante",comprobante));
                     btnEmitirCom.setEnabled(false);
                 }else{
                     if(rbBoleta.isSelected()){
                         frmGeneral.oLEComprobante.insertarxFinal(boleta);
                         JOptionPane.showMessageDialog(this, "Boleta emitida correctamente");
                         frmGeneral.oPilaAcciones.apilar(new cAccion("Emitió una boleta",boleta));
+                        frmGeneral.mostrarHistorial();
                         btnEmitirCom.setEnabled(false);
                     }else if(rbFactura.isSelected()){
                         frmGeneral.oLEComprobante.insertarxFinal(factura);
                         JOptionPane.showMessageDialog(this, "Factura emitida correctamente");
                         frmGeneral.oPilaAcciones.apilar(new cAccion("Emitió una factura",factura));
+                        frmGeneral.mostrarHistorial();
                         btnEmitirCom.setEnabled(false);
                     }
                 }
