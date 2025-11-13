@@ -169,11 +169,13 @@ public class frmTrabajadoresAdd extends javax.swing.JFrame {
             double sueldo=Double.parseDouble(txtSueldoT.getText());
         
             if (trabajador != null) {
+                frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un trabajador",trabajador));
                 trabajador.setNombre(nombre);
                 trabajador.setTipo(tipo);
                 trabajador.setFecha_ingreso(fecha);
                 trabajador.setSueldo(sueldo);
                 JOptionPane.showMessageDialog(this, "Trabajador actualizado correctamente.");
+                frmGeneral.mostrarHistorial();
                 this.dispose();
             }else{
                 cTrabajador nuevoTrab=new cTrabajador(nombre, fecha, tipo);

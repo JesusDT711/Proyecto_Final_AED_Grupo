@@ -5,6 +5,8 @@ import controlador.cArreglo_Trabajador;
 import controlador.cLE_Comprobante;
 import controlador.cLE_Cliente;
 import controlador.cCola;
+import controlador.cLE_Detalle;
+import controlador.cNodo_LE_Detalle;
 import controlador.cNodo_Pila;
 import controlador.cPila;
 import javax.swing.JOptionPane;
@@ -992,7 +994,7 @@ public class frmGeneral extends javax.swing.JFrame {
             oLECliente.eliminaEntreNodos(cliente.getCodigo());
             JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente");
             oPilaAcciones.apilar(new cAccion("Se eliminó un cliente",cliente));
-            frmGeneral.mostrarHistorial();
+            mostrarHistorial();
             mostrarClientes(tablaCli);
         }
     }//GEN-LAST:event_btnBorraCliActionPerformed
@@ -1131,9 +1133,55 @@ public class frmGeneral extends javax.swing.JFrame {
                     mostrarTrabajadores(tablaTrab);
                     mostrarHistorial();
                 }
+                case "Actualizó un producto" -> {
+                    cProducto prodPre = (cProducto) accion.getObjeto();
+                    cProducto prodAct = oArregloProd.buscar(prodPre.getCodigo());
+                    prodAct.setDescripcion(prodPre.getDescripcion());
+                    prodAct.setPrecio(prodPre.getPrecio());
+                    prodAct.setStock(prodPre.getStock());
+                    mostrarProductos(tablaProd);
+                    mostrarHistorial();
+                }
+                case "Actualizó un comprobante" -> {
+                    cComprobante compPre = (cComprobante) accion.getObjeto();
+                    cComprobante compAct = oLEComprobante.busqueda(compPre.getCodigo());
+                    compAct.setFecha(compPre.getFecha());
+                    compAct.setCliente(compPre.getCliente());
+                    compAct.setVendedor(compPre.getVendedor());
+                    cLE_Detalle detPre = compPre.getDetalle();
+                    cNodo_LE_Detalle p = detPre.getInicio();
+                    while(p!=null){
+                        compAct.setDetalle(p.getValor());
+                        p = p.getSgte();
+                    }
+                    mostrarComprobantes(tablaCompro);
+                    mostrarHistorial();
+                }
+                case "Actualizó un cliente" -> {
+                    cCliente cliPre = (cCliente) accion.getObjeto();
+                    cCliente cliAct = oLECliente.busqueda(cliPre.getCodigo());
+                    cliAct.setRsocial(cliPre.getRsocial());
+                    cliAct.setTelefono(cliPre.getTelefono());
+                    cliAct.setDocIdentifica(cliPre.getDocIdentifica());
+                    cliAct.setFecha_compra(cliPre.getFecha_compra());
+                    cliAct.setTipo(cliPre.getTipo());
+                    cliAct.setContacto(cliPre.getContacto());
+                    mostrarClientes(tablaCli);
+                    mostrarHistorial();
+                }
+                case "Actualizó un trabajador" -> {
+                    cTrabajador trabPre = (cTrabajador) accion.getObjeto();
+                    cTrabajador trabAct = oArregloTrab.buscar(trabPre.getCodigo());
+                    trabAct.setNombre(trabPre.getNombre());
+                    trabAct.setFecha_ingreso(trabPre.getFecha_ingreso());
+                    trabAct.setTipo(trabPre.getTipo());
+                    trabAct.setSueldo(trabPre.getSueldo());
+                    mostrarTrabajadores(tablaTrab);
+                    mostrarHistorial();
+                }
             } 
         }else{
-            JOptionPane.showMessageDialog(this, "No hay acciones para deshacer");
+            JOptionPane.showMessageDialog(this, "No hay acciones por deshacer");
         }
     }//GEN-LAST:event_btnDeshacerActionPerformed
 

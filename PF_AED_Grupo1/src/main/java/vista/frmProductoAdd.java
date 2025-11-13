@@ -142,10 +142,12 @@ public class frmProductoAdd extends javax.swing.JFrame {
 
             if (producto != null) {
                 // Actualizar producto existente
+                frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un producto",producto));
                 producto.setDescripcion(nombre);
                 producto.setPrecio(precio);
                 producto.setStock(cantidad);
                 JOptionPane.showMessageDialog(this, "Producto actualizado correctamente");
+                frmGeneral.mostrarHistorial();
                 this.dispose();
             }else {  
                 cProducto nuevoP = new cProducto(nombre,precio,cantidad);

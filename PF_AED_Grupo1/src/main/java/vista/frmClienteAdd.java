@@ -262,6 +262,7 @@ public class frmClienteAdd extends javax.swing.JFrame {
             }
             if (cliente != null) {
                 // Actualizar cliente existente
+                frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un cliente",cliente));
                 cliente.setRsocial(rSocial);
                 cliente.setTelefono(telf);
                 cliente.setDocIdentifica(docIdentifi);
@@ -269,6 +270,7 @@ public class frmClienteAdd extends javax.swing.JFrame {
                 cliente.setTipo(tipo);
                 cliente.setContacto(contacto);
                 JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente");
+                frmGeneral.mostrarHistorial();
                 this.dispose();
             }else {  
                 cCliente nuevoCli = new cCliente(rSocial,telf,docIdentifi,fecha_compra,tipo,contacto);

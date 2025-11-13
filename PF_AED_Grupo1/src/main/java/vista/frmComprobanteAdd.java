@@ -460,6 +460,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Complete todos los campos");
             }else{
                 if(comprobante!=null){
+                    frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un comprobante",comprobante));
                     comprobante.setFecha(dcFechaEmisionCo.getDate());
                     comprobante.setCliente(cbCliente.getSelectedItem().toString());
                     comprobante.setVendedor(cbVendedor.getSelectedItem().toString());
@@ -480,6 +481,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                         }
                     }
                     JOptionPane.showMessageDialog(this,"Comprobante actualizado correctamente");
+                    frmGeneral.mostrarHistorial();
                     btnEmitirCom.setEnabled(false);
                 }else{
                     if(rbBoleta.isSelected()){
