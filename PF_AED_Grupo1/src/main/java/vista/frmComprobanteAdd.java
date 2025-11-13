@@ -10,7 +10,7 @@ import modelo.cComprobante;
 import modelo.cDetalle_Comprobante;
 import modelo.cFactura;
 import modelo.cProducto;
-import org.w3c.dom.CDATASection;
+import modelo.cAccion;
 
 /**
  *
@@ -480,15 +480,18 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                         }
                     }
                     JOptionPane.showMessageDialog(this,"Comprobante actualizado correctamente");
+                    frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un comprobante",comprobante));
                     btnEmitirCom.setEnabled(false);
                 }else{
                     if(rbBoleta.isSelected()){
                         frmGeneral.oLEComprobante.insertarxFinal(boleta);
                         JOptionPane.showMessageDialog(this, "Boleta emitida correctamente");
+                        frmGeneral.oPilaAcciones.apilar(new cAccion("Emitió una boleta",boleta));
                         btnEmitirCom.setEnabled(false);
                     }else if(rbFactura.isSelected()){
                         frmGeneral.oLEComprobante.insertarxFinal(factura);
                         JOptionPane.showMessageDialog(this, "Factura emitida correctamente");
+                        frmGeneral.oPilaAcciones.apilar(new cAccion("Emitió una factura",factura));
                         btnEmitirCom.setEnabled(false);
                     }
                 }

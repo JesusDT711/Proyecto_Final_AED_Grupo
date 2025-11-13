@@ -13,17 +13,6 @@ import modelo.cCliente;
 public class cLE_Cliente {
     private cNodo_LE_Cliente inicio,nuevo,p,q;
     
-    public void insertarxInicio(cCliente valor){
-        nuevo = new cNodo_LE_Cliente(valor);
-        if(inicio==null){
-            inicio = nuevo;
-        }else{
-            nuevo.setSgte(inicio);
-            inicio.setAnt(nuevo);
-            inicio=nuevo;
-        }
-    }
-    
     public void insertarxFinal(cCliente valor){
         nuevo = new cNodo_LE_Cliente(valor);
         if(inicio==null){
@@ -34,75 +23,9 @@ public class cLE_Cliente {
                 p = p.getSgte();
             }
             p.setSgte(nuevo);
-            nuevo.setAnt(p);
         }
     }
-    
-    
-    public void insertaEntreNodosSgte(cCliente valor, String desde){
-        nuevo = new cNodo_LE_Cliente(valor);
-        if(inicio == null){
-            inicio = nuevo;
-        }else{
-            p=inicio;
-            while(p.getSgte() != null && !p.getValor().getCodigo().equals(desde)){
-                p = p.getSgte();
-            }
-            if(p.getValor().getCodigo().equals(desde)){
-                nuevo.setSgte(p.getSgte());
-                p.setSgte(nuevo);
-                nuevo.setAnt(p);
-                p.getSgte().setAnt(nuevo);
-            }
-        }
-    }
-    
-    public void insertaEntreNodosAnt(cCliente valor, String antes){
-        nuevo = new cNodo_LE_Cliente(valor);
-        if(inicio==null){
-            inicio = nuevo;
-        }else{
-            p=inicio; q=inicio;
-            while(p.getSgte() != null && !p.getValor().getCodigo().equals(antes)){
-                q = p;
-                p = p.getSgte();
-            }
-            if(p.getValor().getCodigo().equals(antes)){
-                nuevo.setSgte(p);
-                q.setSgte(nuevo);
-                p.setAnt(nuevo);  
-                nuevo.setAnt(q);
-            }
-        }
-    }
-    
-    public void eliminaxInicio(){
-        if(inicio != null){
-            if(inicio.getSgte()==null){
-                inicio=null;
-            }else{
-                inicio = inicio.getSgte();
-                inicio.setAnt(null);
-            } 
-        }
-    }
-    
-    public void eliminaxFinal(){
-        if(inicio != null){
-            if(inicio.getSgte()==null){
-                inicio=null;
-            }else{
-                p = inicio; q = inicio;
-                while(p.getSgte() != null){
-                    q = p;
-                    p = p.getSgte();
-                }
-                q.setSgte(null);
-                p=null;
-            }  
-        }
-    }
-    
+  
     public void eliminaEntreNodos(String valor){
         if(inicio != null){
             p = inicio; q = inicio;
@@ -112,7 +35,6 @@ public class cLE_Cliente {
             }
             if(p.getValor().getCodigo().equals(valor)){
                 q.setSgte(p.getSgte());
-                p.getSgte().setAnt(q);
             }
         }
         

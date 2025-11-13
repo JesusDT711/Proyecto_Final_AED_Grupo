@@ -2,6 +2,7 @@
 package vista;
 
 import javax.swing.JOptionPane;
+import modelo.cAccion;
 import modelo.cProducto;
 
 /**
@@ -35,7 +36,7 @@ public class frmProductoAdd extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
-        btnAdd = new javax.swing.JButton();
+        btnRegistra = new javax.swing.JButton();
         btnLimpia = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
@@ -50,10 +51,10 @@ public class frmProductoAdd extends javax.swing.JFrame {
 
         jLabel4.setText("INGRESE CANTIDAD DEL PRODUCTO:");
 
-        btnAdd.setText("Registrar");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistra.setText("Registrar");
+        btnRegistra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnRegistraActionPerformed(evt);
             }
         });
 
@@ -90,7 +91,7 @@ public class frmProductoAdd extends javax.swing.JFrame {
                         .addGap(134, 134, 134)
                         .addComponent(btnLimpia)
                         .addGap(64, 64, 64)
-                        .addComponent(btnAdd))
+                        .addComponent(btnRegistra))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(jLabel5)))
@@ -116,7 +117,7 @@ public class frmProductoAdd extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpia)
-                    .addComponent(btnAdd))
+                    .addComponent(btnRegistra))
                 .addContainerGap(140, Short.MAX_VALUE))
         );
 
@@ -131,7 +132,7 @@ public class frmProductoAdd extends javax.swing.JFrame {
     }
     
     //FUNCIONALIDADES DE LOS BOTONES
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnRegistraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistraActionPerformed
         if(txtDescripcion.getText().trim().isEmpty() || txtPrecio.getText().trim().isEmpty() || txtCantidad.getText().trim().isEmpty()){
            JOptionPane.showMessageDialog(this, "Complete todos los campos");
         }else{
@@ -145,17 +146,19 @@ public class frmProductoAdd extends javax.swing.JFrame {
                 producto.setPrecio(precio);
                 producto.setStock(cantidad);
                 JOptionPane.showMessageDialog(this, "Producto actualizado correctamente");
+                frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un producto",producto));
                 this.dispose();
             }else {  
                 cProducto nuevoP = new cProducto(nombre,precio,cantidad);
                 frmGeneral.oArregloProd.agregar(nuevoP);
                 JOptionPane.showMessageDialog(this, "Producto añadido correctamente");
+                frmGeneral.oPilaAcciones.apilar(new cAccion("Registró un producto",nuevoP));
             
                 btnLimpia.setEnabled(true);
-                btnAdd.setEnabled(false);
+                btnRegistra.setEnabled(false);
             }
         }                  
-    }//GEN-LAST:event_btnAddActionPerformed
+    }//GEN-LAST:event_btnRegistraActionPerformed
 
     private void btnLimpiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiaActionPerformed
        txtDescripcion.setText("");
@@ -163,7 +166,7 @@ public class frmProductoAdd extends javax.swing.JFrame {
        txtCantidad.setText("");
        
        btnLimpia.setEnabled(false);
-       btnAdd.setEnabled(true);
+       btnRegistra.setEnabled(true);
     }//GEN-LAST:event_btnLimpiaActionPerformed
 
     /**
@@ -203,8 +206,8 @@ public class frmProductoAdd extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnLimpia;
+    private javax.swing.JButton btnRegistra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

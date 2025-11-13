@@ -15,6 +15,7 @@ import modelo.cComprobante;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import modelo.cAccion;
 import modelo.cDetalle_Comprobante;
 import modelo.cCliente;
 import modelo.cTrabajador;
@@ -31,6 +32,7 @@ public class frmGeneral extends javax.swing.JFrame {
     public static cArreglo_Trabajador oArregloTrab = new cArreglo_Trabajador(100);
     public static cCola oColaDespachoAlta = new cCola(100);  
     public static cCola oColaDespachoBaja = new cCola(100);
+    public static cPila oPilaAcciones = new cPila();
 
     public frmGeneral() {
         initComponents();
@@ -152,8 +154,8 @@ public class frmGeneral extends javax.swing.JFrame {
         long doc3 = 1071623251;
 
         oLECliente.insertarxFinal(new cCliente("Tenda", tel1, doc1, fecha1, 2, "Lizardo Silva"));
-        oLECliente.insertarxFinal(new cCliente("Juan Quillo", tel2, doc2, fecha2, 1, "Juan Quillo"));
-        oLECliente.insertarxFinal(new cCliente("Gatitas.com", tel3, doc3, fecha3, 2, "Jesús Giussepe"));
+        oLECliente.insertarxFinal(new cCliente("Quillo's", tel2, doc2, fecha2, 1, "Juan Quillo"));
+        oLECliente.insertarxFinal(new cCliente("Kit Kat", tel3, doc3, fecha3, 2, "Jesús Giussepe"));
 
         mostrarClientes(tablaCli);
     }
@@ -297,7 +299,6 @@ public class frmGeneral extends javax.swing.JFrame {
         rbBol = new javax.swing.JRadioButton();
         rbFac = new javax.swing.JRadioButton();
         rbTodo = new javax.swing.JRadioButton();
-        btnRecuperaCom = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaCli = new javax.swing.JTable();
@@ -318,6 +319,7 @@ public class frmGeneral extends javax.swing.JFrame {
         btnConsultaTrab = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnIntegrantes = new javax.swing.JButton();
+        btnDeshacer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -376,7 +378,7 @@ public class frmGeneral extends javax.swing.JFrame {
                         .addComponent(btnIngresaPro)
                         .addGap(56, 56, 56)
                         .addComponent(btnActualizaPro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
                         .addComponent(btnBorraPro)
                         .addGap(54, 54, 54)
                         .addComponent(btnConsultaPro)))
@@ -491,13 +493,6 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnRecuperaCom.setText("Recuperar Eliminado");
-        btnRecuperaCom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRecuperaComActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -507,23 +502,19 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addComponent(btnIngresaCom)
                 .addGap(41, 41, 41)
                 .addComponent(btnActualizaCom)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
                 .addComponent(btnBorraCom)
                 .addGap(18, 18, 18)
                 .addComponent(btnConsultaCom)
                 .addGap(70, 70, 70))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(248, 248, 248)
+                .addComponent(panCompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(panCompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(227, 227, 227))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnRecuperaCom)
-                        .addGap(270, 270, 270))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -537,10 +528,8 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(panCompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnRecuperaCom)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Comprobantes", jPanel2);
@@ -644,7 +633,7 @@ public class frmGeneral extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
+                .addContainerGap(154, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(btnIngresaCli)
@@ -729,27 +718,27 @@ public class frmGeneral extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(btnIngresaTrab)
-                        .addGap(56, 56, 56)
+                        .addGap(54, 54, 54)
                         .addComponent(btnActualizaTrab)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBorraTrab)
-                        .addGap(40, 40, 40)
+                        .addGap(44, 44, 44)
                         .addComponent(btnConsultaTrab))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(114, Short.MAX_VALUE)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(69, 69, 69))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIngresaTrab)
                     .addComponent(btnActualizaTrab)
                     .addComponent(btnBorraTrab)
                     .addComponent(btnConsultaTrab))
-                .addGap(18, 18, 18)
+                .addGap(37, 37, 37)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -766,29 +755,44 @@ public class frmGeneral extends javax.swing.JFrame {
             }
         });
 
+        btnDeshacer.setText("Deshacer última acción");
+        btnDeshacer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeshacerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(126, 126, 126)
-                .addComponent(btnIntegrantes)
-                .addGap(30, 30, 30))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnDeshacer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(126, 126, 126)
+                        .addComponent(btnIntegrantes)
+                        .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(btnIntegrantes))
-                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(btnIntegrantes))
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnDeshacer)
+                        .addGap(18, 18, 18)))
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -814,7 +818,7 @@ public class frmGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizaProActionPerformed
 
     private void btnBorraProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorraProActionPerformed
-        cProducto p = oArregloProd.obtener(tablaProd.getSelectedRow());
+        cProducto prod = oArregloProd.obtener(tablaProd.getSelectedRow());
 
         int opcion = JOptionPane.showConfirmDialog(
                 this,
@@ -825,8 +829,9 @@ public class frmGeneral extends javax.swing.JFrame {
         );
 
         if (opcion == JOptionPane.YES_OPTION) {
-            oArregloProd.eliminar(p.getCodigo());
+            oArregloProd.eliminar(prod.getCodigo());
             JOptionPane.showMessageDialog(this, "Producto eliminado correctamente");
+            oPilaAcciones.apilar(new cAccion("Se eliminó un producto",prod));
             mostrarProductos(tablaProd);
         }
     }//GEN-LAST:event_btnBorraProActionPerformed
@@ -877,6 +882,7 @@ public class frmGeneral extends javax.swing.JFrame {
         if (opcion == JOptionPane.YES_OPTION) {
             oLEComprobante.eliminaEntreNodos(compro.getCodigo());
             JOptionPane.showMessageDialog(this, "Comprobante eliminado correctamente");
+            oPilaAcciones.apilar(new cAccion("Se eliminó un comprobante",compro));
             mostrarComprobantes(tablaCompro);
         }
     }//GEN-LAST:event_btnBorraComActionPerformed
@@ -920,6 +926,7 @@ public class frmGeneral extends javax.swing.JFrame {
         if (opcion == JOptionPane.YES_OPTION) {
             oLECliente.eliminaEntreNodos(cliente.getCodigo());
             JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente");
+            oPilaAcciones.apilar(new cAccion("Se eliminó un cliente",cliente));
             mostrarClientes(tablaCli);
         }
     }//GEN-LAST:event_btnBorraCliActionPerformed
@@ -987,6 +994,7 @@ public class frmGeneral extends javax.swing.JFrame {
         if (opcion == JOptionPane.YES_OPTION) {
             oArregloTrab.eliminar(trabajador.getCodigo());
             JOptionPane.showMessageDialog(this, "Trabajador eliminado correctamente");
+            oPilaAcciones.apilar(new cAccion("Se eliminó un trabajador",trabajador));
             mostrarClientes(tablaCli);
         }
     }//GEN-LAST:event_btnBorraTrabActionPerformed
@@ -996,12 +1004,64 @@ public class frmGeneral extends javax.swing.JFrame {
         ventana.setVisible(true);
     }//GEN-LAST:event_btnConsultaTrabActionPerformed
 
-    
-    //FUNCIONALIDAD DE CPILA PARA RECUPERAR COMPROBANTES
-    private void btnRecuperaComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecuperaComActionPerformed
-        
-    }//GEN-LAST:event_btnRecuperaComActionPerformed
+    private void btnDeshacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeshacerActionPerformed
+        cAccion accion = oPilaAcciones.desapilar();
+        if(accion != null){
+            String des = accion.getDescripcion();
+            JOptionPane.showMessageDialog(this, "Se deshizo: "+des);
+            switch(des){
+                case "Registró un producto" -> {
+                    cProducto prod = (cProducto) accion.getObjeto();
+                    oArregloProd.eliminar(prod.getCodigo());
+                    mostrarProductos(tablaProd);
+                }
+                case "Emitió una boleta" -> {
+                    cComprobante compB = (cComprobante) accion.getObjeto();
+                    oLEComprobante.eliminaEntreNodos(compB.getCodigo());
+                    mostrarComprobantes(tablaCompro);
+                }
+                case "Emitió una factura" -> {
+                    cComprobante compF = (cComprobante) accion.getObjeto();
+                    oLEComprobante.eliminaEntreNodos(compF.getCodigo());
+                    mostrarComprobantes(tablaCompro);
+                }
+                case "Registró un cliente" -> {
+                    cCliente cli = (cCliente) accion.getObjeto();
+                    oLECliente.eliminaEntreNodos(cli.getCodigo());
+                    mostrarClientes(tablaCli);
+                }
+                case "Registró un trabajador" -> {
+                    cTrabajador trab = (cTrabajador) accion.getObjeto();
+                    oArregloTrab.eliminar(trab.getCodigo());
+                    mostrarTrabajadores(tablaTrab);
+                }
+                case "Se eliminó un producto" -> {
+                    cProducto prodEli = (cProducto) accion.getObjeto();
+                    oArregloProd.agregar(prodEli);
+                    mostrarProductos(tablaProd);
+                }
+                case "Se eliminó un comprobante" -> {
+                    cComprobante compEli = (cComprobante) accion.getObjeto();
+                    oLEComprobante.insertarxFinal(compEli);
+                    mostrarComprobantes(tablaCompro);
+                }
+                case "Se eliminó un cliente" -> {
+                    cCliente cliEli = (cCliente) accion.getObjeto();
+                    oLECliente.insertarxFinal(cliEli);
+                    mostrarClientes(tablaCli);
+                }
+                case "Se eliminó un trabajador" -> {
+                    cTrabajador trabEli = (cTrabajador) accion.getObjeto();
+                    oArregloTrab.agregar(trabEli);
+                    mostrarTrabajadores(tablaTrab);
+                }
+            } 
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay acciones para deshacer");
+        }
+    }//GEN-LAST:event_btnDeshacerActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
@@ -1036,12 +1096,12 @@ public class frmGeneral extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultaCom;
     private javax.swing.JButton btnConsultaPro;
     private javax.swing.JButton btnConsultaTrab;
+    private javax.swing.JButton btnDeshacer;
     private javax.swing.JButton btnIngresaCli;
     private javax.swing.JButton btnIngresaCom;
     private javax.swing.JButton btnIngresaPro;
     private javax.swing.JButton btnIngresaTrab;
     private javax.swing.JButton btnIntegrantes;
-    private javax.swing.JButton btnRecuperaCom;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;

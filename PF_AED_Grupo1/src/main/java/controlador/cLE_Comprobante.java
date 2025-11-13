@@ -14,6 +14,17 @@ import modelo.cFactura;
 public class cLE_Comprobante {
     private cNodo_LE_Comprobante inicio, nuevo, p, q;
     
+    public void insertarxInicio(cComprobante valor){
+        nuevo = new cNodo_LE_Comprobante(valor);
+        if(inicio==null){
+            inicio = nuevo;
+        }else{
+            nuevo.setSgte(inicio);
+            inicio.setAnt(nuevo);
+            inicio=nuevo;
+        }
+    }
+    
     public void insertarxFinal(cComprobante valor){
         nuevo = new cNodo_LE_Comprobante(valor);
         if(inicio==null){
@@ -24,6 +35,43 @@ public class cLE_Comprobante {
                 p = p.getSgte();
             }
             p.setSgte(nuevo);
+        }
+    }
+    
+    public void insertaEntreNodosSgte(cComprobante valor, String desde){
+        nuevo = new cNodo_LE_Comprobante(valor);
+        if(inicio == null){
+            inicio = nuevo;
+        }else{
+            p=inicio;
+            while(p.getSgte() != null && !p.getValor().getCodigo().equals(desde)){
+                p = p.getSgte();
+            }
+            if(p.getValor().getCodigo().equals(desde)){
+                nuevo.setSgte(p.getSgte());
+                p.setSgte(nuevo);
+                nuevo.setAnt(p);
+                p.getSgte().setAnt(nuevo);
+            }
+        }
+    }
+    
+    public void insertaEntreNodosAnt(cComprobante valor, String antes){
+        nuevo = new cNodo_LE_Comprobante(valor);
+        if(inicio==null){
+            inicio = nuevo;
+        }else{
+            p=inicio; q=inicio;
+            while(p.getSgte() != null && !p.getValor().getCodigo().equals(antes)){
+                q = p;
+                p = p.getSgte();
+            }
+            if(p.getValor().getCodigo().equals(antes)){
+                nuevo.setSgte(p);
+                q.setSgte(nuevo);
+                p.setAnt(nuevo);  
+                nuevo.setAnt(q);
+            }
         }
     }
     

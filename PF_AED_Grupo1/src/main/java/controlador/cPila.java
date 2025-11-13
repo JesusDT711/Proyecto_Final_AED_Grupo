@@ -1,55 +1,39 @@
 
 package controlador;
 
+import modelo.cAccion;
 /**
  *
  * @author Giuss
  */
 public class cPila {
 
-    private int[] pila;
-    private int tope;
-    private int indMax;
+    private cNodo_Pila tope;
 
-    public cPila(int n) {
-        pila = new int[n];
-        indMax = n - 1;
-        pilavacia();
+    public cPila() {
+        this.tope = null;
     }
 
-    public int getTope() {
-        return tope;
+    public void apilar(cAccion valor) {
+        cNodo_Pila nuevo = new cNodo_Pila(valor);
+        nuevo.setSgte(tope);
+        tope = nuevo;
     }
 
-    public void pilavacia() {
-        tope = -1;
-    }
-
-    public void insertar(int valor) {
-        if (tope < indMax) {
-            tope++;
-            pila[tope] = valor;
+    public cAccion desapilar() {
+        cAccion accion=null;
+        if(tope != null){
+            accion = tope.getValor();
+            tope = tope.getSgte();
         }
+        return accion;
     }
 
-    public int eliminar() {
-        int valor = 0;
-        if (tope > -1) {
-            valor = pila[tope];
-            tope--;
+    public cAccion verTope() {
+        cAccion accion=null;
+        if(tope != null){
+            accion = tope.getValor();
         }
-        return valor;
-    }
-
-    public int accesar() {
-        int valor = 0;
-        if (tope > -1) {
-            valor = pila[tope];
-        }
-        return valor;
-    }
-
-    public void recorrerPila() {
-    
+        return accion;
     }
 }

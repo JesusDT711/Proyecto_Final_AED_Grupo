@@ -3,6 +3,7 @@ package vista;
 
 import javax.swing.JOptionPane;
 import modelo.cCliente;
+import modelo.cAccion;
 import java.util.Date;
 
 /**
@@ -268,11 +269,13 @@ public class frmClienteAdd extends javax.swing.JFrame {
                 cliente.setTipo(tipo);
                 cliente.setContacto(contacto);
                 JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente");
+                frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un cliente",cliente));
                 this.dispose();
             }else {  
                 cCliente nuevoCli = new cCliente(rSocial,telf,docIdentifi,fecha_compra,tipo,contacto);
                 frmGeneral.oLECliente.insertarxFinal(nuevoCli);
                 JOptionPane.showMessageDialog(this, "Cliente añadido correctamente");
+                frmGeneral.oPilaAcciones.apilar(new cAccion("Registró un cliente",nuevoCli));
             
                 btnLimpiarC.setEnabled(true);
                 btnRegistarC.setEnabled(false);
