@@ -125,7 +125,7 @@ public class cArreglo_Trabajador {
             Object[] fila = {
                 trabajador.getCodigo(),
                 trabajador.getNombre(),
-                trabajador.getFecha_ingreso(),
+                trabajador.fecha_ingresoCadena(),
                 trabajador.getSueldo(),
                 trabajador.cargo()
             };
