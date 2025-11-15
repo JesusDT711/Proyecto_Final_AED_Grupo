@@ -52,7 +52,7 @@ public class frmLogin extends javax.swing.JFrame {
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/resources/panel.png"))); // NOI18N
-        background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-330, 0, 660, 680));
+        background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-320, -20, 660, 680));
 
         txtUsuario.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
         txtUsuario.setForeground(java.awt.Color.gray);
@@ -86,7 +86,7 @@ public class frmLogin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Roboto Condensed", 1, 59)); // NOI18N
         jLabel1.setText("INICIAR SESIÓN");
-        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 400, 60));
+        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 400, 60));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Usuario:");
@@ -130,16 +130,12 @@ public class frmLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 571, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 577, Short.MAX_VALUE)
         );
 
         pack();
