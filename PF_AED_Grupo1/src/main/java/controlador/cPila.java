@@ -1,7 +1,6 @@
 
 package controlador;
 
-import javax.swing.JTextArea;
 import modelo.cAccion;
 /**
  *
