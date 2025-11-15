@@ -19,7 +19,8 @@ public class frmLogin extends javax.swing.JFrame {
 
     public frmLogin() {
         initComponents();
-        psContraseña.setEchoChar((char) 0); //Desactiva Echochar
+        setLocationRelativeTo(null);
+         //Desactiva Echochar
     }
 
     /**
@@ -70,10 +71,10 @@ public class frmLogin extends javax.swing.JFrame {
                 txtUsuarioActionPerformed(evt);
             }
         });
-        background.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 320, 50));
+        background.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 320, 50));
 
-        btnIngresar.setBackground(new java.awt.Color(153, 153, 153));
-        btnIngresar.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 18)); // NOI18N
+        btnIngresar.setBackground(new java.awt.Color(0, 102, 204));
+        btnIngresar.setFont(new java.awt.Font("Roboto Condensed Black", 2, 18)); // NOI18N
         btnIngresar.setText("Ingresar");
         btnIngresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,29 +82,29 @@ public class frmLogin extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        background.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 470, 150, 30));
+        background.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 110, 30));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto Condensed", 1, 59)); // NOI18N
         jLabel1.setText("INICIAR SESIÓN");
-        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 400, 60));
+        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 400, 60));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Usuario:");
         jLabel4.setToolTipText("Ingrese su usuario");
-        background.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 100, 40));
+        background.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 100, 40));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setText("Contraseña:");
-        background.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 160, 40));
+        background.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 160, 40));
         background.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, -1, -1));
         background.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
         background.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, -1, -1));
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        background.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, 330, 30));
+        background.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, 330, 30));
 
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
-        background.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 340, 30));
+        background.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 340, 30));
 
         psContraseña.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         psContraseña.setForeground(java.awt.Color.gray);
@@ -122,7 +123,7 @@ public class frmLogin extends javax.swing.JFrame {
                 psContraseñaActionPerformed(evt);
             }
         });
-        background.add(psContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 330, 40));
+        background.add(psContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 360, 330, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,7 +180,7 @@ public class frmLogin extends javax.swing.JFrame {
         if (pass.isEmpty()) {
             psContraseña.setText("Ingrese contraseña");
             psContraseña.setForeground(Color.GRAY);
-            psContraseña.setEchoChar((char) 0); 
+            psContraseña.setEchoChar((char) 0);
         }
     }//GEN-LAST:event_psContraseñaFocusLost
 
@@ -215,7 +216,6 @@ public class frmLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Complete todos los campos");
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
-
 
     /**
      * @param args the command line arguments
