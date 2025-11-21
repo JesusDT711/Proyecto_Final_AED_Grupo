@@ -204,7 +204,7 @@ public class frmGeneral extends javax.swing.JFrame {
                 oArregloProd.obtener(5).getPrecio()));
         
         
-        cFactura f3 = new cFactura(fecha10, "C0010", "V004");
+        cFactura f3 = new cFactura(fecha10, "C010", "V004");
         f3.setDetalle(new cDetalle_Comprobante(f3.getCodigo(),
                 oArregloProd.obtener(4).getCodigo(),
                 1,
@@ -250,7 +250,7 @@ public class frmGeneral extends javax.swing.JFrame {
                 oArregloProd.obtener(5).getPrecio()));
 
 
-        cBoleta b5 = new cBoleta(fecha10, "C007", "V002");
+        cBoleta b5 = new cBoleta(fecha4, "C004", "V002");
         b5.setDetalle(new cDetalle_Comprobante(b5.getCodigo(),
                 oArregloProd.obtener(4).getCodigo(),
                 2,
