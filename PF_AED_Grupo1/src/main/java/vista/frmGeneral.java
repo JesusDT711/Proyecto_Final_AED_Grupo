@@ -105,9 +105,20 @@ public class frmGeneral extends javax.swing.JFrame {
     }
 
     private void cargarProductosBase() {
-        oArregloProd.agregar(new cProducto("LAPTOP - I7 13400k", 2999.99, 100));
-        oArregloProd.agregar(new cProducto("MOUSE - LOGITECH G645", 119.99, 100));
-        oArregloProd.agregar(new cProducto("TECLADO RGB - DRAGON", 249.99, 100));
+        oArregloProd.agregar(new cProducto("LAPTOP I7 13400k", 2999.90, 100));
+        oArregloProd.agregar(new cProducto("MOUSE LOGITECH G645", 119.90, 100));
+        oArregloProd.agregar(new cProducto("TECLADO RGB DRAGON", 249.90, 100));
+        oArregloProd.agregar(new cProducto("AURICULARES GAMER HYPERX CLOUD II", 349.90, 35));
+        oArregloProd.agregar(new cProducto("PARLANTES BLUETOOTH JBL GO 3", 129.90, 60));
+        oArregloProd.agregar(new cProducto("MICRÓFONO USB FIFINE K669B", 159.90, 20));
+        oArregloProd.agregar(new cProducto("DISCO SSD KINGSTON 480GB", 169.90, 65));
+        oArregloProd.agregar(new cProducto("TARJETA DE VIDEO GTX 1650 4GB", 899.90, 8));
+        oArregloProd.agregar(new cProducto("CARGADOR RÁPIDO SAMSUNG 25W", 79.90, 100));
+        oArregloProd.agregar(new cProducto("CARGADOR TIPO C XIAOMI 33W", 69.90, 120));
+        oArregloProd.agregar(new cProducto("CABLE USB TIPO C DURABLE 1M", 19.90, 200));
+        oArregloProd.agregar(new cProducto("TABLET LENOVO TAB M10", 699.90, 15));
+        oArregloProd.agregar(new cProducto("LÁPIZ DIGITAL PARA TABLET", 49.90, 70));
+        oArregloProd.agregar(new cProducto("TECLADO BLUETOOTH PARA TABLET", 79.90, 40));
 
         mostrarProductos(tablaProd);
     }
@@ -115,26 +126,44 @@ public class frmGeneral extends javax.swing.JFrame {
     private void cargarComprobantesBase() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
-        String fecha1str = "02/04/2005";
-        String fecha2str = "04/09/2010";
-        String fecha3str = "07/10/2006";
+        String fecha1str = "12/01/2025";
+        String fecha2str = "15/02/2025";
+        String fecha3str = "14/03/2025";
+        String fecha4str = "02/04/2025";
+        String fecha5str = "29/05/2025";
+        String fecha6str = "23/07/2025";
+        String fecha7str = "04/09/2025";
+        String fecha8str = "07/10/2025";
+        String fecha9str = "18/11/2025";
+        String fecha10str = "30/12/2025";
 
         Date fecha1 = null;
         Date fecha2 = null;
         Date fecha3 = null;
+        Date fecha4 = null;
+        Date fecha5 = null;
+        Date fecha6 = null;
+        Date fecha7 = null;
+        Date fecha8 = null;
+        Date fecha9 = null;
+        Date fecha10 = null;
 
         try {
             fecha1 = formato.parse(fecha1str);
             fecha2 = formato.parse(fecha2str);
             fecha3 = formato.parse(fecha3str);
+            fecha4 = formato.parse(fecha4str);
+            fecha5 = formato.parse(fecha5str);
+            fecha6 = formato.parse(fecha6str);
+            fecha7 = formato.parse(fecha7str);
+            fecha8 = formato.parse(fecha8str);
+            fecha9 = formato.parse(fecha9str);
+            fecha10 = formato.parse(fecha10str);
         } catch (ParseException e) {
             System.out.println("Error al convertir una de las fechas:" + e.getMessage());
         }
 
         cFactura f1 = new cFactura(fecha1, "C001", "V002");
-        cBoleta b1 = new cBoleta(fecha2, "C003", "V003");
-        cFactura f2 = new cFactura(fecha3, "C002", "V001");
-
         f1.setDetalle(new cDetalle_Comprobante(f1.getCodigo(),
                 oArregloProd.obtener(0).getCodigo(),
                 2,
@@ -144,6 +173,8 @@ public class frmGeneral extends javax.swing.JFrame {
                 3,
                 oArregloProd.obtener(1).getPrecio()));
 
+        
+        cBoleta b1 = new cBoleta(fecha3, "C003", "V003");
         b1.setDetalle(new cDetalle_Comprobante(b1.getCodigo(),
                 oArregloProd.obtener(0).getCodigo(),
                 3,
@@ -153,14 +184,89 @@ public class frmGeneral extends javax.swing.JFrame {
                 1,
                 oArregloProd.obtener(2).getPrecio()));
 
+        
+        cFactura f2 = new cFactura(fecha2, "C002", "V006");
         f2.setDetalle(new cDetalle_Comprobante(f2.getCodigo(),
                 oArregloProd.obtener(0).getCodigo(),
                 1,
                 oArregloProd.obtener(0).getPrecio()));
+        
+        
+        cBoleta b2 = new cBoleta(fecha5, "C005", "V007");
+        b2.setDetalle(new cDetalle_Comprobante(b2.getCodigo(),
+                oArregloProd.obtener(3).getCodigo(),
+                1,
+                oArregloProd.obtener(3).getPrecio()));
+        
+        b2.setDetalle(new cDetalle_Comprobante(b2.getCodigo(),
+                oArregloProd.obtener(5).getCodigo(),
+                2,
+                oArregloProd.obtener(5).getPrecio()));
+        
+        
+        cFactura f3 = new cFactura(fecha10, "C0010", "V004");
+        f3.setDetalle(new cDetalle_Comprobante(f3.getCodigo(),
+                oArregloProd.obtener(4).getCodigo(),
+                1,
+                oArregloProd.obtener(4).getPrecio()));
+        
+        f3.setDetalle(new cDetalle_Comprobante(f3.getCodigo(),
+                oArregloProd.obtener(0).getCodigo(),
+                4,
+                oArregloProd.obtener(0).getPrecio()));
+
+
+        cBoleta b3 = new cBoleta(fecha6, "C006", "V005");
+        b3.setDetalle(new cDetalle_Comprobante(b3.getCodigo(),
+                oArregloProd.obtener(2).getCodigo(),
+                2,
+                oArregloProd.obtener(2).getPrecio()));
+
+
+        cFactura f4 = new cFactura(fecha7, "C007", "V002");
+        f4.setDetalle(new cDetalle_Comprobante(f4.getCodigo(),
+                oArregloProd.obtener(1).getCodigo(),
+                5,
+                oArregloProd.obtener(1).getPrecio()));
+
+
+        cBoleta b4 = new cBoleta(fecha9, "C009", "V001");
+        b4.setDetalle(new cDetalle_Comprobante(b4.getCodigo(),
+                oArregloProd.obtener(6).getCodigo(),
+                1,
+                oArregloProd.obtener(6).getPrecio()));
+
+
+        cFactura f5 = new cFactura(fecha8, "C008", "V003");
+
+        f5.setDetalle(new cDetalle_Comprobante(f5.getCodigo(),
+                oArregloProd.obtener(3).getCodigo(),
+                3,
+                oArregloProd.obtener(3).getPrecio()));
+        
+        f5.setDetalle(new cDetalle_Comprobante(f5.getCodigo(),
+                oArregloProd.obtener(5).getCodigo(),
+                1,
+                oArregloProd.obtener(5).getPrecio()));
+
+
+        cBoleta b5 = new cBoleta(fecha10, "C007", "V002");
+        b5.setDetalle(new cDetalle_Comprobante(b5.getCodigo(),
+                oArregloProd.obtener(4).getCodigo(),
+                2,
+                oArregloProd.obtener(4).getPrecio()));
+
 
         oLEComprobante.insertarxFinal(f1);
         oLEComprobante.insertarxFinal(b1);
         oLEComprobante.insertarxFinal(f2);
+        oLEComprobante.insertarxFinal(b2);
+        oLEComprobante.insertarxFinal(f3);
+        oLEComprobante.insertarxFinal(b3);
+        oLEComprobante.insertarxFinal(f4);
+        oLEComprobante.insertarxFinal(b4);
+        oLEComprobante.insertarxFinal(f5);
+        oLEComprobante.insertarxFinal(b5);
 
         mostrarComprobantes(tablaCompro);
     }
@@ -168,18 +274,39 @@ public class frmGeneral extends javax.swing.JFrame {
     private void cargarClientesBase() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
-        String fecha1str = "02/04/2005";
-        String fecha2str = "04/09/2010";
-        String fecha3str = "07/10/2006";
+        String fecha1str = "12/01/2025";
+        String fecha2str = "15/02/2025";
+        String fecha3str = "14/03/2025";
+        String fecha4str = "02/04/2025";
+        String fecha5str = "29/05/2025";
+        String fecha6str = "23/07/2025";
+        String fecha7str = "04/09/2025";
+        String fecha8str = "07/10/2025";
+        String fecha9str = "18/11/2025";
+        String fecha10str = "30/12/2025";
 
         Date fecha1 = null;
         Date fecha2 = null;
         Date fecha3 = null;
+        Date fecha4 = null;
+        Date fecha5 = null;
+        Date fecha6 = null;
+        Date fecha7 = null;
+        Date fecha8 = null;
+        Date fecha9 = null;
+        Date fecha10 = null;
 
         try {
             fecha1 = formato.parse(fecha1str);
             fecha2 = formato.parse(fecha2str);
             fecha3 = formato.parse(fecha3str);
+            fecha4 = formato.parse(fecha4str);
+            fecha5 = formato.parse(fecha5str);
+            fecha6 = formato.parse(fecha6str);
+            fecha7 = formato.parse(fecha7str);
+            fecha8 = formato.parse(fecha8str);
+            fecha9 = formato.parse(fecha9str);
+            fecha10 = formato.parse(fecha10str);
         } catch (ParseException e) {
             System.out.println("Error al convertir una de las fechas:" + e.getMessage());
         }
@@ -187,48 +314,87 @@ public class frmGeneral extends javax.swing.JFrame {
         long tel1 = 991992990;
         long tel2 = 959192231;
         long tel3 = 910233677;
+        long tel4 = 987654321;
+        long tel5 = 912345678;
+        long tel6 = 998877665;
+        long tel7 = 945112230;
+        long tel8 = 922334455;
+        long tel9 = 933221198;
+        long tel10 = 987112245;
 
         long doc1 = 1078181921;
         long doc2 = 76192192;
-        long doc3 = 1071623251;
+        long doc3 = 1071623251;     
+        long doc4 = 1045567891;
+        long doc5 = 76234512;
+        long doc6 = 1079981123;
+        long doc7 = 1082235491;
+        long doc8 = 74211822;
+        long doc9 = 1078893344;
+        long doc10 = 73345122;
 
         oLECliente.insertarxFinal(new cCliente("Tenda", tel1, doc1, fecha1, 2, "Lizardo Silva"));
-        oLECliente.insertarxFinal(new cCliente("Quillo's", tel2, doc2, fecha2, 1, "Juan Quillo"));
-        oLECliente.insertarxFinal(new cCliente("Kit Kat", tel3, doc3, fecha3, 2, "Jesús Giussepe"));
+        oLECliente.insertarxFinal(new cCliente("Juan Quillo", tel2, doc2, fecha2, 1, "Juan Quillo"));
+        oLECliente.insertarxFinal(new cCliente("Kit Kat", tel3, doc3, fecha3, 2, "Giussepe Delgado"));
+        oLECliente.insertarxFinal(new cCliente("TechNova", tel4, doc4, fecha4, 2, "Carlos Álvarez"));
+        oLECliente.insertarxFinal(new cCliente("Valeria Ramos", tel5, doc5, fecha5, 1, "Valeria Ramos"));
+        oLECliente.insertarxFinal(new cCliente("PixelPro", tel6, doc6, fecha6, 2, "Marco Torres"));
+        oLECliente.insertarxFinal(new cCliente("ByteHouse", tel7, doc7, fecha7, 2, "Fernando Castañeda"));
+        oLECliente.insertarxFinal(new cCliente("Reichel Saavedra", tel8, doc8, fecha8, 1, "Reichel Saavedra"));
+        oLECliente.insertarxFinal(new cCliente("TecnoStore", tel9, doc9, fecha9, 2, "Ricardo Paredes"));
+        oLECliente.insertarxFinal(new cCliente("Camila Guerra", tel10, doc10, fecha10, 1, "Camila Guerra"));
 
         mostrarClientes(tablaCli);
     }
 
     private void cargarTrabajadoresBase() {
-        
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
         String fecha1str = "05/11/2024";
         String fecha2str = "15/03/2024";
         String fecha3str = "20/01/2023";
+        String fecha4str = "10/02/2023";
+        String fecha5str = "28/07/2024";
+        String fecha6str = "03/09/2022";
+        String fecha7str = "19/12/2023";
 
         Date fecha1 = null;
         Date fecha2 = null;
         Date fecha3 = null;
+        Date fecha4 = null;
+        Date fecha5 = null;
+        Date fecha6 = null;
+        Date fecha7 = null;
         
         try {
             fecha1 = formato.parse(fecha1str);
             fecha2 = formato.parse(fecha2str);
             fecha3 = formato.parse(fecha3str);
+            fecha4 = formato.parse(fecha4str);
+            fecha5 = formato.parse(fecha5str);
+            fecha6 = formato.parse(fecha6str);
+            fecha7 = formato.parse(fecha7str);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al cargar trabajadores base: " + e.getMessage());
         }
 
-        cTrabajador t1 = new cTrabajador("Cristiano Ronaldo", fecha1, 1); // tipo administrador
-        cTrabajador t2 = new cTrabajador("Lionel Messi", fecha2, 2); // tipo cajero
-        cTrabajador t3 = new cTrabajador("Zinedine Zidane", fecha3, 3);  // tipo reponedor
-
+        cTrabajador t1 = new cTrabajador("Michael Gómez", fecha1, 1); //administrador
+        cTrabajador t2 = new cTrabajador("Aaron Palomino", fecha2, 2); //cajero
+        cTrabajador t3 = new cTrabajador("Cristian Castro", fecha3, 3);  //reponedor
+        cTrabajador t4 = new cTrabajador("Mariana Torres", fecha4, 2); //
+        cTrabajador t5 = new cTrabajador("Rodrigo Salazar", fecha5, 3); //
+        cTrabajador t6 = new cTrabajador("Elena Villanueva", fecha6, 1);
+        cTrabajador t7 = new cTrabajador("Héctor Paredes", fecha7, 2);
+        
         oArregloTrab.agregar(t1);
         oArregloTrab.agregar(t2);
         oArregloTrab.agregar(t3);
+        oArregloTrab.agregar(t4);
+        oArregloTrab.agregar(t5);
+        oArregloTrab.agregar(t6);
+        oArregloTrab.agregar(t7);
 
         mostrarTrabajadores(tablaTrab);
-
     }
 
     //MÉTODOS PARA HABILITAR LOS BOTONES ACTUALIZAR & ELIMINAR
