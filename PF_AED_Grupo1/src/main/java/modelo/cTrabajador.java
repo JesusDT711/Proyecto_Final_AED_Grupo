@@ -16,6 +16,8 @@ public class cTrabajador {
     private Date fecha_ingreso;
     private double sueldo;
     private int tipo; //1=Administrador , 2=Cajero o 3=Reponedor
+    private double totalVentas;
+    private int cantidadVentas;
     static int cuenta=1;
     
     public cTrabajador(){
@@ -27,9 +29,10 @@ public class cTrabajador {
         this();
         this.nombre = nombre;
         this.fecha_ingreso = fecha_ingreso;
-        
         this.tipo = tipo;
         this.sueldo = sueldoxTipo();
+        this.totalVentas = 0;
+        this.cantidadVentas = 0;
     }
     
     public double sueldoxTipo(){
@@ -37,7 +40,12 @@ public class cTrabajador {
         return vec[tipo];
     }
     
-    //Esta función se usará para mostrarse en el JTable de Trabajadores
+    public void registrarVenta(double monto){
+        this.totalVentas += monto;
+        this.cantidadVentas++;
+    }
+    
+    //Estas funciones se usarán para mostrarse en el JTable de Trabajadores
     public String cargo(){
         String[] vec = {"","Administrador","Cajero","Reponedor"};
         return vec[tipo];
@@ -88,6 +96,12 @@ public class cTrabajador {
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
-    
-    
+
+    public double getTotalVentas() {
+        return totalVentas;
+    }
+
+    public int getCantidadVentas() {
+        return cantidadVentas;
+    }
 }
