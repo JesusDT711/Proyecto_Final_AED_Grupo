@@ -84,7 +84,7 @@ public class frmLogin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Roboto Condensed", 1, 59)); // NOI18N
         jLabel1.setText("INICIAR SESIÓN");
-        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 400, 60));
+        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 460, 60));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Usuario:");
