@@ -93,26 +93,7 @@ public class cArreglo_Trabajador {
             } 
         }
     }
-    
-    /*MODIFICAR EL MÉTODO PARA REGISTRAR LAS VENTAS QUE REALIZAN LOS TRABAJADORES
-    public boolean registrarVenta(String codigo, int cantidadComprada) {
-        boolean exito = false;
-        cTrabajador trabajador = buscar(codigo);
 
-        if (trabajador != null) {
-            if (trabajador.getStock() >= cantidadComprada) {
-                int nuevoStock = producto.getStock() - cantidadComprada;
-                producto.setStock(nuevoStock);
-                
-                double montoDeVenta = producto.getPrecio() * cantidadComprada;
-                this.totalVentas += montoDeVenta;
-                
-                exito = true;
-            }
-        }
-        return exito;
-    }
-    */
     public double getTotalVentas() {
         return this.totalVentas;
     }
