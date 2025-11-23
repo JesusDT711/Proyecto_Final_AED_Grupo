@@ -43,10 +43,10 @@ public class frmGeneral extends javax.swing.JFrame {
         instancia = this;
         initComponents();
         setLocationRelativeTo(null);
-        cargarProductosBase();
-        cargarComprobantesBase();
+        cargarProductosBase();   
         cargarClientesBase();
         cargarTrabajadoresBase();
+        cargarComprobantesBase();
         mostrarHistorial();
 
         habilitarBotonesProductos();
@@ -172,6 +172,13 @@ public class frmGeneral extends javax.swing.JFrame {
                 oArregloProd.obtener(1).getCodigo(),
                 3,
                 oArregloProd.obtener(1).getPrecio()));
+        cCliente cli1 = oLECliente.busqueda(f1.getCliente());
+        int tipo1 = cli1.getTipo();
+        if(tipo1==2){
+            oColaDespachoAlta.encolar(f1);
+        }else{
+            oColaDespachoBaja.encolar(f1);
+        }
 
         
         cBoleta b1 = new cBoleta(fecha3, "C003", "V003");
@@ -183,13 +190,27 @@ public class frmGeneral extends javax.swing.JFrame {
                 oArregloProd.obtener(2).getCodigo(),
                 1,
                 oArregloProd.obtener(2).getPrecio()));
-
+        cCliente cli2 = oLECliente.busqueda(b1.getCliente());
+        int tipo2 = cli2.getTipo();
+        if(tipo2==2){
+            oColaDespachoAlta.encolar(b1);
+        }else{
+            oColaDespachoBaja.encolar(b1);
+        }
+        
         
         cFactura f2 = new cFactura(fecha2, "C002", "V006");
         f2.setDetalle(new cDetalle_Comprobante(f2.getCodigo(),
                 oArregloProd.obtener(0).getCodigo(),
                 1,
                 oArregloProd.obtener(0).getPrecio()));
+        cCliente cli3 = oLECliente.busqueda(f2.getCliente());
+        int tipo3 = cli3.getTipo();
+        if(tipo3==2){
+            oColaDespachoAlta.encolar(f2);
+        }else{
+            oColaDespachoBaja.encolar(f2);
+        }
         
         
         cBoleta b2 = new cBoleta(fecha5, "C005", "V007");
@@ -202,6 +223,13 @@ public class frmGeneral extends javax.swing.JFrame {
                 oArregloProd.obtener(5).getCodigo(),
                 2,
                 oArregloProd.obtener(5).getPrecio()));
+        cCliente cli4 = oLECliente.busqueda(b2.getCliente());
+        int tipo4 = cli4.getTipo();
+        if(tipo4==2){
+            oColaDespachoAlta.encolar(b2);
+        }else{
+            oColaDespachoBaja.encolar(b2);
+        }
         
         
         cFactura f3 = new cFactura(fecha10, "C010", "V004");
@@ -214,31 +242,58 @@ public class frmGeneral extends javax.swing.JFrame {
                 oArregloProd.obtener(0).getCodigo(),
                 4,
                 oArregloProd.obtener(0).getPrecio()));
-
+        cCliente cli5 = oLECliente.busqueda(f3.getCliente());
+        int tipo5 = cli5.getTipo();
+        if(tipo5==2){
+            oColaDespachoAlta.encolar(f3);
+        }else{
+            oColaDespachoBaja.encolar(f3);
+        }
+        
 
         cBoleta b3 = new cBoleta(fecha6, "C006", "V005");
         b3.setDetalle(new cDetalle_Comprobante(b3.getCodigo(),
                 oArregloProd.obtener(2).getCodigo(),
                 2,
                 oArregloProd.obtener(2).getPrecio()));
-
+        cCliente cli6 = oLECliente.busqueda(b3.getCliente());
+        int tipo6 = cli6.getTipo();
+        if(tipo6==2){
+            oColaDespachoAlta.encolar(b3);
+        }else{
+            oColaDespachoBaja.encolar(b3);
+        }
+        
 
         cFactura f4 = new cFactura(fecha7, "C007", "V002");
         f4.setDetalle(new cDetalle_Comprobante(f4.getCodigo(),
                 oArregloProd.obtener(1).getCodigo(),
                 5,
                 oArregloProd.obtener(1).getPrecio()));
-
+        cCliente cli7 = oLECliente.busqueda(f4.getCliente());
+        int tipo7 = cli7.getTipo();
+        if(tipo7==2){
+            oColaDespachoAlta.encolar(f4);
+        }else{
+            oColaDespachoBaja.encolar(f4);
+        }
+        
 
         cBoleta b4 = new cBoleta(fecha9, "C009", "V001");
         b4.setDetalle(new cDetalle_Comprobante(b4.getCodigo(),
                 oArregloProd.obtener(6).getCodigo(),
                 1,
                 oArregloProd.obtener(6).getPrecio()));
-
+        cCliente cli8 = oLECliente.busqueda(b4.getCliente());
+        int tipo8 = cli8.getTipo();
+        if(tipo8==2){
+            oColaDespachoAlta.encolar(b4);
+        }else{
+            oColaDespachoBaja.encolar(b4);
+        }
+        
 
         cFactura f5 = new cFactura(fecha8, "C008", "V003");
-
         f5.setDetalle(new cDetalle_Comprobante(f5.getCodigo(),
                 oArregloProd.obtener(3).getCodigo(),
                 3,
@@ -248,26 +303,36 @@ public class frmGeneral extends javax.swing.JFrame {
                 oArregloProd.obtener(5).getCodigo(),
                 1,
                 oArregloProd.obtener(5).getPrecio()));
-
+        cCliente cli9 = oLECliente.busqueda(f5.getCliente());
+        int tipo9 = cli9.getTipo();
+        if(tipo9==2){
+            oColaDespachoAlta.encolar(f5);
+        }else{
+            oColaDespachoBaja.encolar(f5);
+        }
+        
 
         cBoleta b5 = new cBoleta(fecha4, "C004", "V002");
         b5.setDetalle(new cDetalle_Comprobante(b5.getCodigo(),
                 oArregloProd.obtener(4).getCodigo(),
                 2,
                 oArregloProd.obtener(4).getPrecio()));
-
-
-        oLEComprobante.insertarxFinal(f1);
-        oLEComprobante.insertarxFinal(b1);
-        oLEComprobante.insertarxFinal(f2);
-        oLEComprobante.insertarxFinal(b2);
-        oLEComprobante.insertarxFinal(f3);
-        oLEComprobante.insertarxFinal(b3);
-        oLEComprobante.insertarxFinal(f4);
-        oLEComprobante.insertarxFinal(b4);
-        oLEComprobante.insertarxFinal(f5);
-        oLEComprobante.insertarxFinal(b5);
-
+        cCliente cli10 = oLECliente.busqueda(b5.getCliente());
+        int tipo10 = cli10.getTipo();
+        if(tipo10==2){
+            oColaDespachoAlta.encolar(b5);
+        }else{
+            oColaDespachoBaja.encolar(b5);
+        }
+        
+        
+        while(!oColaDespachoAlta.estaVacia()){
+            oLEComprobante.insertarxFinal(oColaDespachoAlta.desencolar());
+        }
+        while(!oColaDespachoBaja.estaVacia()){
+            oLEComprobante.insertarxFinal(oColaDespachoBaja.desencolar());
+        }
+        
         mostrarComprobantes(tablaCompro);
     }
 

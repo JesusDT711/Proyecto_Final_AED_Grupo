@@ -509,8 +509,8 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                 documentoFinal.setCliente(cbCliente.getSelectedItem().toString());
                 documentoFinal.setVendedor(cbVendedor.getSelectedItem().toString());
 
-                String nombreCliente = cbCliente.getSelectedItem().toString();
-                modelo.cCliente objCliente = frmGeneral.oLECliente.busqueda(nombreCliente); 
+                String codCliente = cbCliente.getSelectedItem().toString();
+                cCliente objCliente = frmGeneral.oLECliente.busqueda(codCliente); 
                 int tipoCliente = (objCliente != null) ? objCliente.getTipo() : 1; 
 
                 if (comprobante != null) {
