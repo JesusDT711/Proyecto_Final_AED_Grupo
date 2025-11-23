@@ -163,15 +163,34 @@ public class frmGeneral extends javax.swing.JFrame {
             System.out.println("Error al convertir una de las fechas:" + e.getMessage());
         }
 
+        int cant1 = 1;
+        int cant2 = 2;
+        int cant3 = 3;
+        int cant4 = 4;
+        int cant5 = 5;
+        
+        cProducto prod1 = oArregloProd.obtener(0);
+        cProducto prod2 = oArregloProd.obtener(1);
+        cProducto prod3 = oArregloProd.obtener(2);
+        cProducto prod4 = oArregloProd.obtener(3);
+        cProducto prod5 = oArregloProd.obtener(4);
+        cProducto prod6 = oArregloProd.obtener(5);
+        cProducto prod7 = oArregloProd.obtener(6);
+        
         cFactura f1 = new cFactura(fecha1, "C001", "V002");
         f1.setDetalle(new cDetalle_Comprobante(f1.getCodigo(),
-                oArregloProd.obtener(0).getCodigo(),
-                2,
-                oArregloProd.obtener(0).getPrecio()));
+                prod1.getCodigo(),
+                cant2,
+                prod1.getPrecio()));
+        
         f1.setDetalle(new cDetalle_Comprobante(f1.getCodigo(),
-                oArregloProd.obtener(1).getCodigo(),
-                3,
-                oArregloProd.obtener(1).getPrecio()));
+                prod2.getCodigo(),
+                cant3,
+                prod2.getPrecio()));
+        
+        prod1.registrarVenta(cant2);
+        prod2.registrarVenta(cant3);
+        
         cCliente cli1 = oLECliente.busqueda(f1.getCliente());
         int tipo1 = cli1.getTipo();
         if(tipo1==2){
@@ -183,14 +202,19 @@ public class frmGeneral extends javax.swing.JFrame {
         
         cBoleta b1 = new cBoleta(fecha2, "C002", "V003");
         b1.setDetalle(new cDetalle_Comprobante(b1.getCodigo(),
-                oArregloProd.obtener(0).getCodigo(),
-                3,
-                oArregloProd.obtener(0).getPrecio()));
+                prod1.getCodigo(),
+                cant3,
+                prod1.getPrecio()));
+        
         b1.setDetalle(new cDetalle_Comprobante(b1.getCodigo(),
-                oArregloProd.obtener(2).getCodigo(),
-                1,
-                oArregloProd.obtener(2).getPrecio()));
+                prod3.getCodigo(),
+                cant1,
+                prod3.getPrecio()));
         cCliente cli2 = oLECliente.busqueda(b1.getCliente());
+        
+        prod1.registrarVenta(cant3);
+        prod3.registrarVenta(cant1);
+        
         int tipo2 = cli2.getTipo();
         if(tipo2==2){
             oColaDespachoAlta.encolar(b1);
@@ -201,9 +225,12 @@ public class frmGeneral extends javax.swing.JFrame {
         
         cFactura f2 = new cFactura(fecha3, "C003", "V006");
         f2.setDetalle(new cDetalle_Comprobante(f2.getCodigo(),
-                oArregloProd.obtener(0).getCodigo(),
-                1,
-                oArregloProd.obtener(0).getPrecio()));
+                prod1.getCodigo(),
+                cant1,
+                prod1.getPrecio()));
+        
+        prod1.registrarVenta(cant1);
+        
         cCliente cli3 = oLECliente.busqueda(f2.getCliente());
         int tipo3 = cli3.getTipo();
         if(tipo3==2){
@@ -215,14 +242,18 @@ public class frmGeneral extends javax.swing.JFrame {
         
         cBoleta b2 = new cBoleta(fecha4, "C004", "V007");
         b2.setDetalle(new cDetalle_Comprobante(b2.getCodigo(),
-                oArregloProd.obtener(3).getCodigo(),
-                1,
-                oArregloProd.obtener(3).getPrecio()));
+                prod4.getCodigo(),
+                cant1,
+                prod4.getPrecio()));
         
         b2.setDetalle(new cDetalle_Comprobante(b2.getCodigo(),
-                oArregloProd.obtener(5).getCodigo(),
-                2,
-                oArregloProd.obtener(5).getPrecio()));
+                prod6.getCodigo(),
+                cant2,
+                prod6.getPrecio()));
+        
+        prod4.registrarVenta(cant1);
+        prod6.registrarVenta(cant2);
+        
         cCliente cli4 = oLECliente.busqueda(b2.getCliente());
         int tipo4 = cli4.getTipo();
         if(tipo4==2){
@@ -234,14 +265,18 @@ public class frmGeneral extends javax.swing.JFrame {
         
         cFactura f3 = new cFactura(fecha5, "C005", "V004");
         f3.setDetalle(new cDetalle_Comprobante(f3.getCodigo(),
-                oArregloProd.obtener(4).getCodigo(),
-                1,
-                oArregloProd.obtener(4).getPrecio()));
+                prod5.getCodigo(),
+                cant1,
+                prod5.getPrecio()));
         
         f3.setDetalle(new cDetalle_Comprobante(f3.getCodigo(),
-                oArregloProd.obtener(0).getCodigo(),
-                4,
-                oArregloProd.obtener(0).getPrecio()));
+                prod1.getCodigo(),
+                cant4,
+                prod1.getPrecio()));
+        
+        prod5.registrarVenta(cant1);
+        prod1.registrarVenta(cant4);
+        
         cCliente cli5 = oLECliente.busqueda(f3.getCliente());
         int tipo5 = cli5.getTipo();
         if(tipo5==2){
@@ -253,9 +288,12 @@ public class frmGeneral extends javax.swing.JFrame {
 
         cBoleta b3 = new cBoleta(fecha6, "C006", "V005");
         b3.setDetalle(new cDetalle_Comprobante(b3.getCodigo(),
-                oArregloProd.obtener(2).getCodigo(),
-                2,
-                oArregloProd.obtener(2).getPrecio()));
+                prod3.getCodigo(),
+                cant2,
+                prod3.getPrecio()));
+        
+        prod3.registrarVenta(cant2);
+        
         cCliente cli6 = oLECliente.busqueda(b3.getCliente());
         int tipo6 = cli6.getTipo();
         if(tipo6==2){
@@ -267,9 +305,12 @@ public class frmGeneral extends javax.swing.JFrame {
 
         cFactura f4 = new cFactura(fecha7, "C007", "V002");
         f4.setDetalle(new cDetalle_Comprobante(f4.getCodigo(),
-                oArregloProd.obtener(1).getCodigo(),
-                5,
-                oArregloProd.obtener(1).getPrecio()));
+                prod2.getCodigo(),
+                cant5,
+                prod2.getPrecio()));
+        
+        prod2.registrarVenta(cant5);
+        
         cCliente cli7 = oLECliente.busqueda(f4.getCliente());
         int tipo7 = cli7.getTipo();
         if(tipo7==2){
@@ -281,9 +322,12 @@ public class frmGeneral extends javax.swing.JFrame {
 
         cBoleta b4 = new cBoleta(fecha8, "C008", "V001");
         b4.setDetalle(new cDetalle_Comprobante(b4.getCodigo(),
-                oArregloProd.obtener(6).getCodigo(),
-                1,
-                oArregloProd.obtener(6).getPrecio()));
+                prod7.getCodigo(),
+                cant1,
+                prod7.getPrecio()));
+        
+        prod7.registrarVenta(cant1);
+        
         cCliente cli8 = oLECliente.busqueda(b4.getCliente());
         int tipo8 = cli8.getTipo();
         if(tipo8==2){
@@ -295,14 +339,18 @@ public class frmGeneral extends javax.swing.JFrame {
 
         cFactura f5 = new cFactura(fecha9, "C009", "V003");
         f5.setDetalle(new cDetalle_Comprobante(f5.getCodigo(),
-                oArregloProd.obtener(3).getCodigo(),
-                3,
-                oArregloProd.obtener(3).getPrecio()));
+                prod4.getCodigo(),
+                cant3,
+                prod4.getPrecio()));
         
         f5.setDetalle(new cDetalle_Comprobante(f5.getCodigo(),
-                oArregloProd.obtener(5).getCodigo(),
-                1,
-                oArregloProd.obtener(5).getPrecio()));
+                prod6.getCodigo(),
+                cant1,
+                prod6.getPrecio()));
+        
+        prod4.registrarVenta(cant3);
+        prod6.registrarVenta(cant1);
+        
         cCliente cli9 = oLECliente.busqueda(f5.getCliente());
         int tipo9 = cli9.getTipo();
         if(tipo9==2){
@@ -314,9 +362,12 @@ public class frmGeneral extends javax.swing.JFrame {
 
         cBoleta b5 = new cBoleta(fecha10, "C010", "V002");
         b5.setDetalle(new cDetalle_Comprobante(b5.getCodigo(),
-                oArregloProd.obtener(4).getCodigo(),
-                2,
-                oArregloProd.obtener(4).getPrecio()));
+                prod5.getCodigo(),
+                cant2,
+                prod5.getPrecio()));
+        
+        prod5.registrarVenta(cant2);
+        
         cCliente cli10 = oLECliente.busqueda(b5.getCliente());
         int tipo10 = cli10.getTipo();
         if(tipo10==2){

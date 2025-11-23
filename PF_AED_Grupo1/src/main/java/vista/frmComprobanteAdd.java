@@ -423,6 +423,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                         String cod_Pro = producto.getCodigo();
                         double cod_Precio = producto.getPrecio();
                         int cantidad = Integer.parseInt(txtCantidadP.getText());
+                        producto.registrarVenta(cantidad);
                         cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
                         if(boleta!=null){
                             boleta.setDetalle(detalle);
@@ -440,6 +441,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                         String cod_Pro = producto.getCodigo();
                         double cod_Precio = producto.getPrecio();
                         int cantidad = Integer.parseInt(txtCantidadP.getText());
+                        producto.registrarVenta(cantidad);
                         cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
                         if(factura!=null){
                             factura.setDetalle(detalle);

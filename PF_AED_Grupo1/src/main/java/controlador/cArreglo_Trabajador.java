@@ -13,13 +13,11 @@ public class cArreglo_Trabajador {
     private cTrabajador[] arreglo;
     private int n;
     private int capacidad;
-    private double totalVentas; 
 
     public cArreglo_Trabajador(int capacidad) {
         this.capacidad = capacidad;
         this.arreglo = new cTrabajador[this.capacidad];
         this.n = 0;
-        this.totalVentas = 0.0;
     }
     
     public boolean agregar(cTrabajador trab) {
@@ -92,10 +90,6 @@ public class cArreglo_Trabajador {
                combo.addItem(t.getCodigo()); 
             } 
         }
-    }
-
-    public double getTotalVentas() {
-        return this.totalVentas;
     }
     
     public void recorrerArreglo(JTable tabla){

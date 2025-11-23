@@ -1,7 +1,8 @@
 
 package controlador;
 
-import modelo.cTrabajador;
+import modelo.cProducto;
+
 /**
  *
  * @author Giuss
@@ -14,7 +15,7 @@ public class cABB {
     }
     
     //Inserción por Total de Ventas
-    public void insertarNodo(cTrabajador valor){
+    public void insertarNodo(cProducto valor){
         nuevo = new cNodo_ABB(valor);
         if(raiz==null){
             raiz=nuevo;
@@ -28,7 +29,7 @@ public class cABB {
         if(p==null){
             p = nuevo;
         }else{
-            if(nuevo.getTrabajador().getTotalVentas() < p.getTrabajador().getTotalVentas()){
+            if(nuevo.getProducto().getTotalVentas() < p.getProducto().getTotalVentas()){
                 if(p.getIzq() == null){
                     p.setIzq(nuevo);
                 }else{
@@ -45,46 +46,46 @@ public class cABB {
     }
     
     //Búsqueda Indexada
-    public cTrabajador buscaIndexadoMonto(double monto){
+    public cProducto buscaIndexadoMonto(double monto){
         return buscaIndexadoMontoR(raiz, monto);
     }
     
-    public cTrabajador buscaIndexadoMontoR(cNodo_ABB p, double monto){
-        cTrabajador trabajador = null;
+    public cProducto buscaIndexadoMontoR(cNodo_ABB p, double monto){
+        cProducto producto = null;
         if(p != null){
-            if(p.getTrabajador().getTotalVentas() == monto){
-                trabajador = p.getTrabajador();
-            }else if(monto < p.getTrabajador().getTotalVentas()){
-                trabajador = buscaIndexadoMontoR(p.getIzq(), monto);
+            if(p.getProducto().getTotalVentas() == monto){
+                producto = p.getProducto();
+            }else if(monto < p.getProducto().getTotalVentas()){
+                producto = buscaIndexadoMontoR(p.getIzq(), monto);
             }else{
-                trabajador = buscaIndexadoMontoR(p.getDer(), monto);
+                producto = buscaIndexadoMontoR(p.getDer(), monto);
             }
         }
-        return trabajador;
+        return producto;
     }
     
     
     //Búsqueda Secuencial (inOrden)
-    public cTrabajador buscaSecuencialCantidad(int cantidad){
+    public cProducto buscaSecuencialCantidad(int cantidad){
         return buscaSecuencialCantidadR(raiz, cantidad);
     }
     
-    public cTrabajador buscaSecuencialCantidadR(cNodo_ABB p, int cantidad){
-        cTrabajador trababajador = null;
+    public cProducto buscaSecuencialCantidadR(cNodo_ABB p, int cantidad){
+        cProducto producto = null;
         if(p!=null){
-            cTrabajador encontrado = buscaSecuencialCantidadR(p.getIzq(), cantidad);
+            cProducto encontrado = buscaSecuencialCantidadR(p.getIzq(), cantidad);
             if(encontrado != null){
-                trababajador = encontrado;
+                producto = encontrado;
             }
             
-            if(trababajador==null && p.getTrabajador().getCantidadVentas() == cantidad){
-               trababajador = p.getTrabajador();
+            if(producto==null && p.getProducto().getCantidadVentas() == cantidad){
+               producto = p.getProducto();
             }
             
-            if(trababajador == null){
-               trababajador = buscaSecuencialCantidadR(p.getDer(), cantidad);
+            if(producto == null){
+               producto = buscaSecuencialCantidadR(p.getDer(), cantidad);
             }
         }
-        return trababajador;
+        return producto;
     }
 }

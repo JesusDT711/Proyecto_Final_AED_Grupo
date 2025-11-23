@@ -10,13 +10,11 @@ public class cArreglo_Producto {
     private cProducto[] productos;
     private int n;
     private int capacidad;
-    private double totalVentas; 
 
     public cArreglo_Producto(int capacidad) {
         this.capacidad = capacidad;
         this.productos = new cProducto[this.capacidad];
         this.n = 0;
-        this.totalVentas = 0.0;
     }
     
     public boolean agregar(cProducto p) {
@@ -83,28 +81,6 @@ public class cArreglo_Producto {
         }
 
         return exito;
-    }
-    
-    public boolean registrarVenta(String codigo, int cantidadComprada) {
-        boolean exito = false;
-        cProducto producto = buscar(codigo);
-
-        if (producto != null) {
-            if (producto.getStock() >= cantidadComprada) {
-                int nuevoStock = producto.getStock() - cantidadComprada;
-                producto.setStock(nuevoStock);
-                
-                double montoDeVenta = producto.getPrecio() * cantidadComprada;
-                this.totalVentas += montoDeVenta;
-                
-                exito = true;
-            }
-        }
-        return exito;
-    }
-    
-    public double getTotalVentas() {
-        return this.totalVentas;
     }
     
     public void llenarComboProductos(JComboBox combo){

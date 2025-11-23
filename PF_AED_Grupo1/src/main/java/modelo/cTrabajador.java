@@ -40,11 +40,6 @@ public class cTrabajador {
         return vec[tipo];
     }
     
-    public void registrarVenta(double monto){
-        this.totalVentas += monto;
-        this.cantidadVentas++;
-    }
-    
     //Estas funciones se usarán para mostrarse en el JTable de Trabajadores
     public String cargo(){
         String[] vec = {"","Administrador","Cajero","Reponedor"};
@@ -95,13 +90,5 @@ public class cTrabajador {
 
     public void setTipo(int tipo) {
         this.tipo = tipo;
-    }
-
-    public double getTotalVentas() {
-        return totalVentas;
-    }
-
-    public int getCantidadVentas() {
-        return cantidadVentas;
     }
 }

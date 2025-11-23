@@ -1,21 +1,21 @@
 
 package controlador;
 
-import modelo.cTrabajador;
+import modelo.cProducto;
 /**
  *
  * @author Giuss
  */
 public class cNodo_ABB {
-    private cTrabajador trabajador;
+    private cProducto producto;
     private cNodo_ABB izq,der;
     
-    public cNodo_ABB(cTrabajador trab){
-        this.trabajador = trab;
+    public cNodo_ABB(cProducto prod){
+        this.producto = prod;
     }
     
-    public cTrabajador getTrabajador(){
-        return trabajador;
+    public cProducto getProducto(){
+        return producto;
     }
     
     public cNodo_ABB getIzq(){
