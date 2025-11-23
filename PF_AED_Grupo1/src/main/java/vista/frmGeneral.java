@@ -181,7 +181,7 @@ public class frmGeneral extends javax.swing.JFrame {
         }
 
         
-        cBoleta b1 = new cBoleta(fecha3, "C003", "V003");
+        cBoleta b1 = new cBoleta(fecha2, "C002", "V003");
         b1.setDetalle(new cDetalle_Comprobante(b1.getCodigo(),
                 oArregloProd.obtener(0).getCodigo(),
                 3,
@@ -199,7 +199,7 @@ public class frmGeneral extends javax.swing.JFrame {
         }
         
         
-        cFactura f2 = new cFactura(fecha2, "C002", "V006");
+        cFactura f2 = new cFactura(fecha3, "C003", "V006");
         f2.setDetalle(new cDetalle_Comprobante(f2.getCodigo(),
                 oArregloProd.obtener(0).getCodigo(),
                 1,
@@ -213,7 +213,7 @@ public class frmGeneral extends javax.swing.JFrame {
         }
         
         
-        cBoleta b2 = new cBoleta(fecha5, "C005", "V007");
+        cBoleta b2 = new cBoleta(fecha4, "C004", "V007");
         b2.setDetalle(new cDetalle_Comprobante(b2.getCodigo(),
                 oArregloProd.obtener(3).getCodigo(),
                 1,
@@ -232,7 +232,7 @@ public class frmGeneral extends javax.swing.JFrame {
         }
         
         
-        cFactura f3 = new cFactura(fecha10, "C010", "V004");
+        cFactura f3 = new cFactura(fecha5, "C005", "V004");
         f3.setDetalle(new cDetalle_Comprobante(f3.getCodigo(),
                 oArregloProd.obtener(4).getCodigo(),
                 1,
@@ -279,7 +279,7 @@ public class frmGeneral extends javax.swing.JFrame {
         }
         
 
-        cBoleta b4 = new cBoleta(fecha9, "C009", "V001");
+        cBoleta b4 = new cBoleta(fecha8, "C008", "V001");
         b4.setDetalle(new cDetalle_Comprobante(b4.getCodigo(),
                 oArregloProd.obtener(6).getCodigo(),
                 1,
@@ -293,7 +293,7 @@ public class frmGeneral extends javax.swing.JFrame {
         }
         
 
-        cFactura f5 = new cFactura(fecha8, "C008", "V003");
+        cFactura f5 = new cFactura(fecha9, "C009", "V003");
         f5.setDetalle(new cDetalle_Comprobante(f5.getCodigo(),
                 oArregloProd.obtener(3).getCodigo(),
                 3,
@@ -312,7 +312,7 @@ public class frmGeneral extends javax.swing.JFrame {
         }
         
 
-        cBoleta b5 = new cBoleta(fecha4, "C004", "V002");
+        cBoleta b5 = new cBoleta(fecha10, "C010", "V002");
         b5.setDetalle(new cDetalle_Comprobante(b5.getCodigo(),
                 oArregloProd.obtener(4).getCodigo(),
                 2,
