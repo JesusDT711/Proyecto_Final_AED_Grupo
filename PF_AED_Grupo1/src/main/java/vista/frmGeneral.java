@@ -342,7 +342,7 @@ public class frmGeneral extends javax.swing.JFrame {
         oLECliente.insertarxFinal(new cCliente("ByteHouse", tel7, doc7, fecha7, 2, "Fernando Castañeda"));
         oLECliente.insertarxFinal(new cCliente("Reichel Saavedra", tel8, doc8, fecha8, 1, "Reichel Saavedra"));
         oLECliente.insertarxFinal(new cCliente("TecnoStore", tel9, doc9, fecha9, 2, "Ricardo Paredes"));
-        oLECliente.insertarxFinal(new cCliente("Camila Guerra", tel10, doc10, fecha10, 1, "Camila Guerra"));
+        oLECliente.insertarxFinal(new cCliente("Aaron Palomino", tel10, doc10, fecha10, 1, "Aaron Palomino"));
 
         mostrarClientes(tablaCli);
     }
@@ -452,8 +452,13 @@ public class frmGeneral extends javax.swing.JFrame {
     private void refrescarTablaCompro(javax.swing.JFrame ventana) {
         ventana.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
-            public void windowClosed(java.awt.event.WindowEvent e) {
-                //aca uso el metodo para mostrar los productos en la tabla
+            public void windowClosed(java.awt.event.WindowEvent e) {                
+                while(!oColaDespachoAlta.estaVacia()){
+                    oLEComprobante.insertarxFinal(oColaDespachoAlta.desencolar());
+                }
+                while(!oColaDespachoBaja.estaVacia()){
+                    oLEComprobante.insertarxFinal(oColaDespachoBaja.desencolar());
+                }
                 mostrarComprobantes(tablaCompro);
             }
         });

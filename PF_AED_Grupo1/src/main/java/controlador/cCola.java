@@ -58,19 +58,11 @@ public class cCola {
     }
 
     public boolean estaVacia() {
-        boolean res=false;
-        if(nElementos!=0){
-            res=true;
-        }
-        return res;
+        return nElementos == 0;
     }
 
     public boolean estaLlena() {
-        boolean res=false;
-        if(nElementos < tamañoMax){
-            res=true;
-        }
-        return res;
+        return nElementos == tamañoMax;
     }
 
     public void recorrerCola() {

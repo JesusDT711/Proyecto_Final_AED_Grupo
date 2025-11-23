@@ -11,6 +11,7 @@ import modelo.cDetalle_Comprobante;
 import modelo.cFactura;
 import modelo.cProducto;
 import modelo.cAccion;
+import modelo.cCliente;
 
 /**
  *
@@ -486,60 +487,55 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
 
     
     private void btnEmitirComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmitirComActionPerformed
-        if(boleta!=null || factura!=null || comprobante!=null){
-            cLE_Detalle detB = (boleta!=null) ? boleta.getDetalle() : null;
-            cLE_Detalle detF = (factura!=null) ? factura.getDetalle() : null;
-            cLE_Detalle detC = (comprobante!=null) ? comprobante.getDetalle() : null;
-            if((!rbBoleta.isSelected() && !rbFactura.isSelected())
-                    || dcFechaEmisionCo.getDate()==null
-                    || cbCliente.getSelectedIndex()==0
-                    || cbVendedor.getSelectedIndex()==0
-                    || (detB==null && detF==null && detC==null)){
+        if (boleta != null || factura != null || comprobante != null) {
+            cLE_Detalle detB = (boleta != null) ? boleta.getDetalle() : null;
+            cLE_Detalle detF = (factura != null) ? factura.getDetalle() : null;
+            cLE_Detalle detC = (comprobante != null) ? comprobante.getDetalle() : null;
+
+            if ((!rbBoleta.isSelected() && !rbFactura.isSelected())
+                    || dcFechaEmisionCo.getDate() == null
+                    || cbCliente.getSelectedIndex() == 0
+                    || cbVendedor.getSelectedIndex() == 0
+                    || (detB == null && detF == null && detC == null)) {
                 JOptionPane.showMessageDialog(this, "Complete todos los campos");
-            }else{
-                if(comprobante!=null){
-                    frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un comprobante",comprobante));
-                    comprobante.setFecha(dcFechaEmisionCo.getDate());
-                    comprobante.setCliente(cbCliente.getSelectedItem().toString());
-                    comprobante.setVendedor(cbVendedor.getSelectedItem().toString());
-                    
-                    if(rbBoleta.isSelected() && boleta!=null && boleta.getDetalle()!=null){
-                        cLE_Detalle detBoleta = boleta.getDetalle();
-                        cNodo_LE_Detalle p = detBoleta.getInicio();
-                        while(p!=null){
-                            comprobante.setDetalle(p.getValor());
-                            p = p.getSgte();
-                        }
-                    }else if(rbFactura.isSelected() && factura!=null && factura.getDetalle()!=null){
-                        cLE_Detalle detFactura = factura.getDetalle();
-                        cNodo_LE_Detalle p = detFactura.getInicio();
-                        while(p!=null){
-                            comprobante.setDetalle(p.getValor());
-                            p = p.getSgte();
-                        }
+            } else {
+                
+                cComprobante documentoFinal = null;
+                if(comprobante != null) documentoFinal = comprobante; 
+                else if(rbBoleta.isSelected()) documentoFinal = boleta; 
+                else if(rbFactura.isSelected()) documentoFinal = factura; 
+
+                documentoFinal.setFecha(dcFechaEmisionCo.getDate());
+                documentoFinal.setCliente(cbCliente.getSelectedItem().toString());
+                documentoFinal.setVendedor(cbVendedor.getSelectedItem().toString());
+
+                String nombreCliente = cbCliente.getSelectedItem().toString();
+                modelo.cCliente objCliente = frmGeneral.oLECliente.busqueda(nombreCliente); 
+                int tipoCliente = (objCliente != null) ? objCliente.getTipo() : 1; 
+
+                if (comprobante != null) {
+                     frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un comprobante", comprobante));
+                } else {
+                    if(tipoCliente == 2) {
+                        frmGeneral.oColaDespachoAlta.encolar(documentoFinal);
+                        JOptionPane.showMessageDialog(this, "Comprobante emitido para Empresa.");
+                    } else {
+                        frmGeneral.oColaDespachoBaja.encolar(documentoFinal);
+                        JOptionPane.showMessageDialog(this, "Comprobante emitido para Cliente");
                     }
-                    JOptionPane.showMessageDialog(this,"Comprobante actualizado correctamente");
-                    frmGeneral.mostrarHistorial();
-                    btnEmitirCom.setEnabled(false);
-                }else{
-                    if(rbBoleta.isSelected()){
-                        frmGeneral.oLEComprobante.insertarxFinal(boleta);
-                        JOptionPane.showMessageDialog(this, "Boleta emitida correctamente");
-                        frmGeneral.oPilaAcciones.apilar(new cAccion("Emitió una boleta",boleta));
-                        frmGeneral.mostrarHistorial();
-                        btnEmitirCom.setEnabled(false);
-                    }else if(rbFactura.isSelected()){
-                        frmGeneral.oLEComprobante.insertarxFinal(factura);
-                        JOptionPane.showMessageDialog(this, "Factura emitida correctamente");
-                        frmGeneral.oPilaAcciones.apilar(new cAccion("Emitió una factura",factura));
-                        frmGeneral.mostrarHistorial();
-                        btnEmitirCom.setEnabled(false);
-                    }
+                    String tipoComp = rbBoleta.isSelected() ? "Boleta" : "Factura";
+                    frmGeneral.oPilaAcciones.apilar(new cAccion("Encoló una " + tipoComp, documentoFinal));
                 }
+
+                btnIniciar.setEnabled(true);
+                rbBoleta.setEnabled(true);
+                rbFactura.setEnabled(true);
+                boleta = null;
+                factura = null;
             }
-        }else{
-            JOptionPane.showMessageDialog(this, "Primero inicie o cargue un comprobante antes de emitir");
-        }        
+        } else {
+            JOptionPane.showMessageDialog(this, "Primero inicie o cargue un comprobante");
+        }
     }//GEN-LAST:event_btnEmitirComActionPerformed
 
     
