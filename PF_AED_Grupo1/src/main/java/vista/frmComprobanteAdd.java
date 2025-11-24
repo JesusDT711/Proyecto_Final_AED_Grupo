@@ -525,7 +525,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                         frmGeneral.oColaDespachoBaja.encolar(documentoFinal);
                         JOptionPane.showMessageDialog(this, "Comprobante emitido para Cliente");
                     }
-                    String tipoComp = rbBoleta.isSelected() ? "Boleta" : "Factura";
+                    String tipoComp = rbBoleta.isSelected() ? "boleta" : "factura";
                     frmGeneral.oPilaAcciones.apilar(new cAccion("Encoló una " + tipoComp, documentoFinal));
                 }
 

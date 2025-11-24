@@ -1471,13 +1471,13 @@ public class frmGeneral extends javax.swing.JFrame {
                     mostrarProductos(tablaProd);
                     mostrarHistorial();
                 }
-                case "Emitió una boleta" -> {
+                case "Encoló una boleta" -> {
                     cComprobante compB = (cComprobante) accion.getObjeto();
                     oLEComprobante.eliminaEntreNodos(compB.getCodigo());
                     mostrarComprobantes(tablaCompro);
                     mostrarHistorial();
                 }
-                case "Emitió una factura" -> {
+                case "Encoló una factura" -> {
                     cComprobante compF = (cComprobante) accion.getObjeto();
                     oLEComprobante.eliminaEntreNodos(compF.getCodigo());
                     mostrarComprobantes(tablaCompro);
