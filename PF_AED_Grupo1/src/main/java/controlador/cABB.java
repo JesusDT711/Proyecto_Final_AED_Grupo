@@ -2,6 +2,7 @@
 package controlador;
 
 import modelo.cProducto;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -25,8 +26,8 @@ public class cABB {
         }
     }
     
-    public void insertarNodoR(cNodo_ABB p, cNodo_ABB nuevo){
-        if(p==null){
+    private void insertarNodoR(cNodo_ABB p, cNodo_ABB nuevo){
+        if(p == null){
             p = nuevo;
         }else{
             if(nuevo.getProducto().getTotalVentas() < p.getProducto().getTotalVentas()){
@@ -46,11 +47,23 @@ public class cABB {
     }
     
     //Búsqueda Indexada
-    public cProducto buscaIndexadoMonto(double monto){
-        return buscaIndexadoMontoR(raiz, monto);
+    
+    //Coincidencia exacta al monto ingresado
+    public void buscaIndexadoMonto(double monto, JTextArea txtArea){
+        cProducto producto = buscaIndexadoMontoR(raiz, monto);
+        if(producto != null){
+            txtArea.setText("Código: "+producto.getCodigo());
+            txtArea.append("\nDescripción: "+producto.getDescripcion());
+            txtArea.append("\nPrecio: "+producto.getPrecio());
+            txtArea.append("\nStock Actual: "+producto.getStock());
+            txtArea.append("\nCantidad Vendida: "+producto.getCantidadVentas());
+            txtArea.append("\nTotal Vendido: "+producto.getTotalVentas());  
+        }else{
+            txtArea.setText("No hay producto que coincida con ese monto.");
+        }
     }
     
-    public cProducto buscaIndexadoMontoR(cNodo_ABB p, double monto){
+    private cProducto buscaIndexadoMontoR(cNodo_ABB p, double monto){
         cProducto producto = null;
         if(p != null){
             if(p.getProducto().getTotalVentas() == monto){
@@ -66,26 +79,61 @@ public class cABB {
     
     
     //Búsqueda Secuencial (inOrden)
-    public cProducto buscaSecuencialCantidad(int cantidad){
-        return buscaSecuencialCantidadR(raiz, cantidad);
-    }
     
-    public cProducto buscaSecuencialCantidadR(cNodo_ABB p, int cantidad){
-        cProducto producto = null;
-        if(p!=null){
-            cProducto encontrado = buscaSecuencialCantidadR(p.getIzq(), cantidad);
-            if(encontrado != null){
-                producto = encontrado;
-            }
-            
-            if(producto==null && p.getProducto().getCantidadVentas() == cantidad){
-               producto = p.getProducto();
-            }
-            
-            if(producto == null){
-               producto = buscaSecuencialCantidadR(p.getDer(), cantidad);
-            }
-        }
-        return producto;
+    //Menores al monto ingresado
+    public void buscaMenoresMonto(double monto, JTextArea txtArea){
+        txtArea.setText("");
+        buscaMenoresMontoR(raiz, monto, txtArea);
+
+        if(txtArea.getText().isEmpty()){
+            txtArea.setText("No hay productos con un monto menor al ingresado.");
+        } 
     }
+
+    private void buscaMenoresMontoR(cNodo_ABB p, double monto, JTextArea txtArea){
+        if(p != null){
+            buscaMenoresMontoR(p.getIzq(), monto, txtArea);
+
+            if(p.getProducto().getTotalVentas() < monto){
+                cProducto producto = p.getProducto();
+                txtArea.append("Código: "+producto.getCodigo());
+                txtArea.append("\nDescripción: "+producto.getDescripcion());
+                txtArea.append("\nPrecio: "+producto.getPrecio());
+                txtArea.append("\nStock Actual: "+producto.getStock());
+                txtArea.append("\nCantidad Vendida: "+producto.getCantidadVentas());
+                txtArea.append("\nTotal Vendido: "+producto.getTotalVentas());
+                txtArea.append("\n========================================\n\n");
+            }
+
+            buscaMenoresMontoR(p.getDer(), monto, txtArea);
+        }
+    }
+
+    
+    //Menores al monto ingresado
+    public void buscaMayoresMonto(double monto, JTextArea txtArea){
+        txtArea.setText("");
+        buscaMayoresMontoR(raiz, monto, txtArea);
+
+        if(txtArea.getText().isEmpty()){
+            txtArea.setText("No hay productos con un monto mayor al ingresado.");
+        } 
+    }
+
+    private void buscaMayoresMontoR(cNodo_ABB p, double monto, JTextArea txtArea){
+        if(p != null){
+            buscaMayoresMontoR(p.getIzq(), monto, txtArea);
+            if(p.getProducto().getTotalVentas() > monto){
+                cProducto producto = p.getProducto();
+                txtArea.append("Código: "+producto.getCodigo());
+                txtArea.append("\nDescripción: "+producto.getDescripcion());
+                txtArea.append("\nPrecio: "+producto.getPrecio());
+                txtArea.append("\nStock Actual: "+producto.getStock());
+                txtArea.append("\nCantidad Vendida: "+producto.getCantidadVentas());
+                txtArea.append("\nTotal Vendido: "+producto.getTotalVentas());
+                txtArea.append("\n========================================\n\n");
+            }
+            buscaMayoresMontoR(p.getDer(), monto, txtArea);
+        }
+    } 
 }

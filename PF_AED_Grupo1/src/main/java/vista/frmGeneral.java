@@ -1,3 +1,4 @@
+
 package vista;
 
 import controlador.cArreglo_Producto;
@@ -9,20 +10,21 @@ import controlador.cLE_Detalle;
 import controlador.cNodo_LE_Detalle;
 import controlador.cNodo_Pila;
 import controlador.cPila;
+import controlador.cABB;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import javax.swing.JTextArea;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import modelo.cProducto;
 import modelo.cBoleta;
 import modelo.cFactura;
 import modelo.cComprobante;
-import java.text.ParseException;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import javax.swing.JTextArea;
-import modelo.cAccion;
 import modelo.cDetalle_Comprobante;
 import modelo.cCliente;
 import modelo.cTrabajador;
+import modelo.cAccion;
 
 /**
  *
@@ -37,6 +39,7 @@ public class frmGeneral extends javax.swing.JFrame {
     public static cCola oColaDespachoAlta = new cCola(100);  
     public static cCola oColaDespachoBaja = new cCola(100);
     public static cPila oPilaAcciones = new cPila();
+    public static cABB oABBProd = new cABB();
     public static frmGeneral instancia;
 
     public frmGeneral() {
@@ -120,6 +123,11 @@ public class frmGeneral extends javax.swing.JFrame {
         oArregloProd.agregar(new cProducto("LÁPIZ DIGITAL PARA TABLET", 49.90, 70));
         oArregloProd.agregar(new cProducto("TECLADO BLUETOOTH PARA TABLET", 79.90, 40));
 
+        int tamaño = oArregloProd.tamaño();
+        for(int i=0; i<tamaño; i++){
+            cProducto oProducto = oArregloProd.obtener(i);
+            oABBProd.insertarNodo(oProducto);
+        }
         mostrarProductos(tablaProd);
     }
 
@@ -529,6 +537,8 @@ public class frmGeneral extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
         jPanel7 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -573,15 +583,16 @@ public class frmGeneral extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         txtaAcciones = new javax.swing.JTextArea();
         jPanel8 = new javax.swing.JPanel();
-        panVenta = new javax.swing.JPanel();
-        rbTotalVenta = new javax.swing.JRadioButton();
-        rbCantidadVenta = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
-        cbCodPro = new javax.swing.JComboBox<>();
         btnConsultaVenta = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtaVenta = new javax.swing.JTextArea();
         btnLimpiaVenta = new javax.swing.JButton();
+        txtVenta = new javax.swing.JTextField();
+        panValor = new javax.swing.JPanel();
+        rbMenor = new javax.swing.JRadioButton();
+        rbExacto = new javax.swing.JRadioButton();
+        rbMayor = new javax.swing.JRadioButton();
         btnCerrarSesion = new javax.swing.JButton();
         btnIntegrantes = new javax.swing.JButton();
         btnDeshacer = new javax.swing.JButton();
@@ -1087,46 +1098,62 @@ public class frmGeneral extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(204, 204, 255));
 
-        panVenta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Criterio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
-
-        rbTotalVenta.setText("Monto Total");
-
-        rbCantidadVenta.setText("Cantidad Total");
-
-        javax.swing.GroupLayout panVentaLayout = new javax.swing.GroupLayout(panVenta);
-        panVenta.setLayout(panVentaLayout);
-        panVentaLayout.setHorizontalGroup(
-            panVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panVentaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(rbTotalVenta)
-                .addGap(18, 18, 18)
-                .addComponent(rbCantidadVenta)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panVentaLayout.setVerticalGroup(
-            panVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panVentaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbTotalVenta)
-                    .addComponent(rbCantidadVenta))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("ELIJA UN PRODUCTO:");
-
-        cbCodPro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir" }));
+        jLabel3.setText("INGRESE UN MONTO:");
 
         btnConsultaVenta.setText("Consultar");
+        btnConsultaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaVentaActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane6.setViewportView(jTextArea1);
+        txtaVenta.setColumns(20);
+        txtaVenta.setRows(5);
+        jScrollPane6.setViewportView(txtaVenta);
 
         btnLimpiaVenta.setText("Limpiar");
         btnLimpiaVenta.setEnabled(false);
+        btnLimpiaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiaVentaActionPerformed(evt);
+            }
+        });
+
+        panValor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Criterio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+
+        buttonGroup4.add(rbMenor);
+        rbMenor.setText("Menor");
+
+        buttonGroup4.add(rbExacto);
+        rbExacto.setText("Exacto");
+
+        buttonGroup4.add(rbMayor);
+        rbMayor.setText("Mayor");
+
+        javax.swing.GroupLayout panValorLayout = new javax.swing.GroupLayout(panValor);
+        panValor.setLayout(panValorLayout);
+        panValorLayout.setHorizontalGroup(
+            panValorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panValorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbMenor)
+                .addGap(18, 18, 18)
+                .addComponent(rbExacto)
+                .addGap(18, 18, 18)
+                .addComponent(rbMayor)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+        panValorLayout.setVerticalGroup(
+            panValorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panValorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panValorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbMenor)
+                    .addComponent(rbExacto)
+                    .addComponent(rbMayor))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1138,30 +1165,31 @@ public class frmGeneral extends javax.swing.JFrame {
                         .addGap(137, 137, 137)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
-                                .addComponent(panVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(cbCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnConsultaVenta))
                             .addComponent(jScrollPane6)))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(279, 279, 279)
                         .addComponent(btnLimpiaVenta)))
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(190, 190, 190))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(panVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(42, 42, 42)
+                .addComponent(panValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cbCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsultaVenta))
+                    .addComponent(btnConsultaVenta)
+                    .addComponent(txtVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1590,11 +1618,40 @@ public class frmGeneral extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeshacerActionPerformed
 
+    //FUNCIONALIDAD DEL BOTÓN CERRAR SESIÓN
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         this.dispose();
         frmLogin ventana = new frmLogin();
         ventana.setVisible(true);
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    //BOTONES DE LA PESTAÑA CONSULTA VENTAS
+    private void btnConsultaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaVentaActionPerformed
+        if(!rbMayor.isSelected() && !rbMenor.isSelected() && !rbExacto.isSelected()){
+            JOptionPane.showMessageDialog(this, "Seleccione un criterio de búsqueda");
+        }else if(txtVenta.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Complete el campo del monto");
+        }else{
+            double monto = Double.parseDouble(txtVenta.getText());
+            if(rbMayor.isSelected()){
+                oABBProd.buscaMayoresMonto(monto, txtaVenta);
+            }else if(rbMenor.isSelected()){
+                oABBProd.buscaMenoresMonto(monto, txtaVenta);
+            }else{
+                oABBProd.buscaIndexadoMonto(monto, txtaVenta);
+            }
+            btnLimpiaVenta.setEnabled(true);
+            btnConsultaVenta.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnConsultaVentaActionPerformed
+
+    private void btnLimpiaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiaVentaActionPerformed
+        buttonGroup4.clearSelection();
+        txtVenta.setText("");
+        txtaVenta.setText("");
+        btnConsultaVenta.setEnabled(true);
+        btnLimpiaVenta.setEnabled(false);
+    }//GEN-LAST:event_btnLimpiaVentaActionPerformed
 
     
     /**
@@ -1642,7 +1699,8 @@ public class frmGeneral extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiaVenta;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> cbCodPro;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1661,22 +1719,24 @@ public class frmGeneral extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel panCliente;
     private javax.swing.JPanel panCompro;
-    private javax.swing.JPanel panVenta;
+    private javax.swing.JPanel panValor;
     private javax.swing.JRadioButton rbBol;
-    private javax.swing.JRadioButton rbCantidadVenta;
     private javax.swing.JRadioButton rbEmpresa;
+    private javax.swing.JRadioButton rbExacto;
     private javax.swing.JRadioButton rbFac;
+    private javax.swing.JRadioButton rbMayor;
+    private javax.swing.JRadioButton rbMenor;
     private javax.swing.JRadioButton rbPersona;
     private javax.swing.JRadioButton rbTodo;
     private javax.swing.JRadioButton rbTodos;
-    private javax.swing.JRadioButton rbTotalVenta;
     private javax.swing.JTable tablaCli;
     private javax.swing.JTable tablaCompro;
     private javax.swing.JTable tablaProd;
     private javax.swing.JTable tablaTrab;
+    private javax.swing.JTextField txtVenta;
     private javax.swing.JTextArea txtaAcciones;
+    private javax.swing.JTextArea txtaVenta;
     // End of variables declaration//GEN-END:variables
 }
