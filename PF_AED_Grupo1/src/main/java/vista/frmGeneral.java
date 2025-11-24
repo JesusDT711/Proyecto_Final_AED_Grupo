@@ -190,14 +190,6 @@ public class frmGeneral extends javax.swing.JFrame {
         
         prod1.registrarVenta(cant2);
         prod2.registrarVenta(cant3);
-        
-        cCliente cli1 = oLECliente.busqueda(f1.getCliente());
-        int tipo1 = cli1.getTipo();
-        if(tipo1==2){
-            oColaDespachoAlta.encolar(f1);
-        }else{
-            oColaDespachoBaja.encolar(f1);
-        }
 
         
         cBoleta b1 = new cBoleta(fecha2, "C002", "V003");
@@ -210,17 +202,9 @@ public class frmGeneral extends javax.swing.JFrame {
                 prod3.getCodigo(),
                 cant1,
                 prod3.getPrecio()));
-        cCliente cli2 = oLECliente.busqueda(b1.getCliente());
         
         prod1.registrarVenta(cant3);
         prod3.registrarVenta(cant1);
-        
-        int tipo2 = cli2.getTipo();
-        if(tipo2==2){
-            oColaDespachoAlta.encolar(b1);
-        }else{
-            oColaDespachoBaja.encolar(b1);
-        }
         
         
         cFactura f2 = new cFactura(fecha3, "C003", "V006");
@@ -230,15 +214,7 @@ public class frmGeneral extends javax.swing.JFrame {
                 prod1.getPrecio()));
         
         prod1.registrarVenta(cant1);
-        
-        cCliente cli3 = oLECliente.busqueda(f2.getCliente());
-        int tipo3 = cli3.getTipo();
-        if(tipo3==2){
-            oColaDespachoAlta.encolar(f2);
-        }else{
-            oColaDespachoBaja.encolar(f2);
-        }
-        
+                
         
         cBoleta b2 = new cBoleta(fecha4, "C004", "V007");
         b2.setDetalle(new cDetalle_Comprobante(b2.getCodigo(),
@@ -253,14 +229,6 @@ public class frmGeneral extends javax.swing.JFrame {
         
         prod4.registrarVenta(cant1);
         prod6.registrarVenta(cant2);
-        
-        cCliente cli4 = oLECliente.busqueda(b2.getCliente());
-        int tipo4 = cli4.getTipo();
-        if(tipo4==2){
-            oColaDespachoAlta.encolar(b2);
-        }else{
-            oColaDespachoBaja.encolar(b2);
-        }
         
         
         cFactura f3 = new cFactura(fecha5, "C005", "V004");
@@ -277,14 +245,6 @@ public class frmGeneral extends javax.swing.JFrame {
         prod5.registrarVenta(cant1);
         prod1.registrarVenta(cant4);
         
-        cCliente cli5 = oLECliente.busqueda(f3.getCliente());
-        int tipo5 = cli5.getTipo();
-        if(tipo5==2){
-            oColaDespachoAlta.encolar(f3);
-        }else{
-            oColaDespachoBaja.encolar(f3);
-        }
-        
 
         cBoleta b3 = new cBoleta(fecha6, "C006", "V005");
         b3.setDetalle(new cDetalle_Comprobante(b3.getCodigo(),
@@ -293,15 +253,7 @@ public class frmGeneral extends javax.swing.JFrame {
                 prod3.getPrecio()));
         
         prod3.registrarVenta(cant2);
-        
-        cCliente cli6 = oLECliente.busqueda(b3.getCliente());
-        int tipo6 = cli6.getTipo();
-        if(tipo6==2){
-            oColaDespachoAlta.encolar(b3);
-        }else{
-            oColaDespachoBaja.encolar(b3);
-        }
-        
+                
 
         cFactura f4 = new cFactura(fecha7, "C007", "V002");
         f4.setDetalle(new cDetalle_Comprobante(f4.getCodigo(),
@@ -311,14 +263,6 @@ public class frmGeneral extends javax.swing.JFrame {
         
         prod2.registrarVenta(cant5);
         
-        cCliente cli7 = oLECliente.busqueda(f4.getCliente());
-        int tipo7 = cli7.getTipo();
-        if(tipo7==2){
-            oColaDespachoAlta.encolar(f4);
-        }else{
-            oColaDespachoBaja.encolar(f4);
-        }
-        
 
         cBoleta b4 = new cBoleta(fecha8, "C008", "V001");
         b4.setDetalle(new cDetalle_Comprobante(b4.getCodigo(),
@@ -327,15 +271,7 @@ public class frmGeneral extends javax.swing.JFrame {
                 prod7.getPrecio()));
         
         prod7.registrarVenta(cant1);
-        
-        cCliente cli8 = oLECliente.busqueda(b4.getCliente());
-        int tipo8 = cli8.getTipo();
-        if(tipo8==2){
-            oColaDespachoAlta.encolar(b4);
-        }else{
-            oColaDespachoBaja.encolar(b4);
-        }
-        
+
 
         cFactura f5 = new cFactura(fecha9, "C009", "V003");
         f5.setDetalle(new cDetalle_Comprobante(f5.getCodigo(),
@@ -350,15 +286,7 @@ public class frmGeneral extends javax.swing.JFrame {
         
         prod4.registrarVenta(cant3);
         prod6.registrarVenta(cant1);
-        
-        cCliente cli9 = oLECliente.busqueda(f5.getCliente());
-        int tipo9 = cli9.getTipo();
-        if(tipo9==2){
-            oColaDespachoAlta.encolar(f5);
-        }else{
-            oColaDespachoBaja.encolar(f5);
-        }
-        
+ 
 
         cBoleta b5 = new cBoleta(fecha10, "C010", "V002");
         b5.setDetalle(new cDetalle_Comprobante(b5.getCodigo(),
@@ -368,21 +296,16 @@ public class frmGeneral extends javax.swing.JFrame {
         
         prod5.registrarVenta(cant2);
         
-        cCliente cli10 = oLECliente.busqueda(b5.getCliente());
-        int tipo10 = cli10.getTipo();
-        if(tipo10==2){
-            oColaDespachoAlta.encolar(b5);
-        }else{
-            oColaDespachoBaja.encolar(b5);
-        }
-        
-        
-        while(!oColaDespachoAlta.estaVacia()){
-            oLEComprobante.insertarxFinal(oColaDespachoAlta.desencolar());
-        }
-        while(!oColaDespachoBaja.estaVacia()){
-            oLEComprobante.insertarxFinal(oColaDespachoBaja.desencolar());
-        }
+        oLEComprobante.insertarxFinal(f1);
+        oLEComprobante.insertarxFinal(b1);
+        oLEComprobante.insertarxFinal(f2);
+        oLEComprobante.insertarxFinal(b2);
+        oLEComprobante.insertarxFinal(f3);
+        oLEComprobante.insertarxFinal(b3);
+        oLEComprobante.insertarxFinal(f4);
+        oLEComprobante.insertarxFinal(b4);
+        oLEComprobante.insertarxFinal(f5);
+        oLEComprobante.insertarxFinal(b5);
         
         mostrarComprobantes(tablaCompro);
     }
@@ -649,6 +572,16 @@ public class frmGeneral extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         txtaAcciones = new javax.swing.JTextArea();
+        jPanel8 = new javax.swing.JPanel();
+        panVenta = new javax.swing.JPanel();
+        rbTotalVenta = new javax.swing.JRadioButton();
+        rbCantidadVenta = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        cbCodPro = new javax.swing.JComboBox<>();
+        btnConsultaVenta = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        btnLimpiaVenta = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
         btnIntegrantes = new javax.swing.JButton();
         btnDeshacer = new javax.swing.JButton();
@@ -755,7 +688,7 @@ public class frmGeneral extends javax.swing.JFrame {
                     .addComponent(btnConsultaPro))
                 .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Productos", jPanel1);
@@ -897,7 +830,7 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addComponent(panCompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Comprobantes", jPanel2);
@@ -1038,7 +971,7 @@ public class frmGeneral extends javax.swing.JFrame {
                 .addComponent(panCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Clientes", jPanel3);
@@ -1122,7 +1055,7 @@ public class frmGeneral extends javax.swing.JFrame {
                     .addComponent(btnConsultaTrab))
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Trabajadores", jPanel4);
@@ -1147,10 +1080,96 @@ public class frmGeneral extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Historial de Acciones", jPanel5);
+
+        jPanel8.setBackground(new java.awt.Color(204, 204, 255));
+
+        panVenta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Criterio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+
+        rbTotalVenta.setText("Monto Total");
+
+        rbCantidadVenta.setText("Cantidad Total");
+
+        javax.swing.GroupLayout panVentaLayout = new javax.swing.GroupLayout(panVenta);
+        panVenta.setLayout(panVentaLayout);
+        panVentaLayout.setHorizontalGroup(
+            panVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panVentaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbTotalVenta)
+                .addGap(18, 18, 18)
+                .addComponent(rbCantidadVenta)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panVentaLayout.setVerticalGroup(
+            panVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panVentaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbTotalVenta)
+                    .addComponent(rbCantidadVenta))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("ELIJA UN PRODUCTO:");
+
+        cbCodPro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir" }));
+
+        btnConsultaVenta.setText("Consultar");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane6.setViewportView(jTextArea1);
+
+        btnLimpiaVenta.setText("Limpiar");
+        btnLimpiaVenta.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addComponent(panVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnConsultaVenta))
+                            .addComponent(jScrollPane6)))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(279, 279, 279)
+                        .addComponent(btnLimpiaVenta)))
+                .addContainerGap(149, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(panVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cbCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConsultaVenta))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnLimpiaVenta)
+                .addContainerGap(179, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Consulta Ventas", jPanel8);
 
         btnCerrarSesion.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesion");
@@ -1613,16 +1632,20 @@ public class frmGeneral extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultaCom;
     private javax.swing.JButton btnConsultaPro;
     private javax.swing.JButton btnConsultaTrab;
+    private javax.swing.JButton btnConsultaVenta;
     private javax.swing.JButton btnDeshacer;
     private javax.swing.JButton btnIngresaCli;
     private javax.swing.JButton btnIngresaCom;
     private javax.swing.JButton btnIngresaPro;
     private javax.swing.JButton btnIngresaTrab;
     private javax.swing.JButton btnIntegrantes;
+    private javax.swing.JButton btnLimpiaVenta;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cbCodPro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1630,20 +1653,26 @@ public class frmGeneral extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel panCliente;
     private javax.swing.JPanel panCompro;
+    private javax.swing.JPanel panVenta;
     private javax.swing.JRadioButton rbBol;
+    private javax.swing.JRadioButton rbCantidadVenta;
     private javax.swing.JRadioButton rbEmpresa;
     private javax.swing.JRadioButton rbFac;
     private javax.swing.JRadioButton rbPersona;
     private javax.swing.JRadioButton rbTodo;
     private javax.swing.JRadioButton rbTodos;
+    private javax.swing.JRadioButton rbTotalVenta;
     private javax.swing.JTable tablaCli;
     private javax.swing.JTable tablaCompro;
     private javax.swing.JTable tablaProd;
