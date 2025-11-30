@@ -442,16 +442,21 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                         cProducto producto = frmGeneral.oArregloProd.obtener(indProd);
                         String cod_Pro = producto.getCodigo();
                         double cod_Precio = producto.getPrecio();
+                        int stock_Pro = producto.getStock();
                         int cantidad = Integer.parseInt(txtCantidadP.getText());
-                        producto.registrarVenta(cantidad);
-                        cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
-                        if(boleta!=null){
-                            boleta.setDetalle(detalle);
+                        if(cantidad <= stock_Pro){
+                            producto.registrarVenta(cantidad);
+                            cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
+                            if(boleta!=null){
+                                boleta.setDetalle(detalle);
+                            }else{
+                                comprobante.setDetalle(detalle);
+                            }
+                            cbNomP.setSelectedIndex(0);
+                            txtCantidadP.setText("");
                         }else{
-                            comprobante.setDetalle(detalle);
-                        }
-                        cbNomP.setSelectedIndex(0);
-                        txtCantidadP.setText("");
+                            JOptionPane.showMessageDialog(this, "La cantidad deseada excede el stock");
+                        }  
                     }
                 }else if(rbFactura.isSelected()){
                     String cod_Com = (factura!=null) ? factura.getCodigo() : comprobante.getCodigo();
@@ -460,16 +465,21 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                         cProducto producto = frmGeneral.oArregloProd.obtener(indProd);
                         String cod_Pro = producto.getCodigo();
                         double cod_Precio = producto.getPrecio();
+                        int stock_Pro = producto.getStock();
                         int cantidad = Integer.parseInt(txtCantidadP.getText());
-                        producto.registrarVenta(cantidad);
-                        cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
-                        if(factura!=null){
-                            factura.setDetalle(detalle);
+                        if(cantidad <= stock_Pro){
+                            producto.registrarVenta(cantidad);
+                            cDetalle_Comprobante detalle = new cDetalle_Comprobante(cod_Com, cod_Pro, cantidad, cod_Precio);
+                            if(factura!=null){
+                                factura.setDetalle(detalle);
+                            }else{
+                                comprobante.setDetalle(detalle);
+                            }
+                            cbNomP.setSelectedIndex(0);
+                            txtCantidadP.setText("");
                         }else{
-                            comprobante.setDetalle(detalle);
+                            JOptionPane.showMessageDialog(this, "La cantidad deseada excede el stock");
                         }
-                        cbNomP.setSelectedIndex(0);
-                        txtCantidadP.setText("");
                     } 
                 }
             }   
