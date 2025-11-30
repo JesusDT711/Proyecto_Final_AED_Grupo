@@ -1649,6 +1649,7 @@ public class frmGeneral extends javax.swing.JFrame {
                     compAct.setFecha(compPre.getFecha());
                     compAct.setCliente(compPre.getCliente());
                     compAct.setVendedor(compPre.getVendedor());
+                    compAct.reemplazarDetalle(new cLE_Detalle());
                     cLE_Detalle detPre = compPre.getDetalle();
                     cNodo_LE_Detalle p = detPre.getInicio();
                     while(p!=null){

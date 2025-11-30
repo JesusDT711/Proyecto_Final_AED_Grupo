@@ -77,6 +77,10 @@ public abstract class cComprobante {
         return oDetalle.totalGeneral();
     }
     
+    public void reemplazarDetalle(cLE_Detalle detalle){
+        this.oDetalle = detalle;
+    }
+    
     public void setDetalle(cDetalle_Comprobante nuevo){
         oDetalle.insertarxFinal(nuevo);
     }
