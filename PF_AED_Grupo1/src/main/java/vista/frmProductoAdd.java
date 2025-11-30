@@ -197,6 +197,7 @@ public class frmProductoAdd extends javax.swing.JFrame {
             }else {  
                 cProducto nuevoP = new cProducto(nombre,precio,cantidad);
                 frmGeneral.oArregloProd.agregar(nuevoP);
+                frmGeneral.oABBProd.insertarNodo(nuevoP);
                 JOptionPane.showMessageDialog(this, "Producto añadido correctamente");
                 frmGeneral.oPilaAcciones.apilar(new cAccion("Registró un producto",nuevoP));
                 frmGeneral.mostrarHistorial();
