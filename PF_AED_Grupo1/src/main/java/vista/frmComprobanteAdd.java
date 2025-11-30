@@ -547,16 +547,19 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
 
                 if (comprobante != null) {
                      frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un comprobante", comprobante));
+                     frmGeneral.mostrarHistorial();
                 } else {
                     if(tipoCliente == 2) {
                         frmGeneral.oColaDespachoAlta.encolar(documentoFinal);
-                        JOptionPane.showMessageDialog(this, "Comprobante emitido para Empresa.");
+                        frmGeneral.oPilaAcciones.apilar(new cAccion("Encoló una boleta", documentoFinal));
+                        frmGeneral.mostrarHistorial();
+                        JOptionPane.showMessageDialog(this, "Comprobante emitido para Empresa.");                        
                     } else {
                         frmGeneral.oColaDespachoBaja.encolar(documentoFinal);
-                        JOptionPane.showMessageDialog(this, "Comprobante emitido para Cliente");
+                        frmGeneral.oPilaAcciones.apilar(new cAccion("Encoló una factura", documentoFinal));
+                        frmGeneral.mostrarHistorial();
+                        JOptionPane.showMessageDialog(this, "Comprobante emitido para Cliente");                        
                     }
-                    String tipoComp = rbBoleta.isSelected() ? "boleta" : "factura";
-                    frmGeneral.oPilaAcciones.apilar(new cAccion("Encoló una " + tipoComp, documentoFinal));
                 }
 
                 btnIniciar.setEnabled(true);
