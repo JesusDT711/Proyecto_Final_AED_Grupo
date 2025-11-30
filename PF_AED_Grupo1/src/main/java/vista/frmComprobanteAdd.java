@@ -1,6 +1,7 @@
 
 package vista;
 
+import controlador.cABB;
 import controlador.cLE_Detalle;
 import controlador.cNodo_LE_Detalle;
 import java.util.Date;
@@ -562,7 +563,14 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Comprobante emitido para Cliente");                        
                     }
                 }
-
+                
+                frmGeneral.oABBProd = new cABB();
+                int tamaño = frmGeneral.oArregloProd.tamaño();
+                for(int i=0; i<tamaño; i++){
+                    cProducto oProducto = frmGeneral.oArregloProd.obtener(i);
+                    frmGeneral.oABBProd.insertarNodo(oProducto);
+                }
+                
                 btnIniciar.setEnabled(true);
                 rbBoleta.setEnabled(true);
                 rbFactura.setEnabled(true);

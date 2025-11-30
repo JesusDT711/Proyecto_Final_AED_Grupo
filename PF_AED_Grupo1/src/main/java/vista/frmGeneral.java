@@ -123,11 +123,6 @@ public class frmGeneral extends javax.swing.JFrame {
         oArregloProd.agregar(new cProducto("LÁPIZ DIGITAL PARA TABLET", 49.90, 70));
         oArregloProd.agregar(new cProducto("TECLADO BLUETOOTH PARA TABLET", 79.90, 40));
 
-        int tamaño = oArregloProd.tamaño();
-        for(int i=0; i<tamaño; i++){
-            cProducto oProducto = oArregloProd.obtener(i);
-            oABBProd.insertarNodo(oProducto);
-        }
         mostrarProductos(tablaProd);
     }
 
@@ -315,6 +310,13 @@ public class frmGeneral extends javax.swing.JFrame {
         oLEComprobante.insertarxFinal(f5);
         oLEComprobante.insertarxFinal(b5);
         
+        
+        int tamaño = oArregloProd.tamaño();
+        for(int i=0; i<tamaño; i++){
+            cProducto oProducto = oArregloProd.obtener(i);
+            oABBProd.insertarNodo(oProducto);
+        }
+        
         mostrarComprobantes(tablaCompro);
     }
 
@@ -443,7 +445,7 @@ public class frmGeneral extends javax.swing.JFrame {
 
         mostrarTrabajadores(tablaTrab);
     }
-
+    
     //MÉTODOS PARA HABILITAR LOS BOTONES ACTUALIZAR & ELIMINAR
     private void habilitarBotonesProductos() {
         tablaProd.getSelectionModel().addListSelectionListener(e -> {
