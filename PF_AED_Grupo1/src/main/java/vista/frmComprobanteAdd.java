@@ -548,6 +548,7 @@ public class frmComprobanteAdd extends javax.swing.JFrame {
                 if (comprobante != null) {
                      frmGeneral.oPilaAcciones.apilar(new cAccion("Actualizó un comprobante", comprobante));
                      frmGeneral.mostrarHistorial();
+                     this.dispose();
                 } else {
                     if(tipoCliente == 2) {
                         frmGeneral.oColaDespachoAlta.encolar(documentoFinal);
