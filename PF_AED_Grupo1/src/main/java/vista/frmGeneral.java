@@ -544,6 +544,14 @@ public class frmGeneral extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaProd = new javax.swing.JTable();
+        btnIngresaPro = new javax.swing.JButton();
+        btnActualizaPro = new javax.swing.JButton();
+        btnBorraPro = new javax.swing.JButton();
+        btnConsultaPro = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaCompro = new javax.swing.JTable();
@@ -568,6 +576,14 @@ public class frmGeneral extends javax.swing.JFrame {
         rbTodos = new javax.swing.JRadioButton();
         btnConsultaCli = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablaTrab = new javax.swing.JTable();
+        btnIngresaTrab = new javax.swing.JButton();
+        btnActualizaTrab = new javax.swing.JButton();
+        btnBorraTrab = new javax.swing.JButton();
+        btnConsultaTrab = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         txtaAcciones = new javax.swing.JTextArea();
@@ -584,22 +600,6 @@ public class frmGeneral extends javax.swing.JFrame {
         rbExacto = new javax.swing.JRadioButton();
         rbMayor = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaProd = new javax.swing.JTable();
-        btnIngresaPro = new javax.swing.JButton();
-        btnActualizaPro = new javax.swing.JButton();
-        btnBorraPro = new javax.swing.JButton();
-        btnConsultaPro = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tablaTrab = new javax.swing.JTable();
-        btnIngresaTrab = new javax.swing.JButton();
-        btnActualizaTrab = new javax.swing.JButton();
-        btnBorraTrab = new javax.swing.JButton();
-        btnConsultaTrab = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
         btnIntegrantes = new javax.swing.JButton();
         btnDeshacer = new javax.swing.JButton();
@@ -630,6 +630,96 @@ public class frmGeneral extends javax.swing.JFrame {
         jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTabbedPane1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jTabbedPane1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+
+        tablaProd.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        tablaProd.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Código", "Descripción", "Precio", "Cantidad"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaProd);
+
+        btnIngresaPro.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnIngresaPro.setText("Añadir");
+        btnIngresaPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresaProActionPerformed(evt);
+            }
+        });
+
+        btnActualizaPro.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnActualizaPro.setText("Actualizar");
+        btnActualizaPro.setEnabled(false);
+        btnActualizaPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizaProActionPerformed(evt);
+            }
+        });
+
+        btnBorraPro.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnBorraPro.setText("Eliminar");
+        btnBorraPro.setEnabled(false);
+        btnBorraPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorraProActionPerformed(evt);
+            }
+        });
+
+        btnConsultaPro.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnConsultaPro.setText("Consultar");
+        btnConsultaPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaProActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("Punto (B)");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(btnIngresaPro)
+                .addGap(41, 41, 41)
+                .addComponent(btnActualizaPro)
+                .addGap(106, 106, 106)
+                .addComponent(btnBorraPro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(btnConsultaPro)
+                .addGap(46, 46, 46))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel5)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIngresaPro)
+                    .addComponent(btnActualizaPro)
+                    .addComponent(btnBorraPro)
+                    .addComponent(btnConsultaPro))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jTabbedPane1.addTab("Productos", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setMaximumSize(new java.awt.Dimension(32767, 32900));
@@ -929,6 +1019,95 @@ public class frmGeneral extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Clientes", jPanel3);
 
+        jPanel4.setBackground(new java.awt.Color(204, 204, 255));
+
+        tablaTrab.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Código", "Nombre", "Fecha de Ingreso", "Sueldo", "Cargo"
+            }
+        ));
+        jScrollPane4.setViewportView(tablaTrab);
+
+        btnIngresaTrab.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnIngresaTrab.setText("Añadir");
+        btnIngresaTrab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresaTrabActionPerformed(evt);
+            }
+        });
+
+        btnActualizaTrab.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnActualizaTrab.setText("Actualizar");
+        btnActualizaTrab.setEnabled(false);
+        btnActualizaTrab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizaTrabActionPerformed(evt);
+            }
+        });
+
+        btnBorraTrab.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnBorraTrab.setText("Eliminar");
+        btnBorraTrab.setEnabled(false);
+        btnBorraTrab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorraTrabActionPerformed(evt);
+            }
+        });
+
+        btnConsultaTrab.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnConsultaTrab.setText("Consultar");
+        btnConsultaTrab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaTrabActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setText("Punto (B)");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(btnIngresaTrab)
+                .addGap(35, 35, 35)
+                .addComponent(btnActualizaTrab)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                .addComponent(btnBorraTrab)
+                .addGap(36, 36, 36)
+                .addComponent(btnConsultaTrab)
+                .addGap(17, 17, 17))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(jLabel6)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIngresaTrab)
+                    .addComponent(btnActualizaTrab)
+                    .addComponent(btnBorraTrab)
+                    .addComponent(btnConsultaTrab))
+                .addGap(48, 48, 48)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Trabajadores", jPanel4);
+
         jPanel5.setBackground(new java.awt.Color(204, 204, 255));
 
         txtaAcciones.setColumns(20);
@@ -1075,185 +1254,6 @@ public class frmGeneral extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Consulta Ventas", jPanel8);
-
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-
-        tablaProd.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        tablaProd.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Código", "Descripción", "Precio", "Cantidad"
-            }
-        ));
-        jScrollPane1.setViewportView(tablaProd);
-
-        btnIngresaPro.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        btnIngresaPro.setText("Añadir");
-        btnIngresaPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresaProActionPerformed(evt);
-            }
-        });
-
-        btnActualizaPro.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        btnActualizaPro.setText("Actualizar");
-        btnActualizaPro.setEnabled(false);
-        btnActualizaPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizaProActionPerformed(evt);
-            }
-        });
-
-        btnBorraPro.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        btnBorraPro.setText("Eliminar");
-        btnBorraPro.setEnabled(false);
-        btnBorraPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorraProActionPerformed(evt);
-            }
-        });
-
-        btnConsultaPro.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        btnConsultaPro.setText("Consultar");
-        btnConsultaPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultaProActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Punto (B)");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(btnIngresaPro)
-                .addGap(41, 41, 41)
-                .addComponent(btnActualizaPro)
-                .addGap(106, 106, 106)
-                .addComponent(btnBorraPro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(btnConsultaPro)
-                .addGap(46, 46, 46))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel5)
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresaPro)
-                    .addComponent(btnActualizaPro)
-                    .addComponent(btnBorraPro)
-                    .addComponent(btnConsultaPro))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jTabbedPane1.addTab("Productos", jPanel1);
-
-        jPanel4.setBackground(new java.awt.Color(204, 204, 255));
-
-        tablaTrab.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Código", "Nombre", "Fecha de Ingreso", "Sueldo", "Cargo"
-            }
-        ));
-        jScrollPane4.setViewportView(tablaTrab);
-
-        btnIngresaTrab.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        btnIngresaTrab.setText("Añadir");
-        btnIngresaTrab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresaTrabActionPerformed(evt);
-            }
-        });
-
-        btnActualizaTrab.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        btnActualizaTrab.setText("Actualizar");
-        btnActualizaTrab.setEnabled(false);
-        btnActualizaTrab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizaTrabActionPerformed(evt);
-            }
-        });
-
-        btnBorraTrab.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        btnBorraTrab.setText("Eliminar");
-        btnBorraTrab.setEnabled(false);
-        btnBorraTrab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorraTrabActionPerformed(evt);
-            }
-        });
-
-        btnConsultaTrab.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        btnConsultaTrab.setText("Consultar");
-        btnConsultaTrab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultaTrabActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Punto (B)");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(btnIngresaTrab)
-                .addGap(35, 35, 35)
-                .addComponent(btnActualizaTrab)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
-                .addComponent(btnBorraTrab)
-                .addGap(36, 36, 36)
-                .addComponent(btnConsultaTrab)
-                .addGap(17, 17, 17))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel6)
-                .addGap(34, 34, 34)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresaTrab)
-                    .addComponent(btnActualizaTrab)
-                    .addComponent(btnBorraTrab)
-                    .addComponent(btnConsultaTrab))
-                .addGap(48, 48, 48)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Trabajadores", jPanel4);
 
         btnCerrarSesion.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesion");
