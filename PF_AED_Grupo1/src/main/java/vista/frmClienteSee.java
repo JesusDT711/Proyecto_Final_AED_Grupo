@@ -53,6 +53,7 @@ public class frmClienteSee extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel1.setText("INGRESAR CÓDIGO DEL CLIENTE: ");
 
+        txtaCliente.setBackground(new java.awt.Color(204, 204, 204));
         txtaCliente.setColumns(20);
         txtaCliente.setRows(5);
         jScrollPane1.setViewportView(txtaCliente);

@@ -38,6 +38,7 @@ public class frmTrabajadoresSee extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/resources/logo1.png"))); // NOI18N
 
+        txtaTrabajador.setBackground(new java.awt.Color(204, 204, 204));
         txtaTrabajador.setColumns(20);
         txtaTrabajador.setRows(5);
         jScrollPane1.setViewportView(txtaTrabajador);
